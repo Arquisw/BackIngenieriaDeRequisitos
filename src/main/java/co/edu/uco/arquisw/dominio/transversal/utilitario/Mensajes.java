@@ -11,6 +11,10 @@ public class Mensajes {
     public static final String PATRON_DESCRIPCION_ETAPA_NO_ES_VALIDO = "La descripcion de la Etapa solo puede contener letras y numeros";
     public static final String NOMBRE_TIPOREQUISITO_VACIO = "El nombre del Tipo de requisito no puede estar vacio";
     public static final String PATRON_NOMBRE_TIPOREQUISITO_NO_ES_VALIDO = "El nombre del Tipo de requisito solo puede contener letras y numeros";
+    public static final String NOMBRE_REQUISITO_VACIO = "El nombre del requisito no puede estar vacio";
+    public static final String PATRON_NOMBRE_REQUISITO_NO_ES_VALIDO = "El nombre del requisito solo puede contener letras y numeros";
+    public static final String DESCRIPCION_REQUISITO_VACIO = "La Descripcion del requisito no puede estar vacio";
+    public static final String PATRON_DESCRIPCION_REQUISITO_NO_ES_VALIDO = "La descripcion del requisito solo puede contener letras y numeros";
     private Mensajes()
     {
 
