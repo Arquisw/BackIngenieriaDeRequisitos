@@ -34,7 +34,7 @@ public class Fase {
 
     public void setDescripcion(String descripcion) {
         ValidarTexto.validarObligatorio(descripcion, Mensajes.DESCRIPCION_FASE_VACIO);
-        ValidarTexto.validarPatronAlfanumericoEsValido(nombre, Mensajes.PATRON_DESCRIPCION_FASE_NO_ES_VALIDO);
+        ValidarTexto.validarPatronAlfanumericoEsValido(descripcion, Mensajes.PATRON_DESCRIPCION_FASE_NO_ES_VALIDO);
         this.descripcion = descripcion;
     }
 

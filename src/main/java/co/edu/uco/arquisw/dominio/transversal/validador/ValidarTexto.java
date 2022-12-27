@@ -2,7 +2,6 @@ package co.edu.uco.arquisw.dominio.transversal.validador;
 
 import co.edu.uco.arquisw.dominio.transversal.excepciones.PatronExcepcion;
 import co.edu.uco.arquisw.dominio.transversal.excepciones.ValorObligatorioExcepcion;
-import co.edu.uco.arquisw.dominio.transversal.validador.ValidarObjeto;
 
 public class ValidarTexto {
     private static final String LETRAS_Y_ESPACIOS = "^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]*$";
