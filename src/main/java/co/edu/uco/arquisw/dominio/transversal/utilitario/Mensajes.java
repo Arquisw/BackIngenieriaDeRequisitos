@@ -15,8 +15,6 @@ public class Mensajes {
     public static final String PATRON_NOMBRE_REQUISITO_NO_ES_VALIDO = "El nombre del requisito solo puede contener letras y numeros";
     public static final String DESCRIPCION_REQUISITO_VACIO = "La Descripcion del requisito no puede estar vacio";
     public static final String PATRON_DESCRIPCION_REQUISITO_NO_ES_VALIDO = "La descripcion del requisito solo puede contener letras y numeros";
-    private Mensajes()
-    {
 
-    }
+    private Mensajes() {}
 }

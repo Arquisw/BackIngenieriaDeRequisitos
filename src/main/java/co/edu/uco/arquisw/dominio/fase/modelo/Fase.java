@@ -1,29 +1,24 @@
 package co.edu.uco.arquisw.dominio.fase.modelo;
 
-import co.edu.uco.arquisw.dominio.etapa.modelo.Etapa;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.Mensajes;
 import co.edu.uco.arquisw.dominio.transversal.validador.ValidarTexto;
 import lombok.Getter;
-
 import java.util.List;
+
 @Getter
 public class Fase {
     private String nombre;
     private String descripcion;
-    private boolean completado;
-    private List<Etapa> etapa;
+    private final List<Etapa> etapas;
 
-    private Fase(String nombre, String descripcion, boolean completado, List<Etapa> etapa) {
+    private Fase(String nombre, String descripcion, List<Etapa> etapas) {
         setNombre(nombre);
         setDescripcion(descripcion);
-        setCompletado(completado);
-        setEtapa(etapa);
-        this.etapa = etapa;
+        this.etapas = etapas;
     }
 
-    public static Fase crear(String nombre, String descripcion, boolean completado, List<Etapa> etapa)
-    {
-        return new Fase(nombre,descripcion,completado,etapa);
+    public static Fase crear(String nombre, String descripcion, List<Etapa> etapa) {
+        return new Fase(nombre,descripcion,etapa);
     }
 
     public void setNombre(String nombre) {
@@ -36,13 +31,5 @@ public class Fase {
         ValidarTexto.validarObligatorio(descripcion, Mensajes.DESCRIPCION_FASE_VACIO);
         ValidarTexto.validarPatronAlfanumericoEsValido(descripcion, Mensajes.PATRON_DESCRIPCION_FASE_NO_ES_VALIDO);
         this.descripcion = descripcion;
-    }
-
-    public void setCompletado(boolean completado) {
-        this.completado = completado;
-    }
-
-    public void setEtapa(List<Etapa> etapa) {
-        this.etapa = etapa;
     }
 }

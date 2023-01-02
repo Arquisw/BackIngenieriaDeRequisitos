@@ -1,6 +1,5 @@
-package co.edu.uco.arquisw.dominio.etapa.modelo;
+package co.edu.uco.arquisw.dominio.fase.modelo;
 
-import co.edu.uco.arquisw.dominio.fase.modelo.Fase;
 import co.edu.uco.arquisw.dominio.transversal.excepciones.PatronExcepcion;
 import co.edu.uco.arquisw.dominio.transversal.excepciones.ValorObligatorioExcepcion;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.Mensajes;
@@ -8,10 +7,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class EtapaTest {
-
     @Test
-    void  validarCreacionFaseExitosa()
-    {
+    void  validarCreacionFaseExitosa() {
         String nombre = "Fase 1";
         String descripcion = "Fase 1";
         boolean completado = false;
@@ -19,21 +16,18 @@ class EtapaTest {
 
         Assertions.assertEquals(nombre,etapa.getNombre());
         Assertions.assertEquals(descripcion,etapa.getDescripcion());
-        Assertions.assertEquals(completado,etapa.isCompletado());
+        Assertions.assertEquals(completado,etapa.isCompletada());
     }
     @Test
-    void validarCamposFaltantes()
-    {
+    void validarCamposFaltantes() {
         Assertions.assertEquals(Mensajes.NOMBRE_ETAPA_VACIO, Assertions.assertThrows(ValorObligatorioExcepcion.class,() ->
                 Etapa.crear("", "descripcion",false, null)).getMessage());
 
         Assertions.assertEquals(Mensajes.DESCRIPCION_ETAPA_VACIO, Assertions.assertThrows(ValorObligatorioExcepcion.class,() ->
                 Etapa.crear("Nombre", "",false, null)).getMessage());
-
     }
     @Test
-    void validarPatronesIncorrecto()
-    {
+    void validarPatronesIncorrecto() {
         Assertions.assertEquals(Mensajes.PATRON_NOMBRE_ETAPA_NO_ES_VALIDO, Assertions.assertThrows(PatronExcepcion.class,() ->
                 Etapa.crear("12asd-@!°^%", "descripcion",false, null)).getMessage());
 

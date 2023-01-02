@@ -1,4 +1,4 @@
-package co.edu.uco.arquisw.dominio.tipoRequisito.dto;
+package co.edu.uco.arquisw.dominio.requisito.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
