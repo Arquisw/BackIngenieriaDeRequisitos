@@ -1,4 +1,4 @@
-package co.edu.uco.arquisw.dominio.fase.modelo;
+package co.edu.uco.arquisw.dominio.requisito.modelo;
 
 import co.edu.uco.arquisw.dominio.transversal.formateador.FechaFormateador;
 import lombok.Getter;

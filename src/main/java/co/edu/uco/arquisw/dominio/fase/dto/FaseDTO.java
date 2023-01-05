@@ -15,4 +15,5 @@ public class FaseDTO {
     private String nombre;
     private String descripcion;
     private List<EtapaDTO> etapa;
+    private Long proyectoID;
 }

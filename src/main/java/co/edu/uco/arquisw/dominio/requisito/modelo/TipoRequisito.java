@@ -16,8 +16,8 @@ public class TipoRequisito {
         return new TipoRequisito(nombre);
     }
 
-    public void setNombre(String nombre) {
-        ValidarTexto.validarObligatorio(nombre, Mensajes.NOMBRE_TIPOREQUISITO_VACIO);
+    private void setNombre(String nombre) {
+        ValidarTexto.validarObligatorio(nombre, Mensajes.NOMBRE_TIPO_REQUISITO_VACIO);
         ValidarTexto.validarPatronAlfanumericoEsValido(nombre, Mensajes.PATRON_NOMBRE_TIPOREQUISITO_NO_ES_VALIDO);
 
         this.nombre = nombre;

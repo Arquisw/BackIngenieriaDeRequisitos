@@ -1,6 +1,5 @@
 package co.edu.uco.arquisw.dominio.fase.dto;
 
-import co.edu.uco.arquisw.dominio.requisito.dto.VersionDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,11 +10,10 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
-public class EtapaDTO {
+public class ProyectoDTO {
     private Long id;
     private String nombre;
     private String descripcion;
-    private boolean completada;
-    private List<VersionDTO> versiones;
+    private EstadoProyectoDTO estado;
+    private List<TipoConsultoriaDTO> tiposConsultoria;
 }

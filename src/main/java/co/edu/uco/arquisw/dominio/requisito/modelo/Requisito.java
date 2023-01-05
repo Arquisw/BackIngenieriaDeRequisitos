@@ -20,14 +20,14 @@ public class Requisito {
         return new Requisito(nombre,descripcion,tipoRequisito);
     }
 
-    public void setNombre(String nombre) {
+    private void setNombre(String nombre) {
         ValidarTexto.validarObligatorio(nombre, Mensajes.NOMBRE_REQUISITO_VACIO);
         ValidarTexto.validarPatronAlfanumericoEsValido(nombre, Mensajes.PATRON_NOMBRE_REQUISITO_NO_ES_VALIDO);
 
         this.nombre = nombre;
     }
 
-    public void setDescripcion(String descripcion) {
+    private void setDescripcion(String descripcion) {
         ValidarTexto.validarObligatorio(descripcion, Mensajes.DESCRIPCION_REQUISITO_VACIO);
         ValidarTexto.validarPatronAlfanumericoEsValido(descripcion, Mensajes.PATRON_DESCRIPCION_REQUISITO_NO_ES_VALIDO);
 

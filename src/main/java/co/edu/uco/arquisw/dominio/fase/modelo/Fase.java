@@ -17,19 +17,21 @@ public class Fase {
         this.etapas = etapas;
     }
 
-    public static Fase crear(String nombre, String descripcion, List<Etapa> etapa) {
-        return new Fase(nombre,descripcion,etapa);
+    public static Fase crear(String nombre, String descripcion, List<Etapa> etapas) {
+        return new Fase(nombre, descripcion, etapas);
     }
 
-    public void setNombre(String nombre) {
+    private void setNombre(String nombre) {
         ValidarTexto.validarObligatorio(nombre, Mensajes.NOMBRE_FASE_VACIO);
         ValidarTexto.validarPatronAlfanumericoEsValido(nombre, Mensajes.PATRON_NOMBRE_FASE_NO_ES_VALIDO);
+
         this.nombre = nombre;
     }
 
-    public void setDescripcion(String descripcion) {
+    private void setDescripcion(String descripcion) {
         ValidarTexto.validarObligatorio(descripcion, Mensajes.DESCRIPCION_FASE_VACIO);
         ValidarTexto.validarPatronAlfanumericoEsValido(descripcion, Mensajes.PATRON_DESCRIPCION_FASE_NO_ES_VALIDO);
+
         this.descripcion = descripcion;
     }
 }
