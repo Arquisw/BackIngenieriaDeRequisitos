@@ -20,7 +20,7 @@ public class ServicioConsultarFasesPorProyectoID {
     }
 
     private void validarSiExisteProyectoConID(Long proyectoID) {
-        if(ValidarObjeto.esNulo(this.faseRepositorioConsulta.consultarFasePorID(proyectoID))) {
+        if(ValidarObjeto.esNulo(this.faseRepositorioConsulta.consultarFasesPorProyectoID(proyectoID))) {
             throw new NullPointerException(Mensajes.NO_EXISTE_PROYECTO_CON_EL_ID + proyectoID);
         }
     }
