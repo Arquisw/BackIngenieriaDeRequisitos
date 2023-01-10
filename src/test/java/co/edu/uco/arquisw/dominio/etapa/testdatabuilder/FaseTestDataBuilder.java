@@ -5,8 +5,7 @@ import co.edu.uco.arquisw.dominio.fase.modelo.Fase;
 import java.util.List;
 
 public class FaseTestDataBuilder {
-
-     private String nombre ;
+    private String nombre ;
     private String descripcion;
     private List<Etapa> etapas;
 

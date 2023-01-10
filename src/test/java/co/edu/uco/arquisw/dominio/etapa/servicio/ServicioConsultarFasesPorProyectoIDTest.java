@@ -16,7 +16,6 @@ class ServicioConsultarFasesPorProyectoIDTest {
     void validarServicioConsultarFasesPorProyectoIDExitosa()
 
     {
-        var proyectoDto = new ProyectoDTO();
         var faseDTO = new FaseDTO();
         List<FaseDTO> faseDTOS = List.of(faseDTO);
 

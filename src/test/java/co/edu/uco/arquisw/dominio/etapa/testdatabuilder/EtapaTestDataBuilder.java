@@ -3,7 +3,6 @@ package co.edu.uco.arquisw.dominio.etapa.testdatabuilder;
 import co.edu.uco.arquisw.dominio.fase.modelo.Etapa;
 
 public class EtapaTestDataBuilder {
-
     private String nombre;
     private String descripcion;
     private final boolean completada ;

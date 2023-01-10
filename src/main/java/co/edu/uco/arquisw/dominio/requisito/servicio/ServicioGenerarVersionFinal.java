@@ -41,7 +41,7 @@ public class ServicioGenerarVersionFinal {
         var versiones = requisitoRepositorioConsulta.consultarVersionesPorEtapaID(etapaID);
 
         if(versiones.isEmpty() || this.servicioObtenerVersionFinal.ejecutar(versiones).isEsFinal()) {
-            throw new AccionExcepcion(Mensajes.NO_EXISTE_ETAPA_CON_EL_ID);
+            throw new AccionExcepcion(Mensajes.NO_EXISTE_VERSION_CON_EL_ID);
         }
 
         return this.servicioObtenerVersionFinal.ejecutar(versiones).getId();
