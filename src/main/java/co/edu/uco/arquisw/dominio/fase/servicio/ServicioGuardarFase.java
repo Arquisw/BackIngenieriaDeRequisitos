@@ -2,8 +2,8 @@ package co.edu.uco.arquisw.dominio.fase.servicio;
 
 import co.edu.uco.arquisw.dominio.fase.modelo.Etapa;
 import co.edu.uco.arquisw.dominio.fase.modelo.Fase;
-import co.edu.uco.arquisw.dominio.fase.puerto.FaseRepositorioComando;
-import co.edu.uco.arquisw.dominio.fase.puerto.FaseRepositorioConsulta;
+import co.edu.uco.arquisw.dominio.fase.puerto.comando.FaseRepositorioComando;
+import co.edu.uco.arquisw.dominio.fase.puerto.consulta.FaseRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.LogicoConstante;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.Mensajes;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.TextoConstante;

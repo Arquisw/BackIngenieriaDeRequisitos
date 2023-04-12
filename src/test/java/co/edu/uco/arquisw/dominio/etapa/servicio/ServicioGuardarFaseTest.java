@@ -1,10 +1,9 @@
 package co.edu.uco.arquisw.dominio.etapa.servicio;
 
-import co.edu.uco.arquisw.dominio.etapa.testdatabuilder.FaseTestDataBuilder;
 import co.edu.uco.arquisw.dominio.fase.dto.ProyectoDTO;
 import co.edu.uco.arquisw.dominio.fase.modelo.Fase;
-import co.edu.uco.arquisw.dominio.fase.puerto.FaseRepositorioComando;
-import co.edu.uco.arquisw.dominio.fase.puerto.FaseRepositorioConsulta;
+import co.edu.uco.arquisw.dominio.fase.puerto.comando.FaseRepositorioComando;
+import co.edu.uco.arquisw.dominio.fase.puerto.consulta.FaseRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.fase.servicio.ServicioGuardarFase;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.Mensajes;
 import org.junit.jupiter.api.Assertions;

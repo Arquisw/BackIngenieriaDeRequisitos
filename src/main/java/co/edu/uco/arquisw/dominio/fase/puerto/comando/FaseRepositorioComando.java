@@ -1,4 +1,4 @@
-package co.edu.uco.arquisw.dominio.fase.puerto;
+package co.edu.uco.arquisw.dominio.fase.puerto.comando;
 
 import co.edu.uco.arquisw.dominio.fase.modelo.Etapa;
 import co.edu.uco.arquisw.dominio.fase.modelo.Fase;
