@@ -7,7 +7,9 @@ import co.edu.uco.arquisw.dominio.fase.servicio.ServicioConsultarFasePorID;
 import co.edu.uco.arquisw.dominio.fase.servicio.ServicioConsultarFasesPorProyectoID;
 import co.edu.uco.arquisw.dominio.fase.servicio.ServicioGuardarFase;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
 public class BeanServicioFase {
     @Bean
     public ServicioAprobarEtapa servicioAprobarEtapa(FaseRepositorioComando faseRepositorioComando, FaseRepositorioConsulta faseRepositorioConsulta) {
