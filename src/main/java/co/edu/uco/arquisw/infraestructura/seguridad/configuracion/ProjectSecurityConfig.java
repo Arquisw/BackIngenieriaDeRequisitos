@@ -36,7 +36,7 @@ public class ProjectSecurityConfig extends WebSecurityConfigurerAdapter {
 				.addFilterBefore(new JWTTokenValidatorFilter(), BasicAuthenticationFilter.class)
 				.authorizeRequests()
 				.antMatchers("/login").authenticated()
-				.antMatchers(HttpMethod.POST, "/usuarios").permitAll()
+				.antMatchers(HttpMethod.POST, "/fases").permitAll()
 				.antMatchers("/**").authenticated()
 				.and().httpBasic();
 	}
