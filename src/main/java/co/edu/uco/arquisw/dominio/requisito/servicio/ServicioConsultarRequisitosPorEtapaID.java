@@ -1,6 +1,6 @@
 package co.edu.uco.arquisw.dominio.requisito.servicio;
 
-import co.edu.uco.arquisw.dominio.fase.puerto.FaseRepositorioConsulta;
+import co.edu.uco.arquisw.dominio.fase.puerto.consulta.FaseRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.requisito.dto.RequisitoDTO;
 import co.edu.uco.arquisw.dominio.requisito.puerto.consulta.RequisitoRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.Mensajes;

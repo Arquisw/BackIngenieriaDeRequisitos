@@ -1,17 +1,17 @@
 package co.edu.uco.arquisw.dominio.requisito.servicio;
 
-import co.edu.uco.arquisw.dominio.fase.puerto.FaseRepositorioConsulta;
+import co.edu.uco.arquisw.dominio.fase.puerto.consulta.FaseRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.requisito.dto.VersionDTO;
 import co.edu.uco.arquisw.dominio.requisito.puerto.consulta.RequisitoRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.Mensajes;
 import co.edu.uco.arquisw.dominio.transversal.validador.ValidarObjeto;
 import java.util.List;
 
-public class ServicioConsultarVersionesPorEtapa {
+public class ServicioConsultarVersionesPorEtapaID {
     private final RequisitoRepositorioConsulta requisitoRepositorioConsulta;
     private final FaseRepositorioConsulta faseRepositorioConsulta;
 
-    public ServicioConsultarVersionesPorEtapa(RequisitoRepositorioConsulta requisitoRepositorioConsulta, FaseRepositorioConsulta faseRepositorioConsulta) {
+    public ServicioConsultarVersionesPorEtapaID(RequisitoRepositorioConsulta requisitoRepositorioConsulta, FaseRepositorioConsulta faseRepositorioConsulta) {
         this.requisitoRepositorioConsulta = requisitoRepositorioConsulta;
         this.faseRepositorioConsulta = faseRepositorioConsulta;
     }

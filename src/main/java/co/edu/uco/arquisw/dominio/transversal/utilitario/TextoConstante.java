@@ -22,6 +22,8 @@ public class TextoConstante {
     public static final String ETAPA_VALIDACION_DESCRIPCION = "Se espera que la profesora maria victoria defina la descripcion";
     public static final String FASE_CIERRE_NOMBRE = "Cierre";
     public static final String FASE_CIERRE_DESCRIPCION = "Se espera que la profesora maria victoria defina la descripcion";
+    public static final String TIPO_REQUISITO_FUNCIONAL = "Funcional";
+    public static final String TIPO_REQUISITO_NO_FUNCIONAL = "NO Funcional";
 
     private TextoConstante() {}
 }

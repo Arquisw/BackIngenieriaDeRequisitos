@@ -1,8 +1,7 @@
 package co.edu.uco.arquisw.dominio.etapa.servicio;
 
 import co.edu.uco.arquisw.dominio.fase.dto.FaseDTO;
-import co.edu.uco.arquisw.dominio.fase.dto.ProyectoDTO;
-import co.edu.uco.arquisw.dominio.fase.puerto.FaseRepositorioConsulta;
+import co.edu.uco.arquisw.dominio.fase.puerto.consulta.FaseRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.fase.servicio.ServicioConsultarFasesPorProyectoID;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.Mensajes;
 import org.junit.jupiter.api.Assertions;
