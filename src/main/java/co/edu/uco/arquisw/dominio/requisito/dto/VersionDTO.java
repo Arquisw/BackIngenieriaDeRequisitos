@@ -14,4 +14,5 @@ public class VersionDTO {
     private Long id;
     private boolean esFinal;
     private LocalDate fecha;
+    private Long etapaID;
 }

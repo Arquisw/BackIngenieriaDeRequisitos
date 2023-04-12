@@ -1,7 +1,7 @@
 package co.edu.uco.arquisw.dominio.fase.servicio;
 
 import co.edu.uco.arquisw.dominio.fase.dto.FaseDTO;
-import co.edu.uco.arquisw.dominio.fase.puerto.FaseRepositorioConsulta;
+import co.edu.uco.arquisw.dominio.fase.puerto.consulta.FaseRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.Mensajes;
 import co.edu.uco.arquisw.dominio.transversal.validador.ValidarObjeto;
 import java.util.List;
