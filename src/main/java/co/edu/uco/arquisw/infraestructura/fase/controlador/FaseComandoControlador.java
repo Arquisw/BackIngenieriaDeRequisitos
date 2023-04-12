@@ -20,7 +20,6 @@ public class FaseComandoControlador {
         this.guardarFaseManejador = guardarFaseManejador;
     }
 
-    @PreAuthorize("hasRole('ROLE_DIRECTOR_PROYECTO')")
     @PostMapping("/{id}")
     @Operation(summary = "Guardar Fase", description = "Este es usado para guardar la fase de un proyecto por medio de su ID, dando así inicio al descarrollo del proyecto.")
     public ComandoRespuesta<Long> guardar(@PathVariable Long id) {
@@ -29,7 +28,7 @@ public class FaseComandoControlador {
 
     @PreAuthorize("hasRole('ROLE_TEAM_LEADER')")
     @PutMapping("/aprobacion/{id}")
-    @Operation(summary = "Actualizar Usuario", description = "Este es usado para actualizar los datos de una persona por medio de su ID")
+    @Operation(summary = "Aprobar Etapa", description = "Este es usado para aprobar una etapa")
     public ComandoRespuesta<Long> aprobarEtapa(@PathVariable Long id) {
         return this.aprobarEtapaManejador.ejecutar(id);
     }

@@ -5,7 +5,9 @@ import co.edu.uco.arquisw.dominio.requisito.puerto.comando.RequisitoRepositorioC
 import co.edu.uco.arquisw.dominio.requisito.puerto.consulta.RequisitoRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.requisito.servicio.*;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
 public class BeanServicioRequisito {
     @Bean
     public ServicioActualizarRequisito servicioActualizarRequisito(RequisitoRepositorioComando requisitoRepositorioComando, RequisitoRepositorioConsulta requisitoRepositorioConsulta) {

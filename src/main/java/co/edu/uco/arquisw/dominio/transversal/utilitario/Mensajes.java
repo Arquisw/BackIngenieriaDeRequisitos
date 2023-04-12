@@ -22,6 +22,9 @@ public class Mensajes {
     public static final String ETAPA_CON_ID = "La etapa con el ID ";
     public static final String ETAPA_YA_ESTA_COMPLETADA = " ya esta completada";
     public static final String NO_EXISTE_FASE_CON_EL_ID = "No existe Fase con el ID ";
+    public static final String OCURRIO_UN_ERROR_FAVOR_CONTACTAR_AL_ADMINISTRADOR = "Ocurrió un error favor contactar al administrador.";
+    public static final String NOMBRE_ESTADO_PROYECTO_NO_PUEDE_ESTAR_VACIO = "El nombre del estado del proyecto no puede estar vacio";
+    public static final String PATRON_NOMBRE_ESTADO_PROYECTO_NO_ES_VALIDO = "El nombre del estado del proyecto solo puede contener letras y espacios";
 
-    private Mensajes() {}
+    private Mensajes() { }
 }

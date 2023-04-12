@@ -3,7 +3,6 @@ package co.edu.uco.arquisw.infraestructura.fase.adaptador.mapeador;
 import co.edu.uco.arquisw.dominio.fase.dto.EtapaDTO;
 import co.edu.uco.arquisw.dominio.fase.modelo.Etapa;
 import co.edu.uco.arquisw.infraestructura.fase.adaptador.entidad.EtapaEntidad;
-import co.edu.uco.arquisw.infraestructura.requisito.adaptador.mapeador.VersionMapeador;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

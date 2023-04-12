@@ -18,6 +18,7 @@ public class VersionEntidad {
     @SequenceGenerator(name="version_code_seq", sequenceName="version_code_seq", allocationSize=1)
     private Long id;
     private boolean esFinal;
+    @Column(length = 10)
     private String fecha;
     private Long etapaID;
 }
