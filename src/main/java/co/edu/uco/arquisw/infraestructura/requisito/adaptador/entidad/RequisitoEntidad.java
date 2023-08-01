@@ -24,7 +24,7 @@ public class RequisitoEntidad {
     @Column(length = 500)
     private String descripcion;
     @OneToOne
-    @JoinColumn(name = "tiporequisito")
+    @JoinColumn(name = "tipo_requisito")
     private RequisitoTipoRequisitoEntidad tipoRequisito;
     private Long versionID;
     private Long etapaID;

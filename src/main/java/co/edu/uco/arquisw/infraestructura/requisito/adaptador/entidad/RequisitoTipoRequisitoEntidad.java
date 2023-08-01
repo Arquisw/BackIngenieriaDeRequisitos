@@ -11,13 +11,13 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "requisitotiporequisito")
+@Table(name = "requisito_tipo_requisito")
 public class RequisitoTipoRequisitoEntidad {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator="requisitotiporequisito_code_seq")
-    @SequenceGenerator(name="requisitotiporequisito_code_seq", sequenceName="requisitotiporequisito_code_seq", allocationSize=1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator="requisito_tipo_requisito_code_seq")
+    @SequenceGenerator(name="requisito_tipo_requisito_code_seq", sequenceName="requisito_tipo_requisito_code_seq", allocationSize=1)
     private Long id;
     @ManyToOne
-    @JoinColumn(name = "tiporequisito")
+    @JoinColumn(name = "tipo_requisito")
     private TipoRequisitoEntidad tipoRequisito;
 }
