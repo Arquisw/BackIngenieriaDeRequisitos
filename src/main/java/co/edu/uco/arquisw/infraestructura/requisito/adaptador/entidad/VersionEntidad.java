@@ -20,5 +20,5 @@ public class VersionEntidad {
     private boolean esFinal;
     @Column(length = 10)
     private String fecha;
-    private Long etapaID;
+    private Long etapa;
 }
