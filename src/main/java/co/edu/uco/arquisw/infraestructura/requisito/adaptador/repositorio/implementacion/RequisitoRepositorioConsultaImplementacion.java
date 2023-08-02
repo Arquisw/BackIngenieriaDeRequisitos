@@ -37,7 +37,7 @@ public class RequisitoRepositorioConsultaImplementacion implements RequisitoRepo
 
     @Override
     public List<RequisitoDTO> consultarRequisitosPorEtapaID(Long etapaID) {
-        var entidades = this.requisitoDAO.findAll().stream().filter(requisito -> Objects.equals(requisito.getEtapaID(), etapaID)).toList();
+        var entidades = this.requisitoDAO.findAll().stream().filter(requisito -> Objects.equals(requisito.getEtapa(), etapaID)).toList();
 
         return this.requisitoMapeador.construirDTOs(entidades);
     }
@@ -55,7 +55,7 @@ public class RequisitoRepositorioConsultaImplementacion implements RequisitoRepo
 
     @Override
     public List<VersionDTO> consultarVersionesPorEtapaID(Long etapaID) {
-        var entidades = this.versionDAO.findAll().stream().filter(version -> Objects.equals(version.getEtapaID(), etapaID)).toList();
+        var entidades = this.versionDAO.findAll().stream().filter(version -> Objects.equals(version.getEtapa(), etapaID)).toList();
 
         return this.versionMapeador.construirDTOs(entidades);
     }

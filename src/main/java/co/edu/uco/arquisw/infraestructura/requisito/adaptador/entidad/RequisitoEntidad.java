@@ -1,6 +1,5 @@
 package co.edu.uco.arquisw.infraestructura.requisito.adaptador.entidad;
 
-import co.edu.uco.arquisw.dominio.requisito.dto.TipoRequisitoDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,6 +25,6 @@ public class RequisitoEntidad {
     @OneToOne
     @JoinColumn(name = "tipo_requisito")
     private RequisitoTipoRequisitoEntidad tipoRequisito;
-    private Long versionID;
-    private Long etapaID;
+    private Long version;
+    private Long etapa;
 }

@@ -15,7 +15,7 @@ public class VersionMapeador {
     }
 
     public VersionDTO consturirDTO(VersionEntidad version) {
-        return new VersionDTO(version.getId(), version.isEsFinal(), FechaFormateador.obtenerFecha(version.getFecha()), version.getEtapaID());
+        return new VersionDTO(version.getId(), version.isEsFinal(), FechaFormateador.obtenerFecha(version.getFecha()), version.getEtapa());
     }
 
     public List<VersionDTO> construirDTOs(List<VersionEntidad> versiones) {

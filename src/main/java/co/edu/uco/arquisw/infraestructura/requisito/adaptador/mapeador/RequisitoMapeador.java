@@ -20,7 +20,7 @@ public class RequisitoMapeador {
     }
 
     public RequisitoDTO consturirDTO(RequisitoEntidad requisito) {
-        return new RequisitoDTO(requisito.getId(), requisito.getNombre(), requisito.getDescripcion(), this.tipoRequisitoMapeador.construirDTO(requisito.getTipoRequisito()), requisito.getVersionID(), requisito.getEtapaID());
+        return new RequisitoDTO(requisito.getId(), requisito.getNombre(), requisito.getDescripcion(), this.tipoRequisitoMapeador.construirDTO(requisito.getTipoRequisito()), requisito.getVersion(), requisito.getEtapa());
     }
 
     public List<RequisitoDTO> construirDTOs(List<RequisitoEntidad> requisitos) {
@@ -31,6 +31,6 @@ public class RequisitoMapeador {
         entidad.setNombre(requisito.getNombre());
         entidad.setDescripcion(requisito.getDescripcion());
         entidad.getTipoRequisito().getTipoRequisito().setNombre(requisito.getTipoRequisito().getNombre());
-        entidad.setVersionID(versionID);
+        entidad.setVersion(versionID);
     }
 }
