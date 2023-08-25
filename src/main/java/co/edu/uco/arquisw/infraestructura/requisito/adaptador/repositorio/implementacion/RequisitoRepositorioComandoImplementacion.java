@@ -33,7 +33,7 @@ public class RequisitoRepositorioComandoImplementacion implements RequisitoRepos
 
     @Override
     public Long actualizar(Requisito requisito, Long etapaID, Long versionID) {
-        var entidad = this.requisitoDAO.findByEtapaID(etapaID);
+        var entidad = this.requisitoDAO.findByEtapa(etapaID);
 
         this.requisitoMapeador.actualizarRequisito(entidad, requisito, versionID);
 

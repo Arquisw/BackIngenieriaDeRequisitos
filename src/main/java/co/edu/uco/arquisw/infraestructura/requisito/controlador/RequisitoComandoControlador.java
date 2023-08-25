@@ -27,28 +27,28 @@ public class RequisitoComandoControlador {
         this.guardarRequisitoManejador = guardarRequisitoManejador;
     }
 
-    @PreAuthorize("hasRole('ROLE_TEAM_MEMBER')")
+    @PreAuthorize("hasAuthority('TEAM_MEMBER_ESCRITURA')")
     @PostMapping("/{id}")
     @Operation(summary = "Guardar Requisito", description = "Este es usado para guardar el requisito de una etapa por medio del ID de la etapa")
     public ComandoRespuesta<Long> guardar(@RequestBody RequisitoComando requisitoComando, @PathVariable Long id) {
         return this.guardarRequisitoManejador.ejecutar(requisitoComando, id);
     }
 
-    @PreAuthorize("hasRole('ROLE_TEAM_MEMBER')")
+    @PreAuthorize("hasAuthority('TEAM_MEMBER_ESCRITURA')")
     @PutMapping("/{id}")
     @Operation(summary = "Actualizar Requisito", description = "Este es usado para actualizar el requisito por medio de su ID")
     public ComandoRespuesta<Long> actualizar(@RequestBody RequisitoComando requisitoComando, @PathVariable Long id) {
         return this.actualizarRequisitoManejador.ejecutar(requisitoComando, id);
     }
 
-    @PreAuthorize("hasRole('ROLE_TEAM_MEMBER')")
+    @PreAuthorize("hasAuthority('TEAM_MEMBER_ESCRITURA')")
     @DeleteMapping("/{id}")
     @Operation(summary = "Eliminar Requisito", description = "Este es usado para eliminar el requisito por medio de su ID")
     public ComandoRespuesta<Long> eliminar(@PathVariable Long id) {
         return this.eliminarRequisitoManejador.ejecutar(id);
     }
 
-    @PreAuthorize("hasRole('ROLE_TEAM_LEADER')")
+    @PreAuthorize("hasAuthority('TEAM_LEADER_ESCRITURA')")
     @PutMapping("/versiones/{id}")
     @Operation(summary = "Generar Version Final", description = "Este es usado para generar la version final de los requisitos por medio del ID de la Etapa")
     public ComandoRespuesta<Long> generarVersionFinal(@PathVariable Long id) {

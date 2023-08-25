@@ -32,28 +32,28 @@ public class RequisitoConsultaControlador {
         this.consultarVersionPorIDManejador = consultarVersionPorIDManejador;
     }
 
-    @PreAuthorize("hasRole('ROLE_SELECCIONADO', 'ROLE_ADMINISTRADOR')")
+    @PreAuthorize("hasAuthority('SELECCIONADO_LECTURA') || hasAuthority('ADMINISTRADOR_LECTURA')")
     @GetMapping("/{id}")
     @Operation(summary = "Consultar por ID", description = "Este es usado para consultar un requisito por medio de su ID")
     public ComandoRespuesta<RequisitoDTO> consultarPorId(@PathVariable Long id) {
         return this.consultarRequisitoPorIDManejador.ejecutar(id);
     }
 
-    @PreAuthorize("hasRole('ROLE_SELECCIONADO', 'ROLE_ADMINISTRADOR')")
+    @PreAuthorize("hasAuthority('SELECCIONADO_LECTURA') || hasAuthority('ADMINISTRADOR_LECTURA')")
     @GetMapping("/etapa/{id}")
     @Operation(summary = "Consultar Requisitos por Etapa ID", description = "Este es usado para consultar un requisito por medio del ID de una Etapa")
     public ComandoRespuesta<List<RequisitoDTO>> consultarRequisitosPorEtapaId(@PathVariable Long id) {
         return this.consultarRequisitosPorEtapaIDManejador.ejecutar(id);
     }
 
-    @PreAuthorize("hasRole('ROLE_SELECCIONADO', 'ROLE_ADMINISTRADOR')")
+    @PreAuthorize("hasAuthority('SELECCIONADO_LECTURA') || hasAuthority('ADMINISTRADOR_LECTURA')")
     @GetMapping("/versiones/etapa/{id}")
     @Operation(summary = "Consultar Versiones por Etapa ID", description = "Este es usado para consultar las versiones de una etapa por medio de su ID")
     public ComandoRespuesta<List<VersionDTO>> consultarVersionesPorEtapaId(@PathVariable Long id) {
         return this.consultarVersionesPorEtapaIDManejador.ejecutar(id);
     }
 
-    @PreAuthorize("hasRole('ROLE_SELECCIONADO', 'ROLE_ADMINISTRADOR')")
+    @PreAuthorize("hasAuthority('SELECCIONADO_LECTURA') || hasAuthority('ADMINISTRADOR_LECTURA')")
     @GetMapping("/versiones/{id}")
     @Operation(summary = "Consultar Version por ID", description = "Este es usado para consultar una version por medio de su ID")
     public ComandoRespuesta<VersionDTO> consultarVersionPorId(@PathVariable Long id) {
