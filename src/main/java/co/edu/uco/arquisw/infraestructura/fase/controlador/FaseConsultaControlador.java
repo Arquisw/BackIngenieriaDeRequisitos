@@ -26,14 +26,14 @@ public class FaseConsultaControlador {
         this.consultarFasesPorProyectoIDManejador = consultarFasesPorProyectoIDManejador;
     }
 
-    @PreAuthorize("hasRole('ROLE_SELECCIONADO', 'ROLE_ADMINISTRADOR')")
+    @PreAuthorize("hasAuthority('SELECCIONADO_LECTURA') || hasAuthority('ADMINISTRADOR_LECTURA')")
     @GetMapping("/{id}")
     @Operation(summary = "Consultar por ID", description = "Este es usado para consultar una fase por medio de su ID")
     public ComandoRespuesta<FaseDTO> consultarPorId(@PathVariable Long id) {
         return this.consultarFasePorIDManejador.ejecutar(id);
     }
 
-    @PreAuthorize("hasRole('ROLE_SELECCIONADO', 'ROLE_ADMINISTRADOR')")
+    @PreAuthorize("hasAuthority('SELECCIONADO_LECTURA') || hasAuthority('ADMINISTRADOR_LECTURA')")
     @GetMapping("/proyecto/{id}")
     @Operation(summary = "Consultar Fases por Proyecto ID", description = "Este es usado para consultar todas las fases existentes de un proyecto por medio del ID del proyecto")
     public ComandoRespuesta<List<FaseDTO>> consultarFasesPorProyectoId(@PathVariable Long id) {

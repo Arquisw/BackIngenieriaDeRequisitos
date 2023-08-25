@@ -4,5 +4,5 @@ import co.edu.uco.arquisw.infraestructura.requisito.adaptador.entidad.RequisitoE
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RequisitoDAO extends JpaRepository<RequisitoEntidad, Long> {
-    RequisitoEntidad findByEtapaID(Long etapaID);
+    RequisitoEntidad findByEtapa(Long etapaID);
 }
