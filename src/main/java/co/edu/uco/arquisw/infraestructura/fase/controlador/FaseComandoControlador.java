@@ -20,7 +20,7 @@ public class FaseComandoControlador {
         this.guardarFaseManejador = guardarFaseManejador;
     }
 
-    @PreAuthorize("hasRole('ROLE_DIRECTOR_PROYECTO')")
+    @PreAuthorize("hasAuthority('DIRECTOR_PROYECTO_ESCRITURA')")
     @PostMapping("/{id}")
     @Operation(summary = "Guardar Fase", description = "Este es usado para guardar la fase de un proyecto por medio de su ID, dando así inicio al descarrollo del proyecto.")
     public ComandoRespuesta<Long> guardar(@PathVariable Long id) {
