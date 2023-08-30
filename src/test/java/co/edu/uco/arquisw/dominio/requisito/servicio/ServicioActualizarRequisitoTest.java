@@ -24,7 +24,7 @@ class ServicioActualizarRequisitoTest {
         var requisitoRepositorioConsulta= Mockito.mock(RequisitoRepositorioConsulta.class);
         var servicio = new ServicioActualizarRequisito(requisitoRepositorioComando,requisitoRepositorioConsulta);
 
-        Mockito.when(requisitoRepositorioComando.actualizar(Mockito.any(Requisito.class),Mockito.anyLong(),Mockito.anyLong())).thenReturn(1L);
+        Mockito.when(requisitoRepositorioComando.actualizar(Mockito.any(Requisito.class),Mockito.anyLong())).thenReturn(1L);
         Mockito.when(requisitoRepositorioConsulta.consultarRequisitoPorID(Mockito.anyLong())).thenReturn(requisitoDto);
         Mockito.when(requisitoRepositorioConsulta.consultarVersionPorID(Mockito.anyLong())).thenReturn(versionDto);
 
@@ -44,7 +44,7 @@ class ServicioActualizarRequisitoTest {
         var requisitoRepositorioConsulta= Mockito.mock(RequisitoRepositorioConsulta.class);
         var servicio = new ServicioActualizarRequisito(requisitoRepositorioComando,requisitoRepositorioConsulta);
 
-        Mockito.when(requisitoRepositorioComando.actualizar(Mockito.any(Requisito.class),Mockito.anyLong(),Mockito.anyLong())).thenReturn(1L);
+        Mockito.when(requisitoRepositorioComando.actualizar(Mockito.any(Requisito.class),Mockito.anyLong())).thenReturn(1L);
         Mockito.when(requisitoRepositorioConsulta.consultarVersionPorID(Mockito.anyLong())).thenReturn(versionDto);
 
         Assertions.assertEquals(Mensajes.NO_EXISTE_REQUISITO_CON_EL_ID + 1, Assertions.assertThrows(NullPointerException.class, ()

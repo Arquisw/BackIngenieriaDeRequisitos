@@ -15,5 +15,4 @@ public class RequisitoDTO {
     private String descripcion;
     private TipoRequisitoDTO tipoRequisito;
     private Long versionID;
-    private Long etapaID;
 }

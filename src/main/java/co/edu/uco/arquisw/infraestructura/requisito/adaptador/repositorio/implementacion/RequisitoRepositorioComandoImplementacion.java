@@ -25,17 +25,18 @@ public class RequisitoRepositorioComandoImplementacion implements RequisitoRepos
     VersionMapeador versionMapeador;
 
     @Override
-    public Long guardar(Requisito requisito, Long etapaID, Long versionID) {
-        var entidad = this.requisitoMapeador.consturirEntidad(requisito, versionID, etapaID);
+    public Long guardar(Requisito requisito, Long versionId) {
+        var entidad = this.requisitoMapeador.consturirEntidad(requisito, versionId);
 
         return this.requisitoDAO.save(entidad).getId();
     }
 
     @Override
-    public Long actualizar(Requisito requisito, Long etapaID, Long versionID) {
-        var entidad = this.requisitoDAO.findByEtapa(etapaID);
+    public Long actualizar(Requisito requisito, Long id) {
+        var entidad = this.requisitoDAO.findById(id).orElse(null);
 
-        this.requisitoMapeador.actualizarRequisito(entidad, requisito, versionID);
+        assert entidad != null;
+        this.requisitoMapeador.actualizarRequisito(entidad, requisito);
 
         return this.requisitoDAO.save(entidad).getId();
     }

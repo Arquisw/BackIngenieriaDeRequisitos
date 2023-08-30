@@ -20,11 +20,6 @@ public class BeanServicioRequisito {
     }
 
     @Bean
-    public ServicioConsultarRequisitosPorEtapaID servicioConsultarRequisitosPorEtapaID(RequisitoRepositorioConsulta requisitoRepositorioConsulta, FaseRepositorioConsulta faseRepositorioConsulta) {
-        return new ServicioConsultarRequisitosPorEtapaID(requisitoRepositorioConsulta, faseRepositorioConsulta);
-    }
-
-    @Bean
     public ServicioConsultarVersionesPorEtapaID servicioConsultarVersionesPorEtapaID(RequisitoRepositorioConsulta requisitoRepositorioConsulta, FaseRepositorioConsulta faseRepositorioConsulta) {
         return new ServicioConsultarVersionesPorEtapaID(requisitoRepositorioConsulta, faseRepositorioConsulta);
     }
@@ -35,22 +30,22 @@ public class BeanServicioRequisito {
     }
 
     @Bean
-    public ServicioEliminarRequisito servicioEliminarRequisito(RequisitoRepositorioComando requisitoRepositorioComando, RequisitoRepositorioConsulta requisitoRepositorioConsulta) {
-        return new ServicioEliminarRequisito(requisitoRepositorioComando, requisitoRepositorioConsulta);
+    public ServicioEliminarRequisitoPorID servicioEliminarRequisito(RequisitoRepositorioComando requisitoRepositorioComando, RequisitoRepositorioConsulta requisitoRepositorioConsulta) {
+        return new ServicioEliminarRequisitoPorID(requisitoRepositorioComando, requisitoRepositorioConsulta);
     }
 
     @Bean
-    public ServicioGenerarVersionFinal servicioGenerarVersionFinal(RequisitoRepositorioComando requisitoRepositorioComando, RequisitoRepositorioConsulta requisitoRepositorioConsulta, FaseRepositorioConsulta faseRepositorioConsulta, ServicioObtenerVersionFinal servicioObtenerVersionFinal) {
-        return new ServicioGenerarVersionFinal(requisitoRepositorioComando, requisitoRepositorioConsulta, faseRepositorioConsulta, servicioObtenerVersionFinal);
+    public ServicioGenerarVersionFinal servicioGenerarVersionFinal(RequisitoRepositorioComando requisitoRepositorioComando, RequisitoRepositorioConsulta requisitoRepositorioConsulta) {
+        return new ServicioGenerarVersionFinal(requisitoRepositorioComando, requisitoRepositorioConsulta);
     }
 
     @Bean
-    public ServicioGuardarRequisito servicioGuardarRequisito(RequisitoRepositorioComando requisitoRepositorioComando, RequisitoRepositorioConsulta requisitoRepositorioConsulta, FaseRepositorioConsulta faseRepositorioConsulta, ServicioObtenerVersionFinal servicioObtenerVersionFinal) {
-        return new ServicioGuardarRequisito(requisitoRepositorioComando, requisitoRepositorioConsulta, faseRepositorioConsulta, servicioObtenerVersionFinal);
+    public ServicioGuardarRequisito servicioGuardarRequisito(RequisitoRepositorioComando requisitoRepositorioComando, RequisitoRepositorioConsulta requisitoRepositorioConsulta) {
+        return new ServicioGuardarRequisito(requisitoRepositorioComando, requisitoRepositorioConsulta);
     }
 
     @Bean
-    public ServicioObtenerVersionFinal servicioObtenerVersionFinal() {
-        return new ServicioObtenerVersionFinal();
+    public ServicioConsultarRequisitosPorVersionID servicioConsultarRequisitosPorVersionID(RequisitoRepositorioConsulta requisitoRepositorioConsulta) {
+        return new ServicioConsultarRequisitosPorVersionID(requisitoRepositorioConsulta);
     }
 }

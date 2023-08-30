@@ -13,6 +13,6 @@ import java.time.LocalDate;
 public class VersionDTO {
     private Long id;
     private boolean esFinal;
-    private String  fecha;
+    private String fecha;
     private Long etapaID;
 }

@@ -29,7 +29,7 @@ public class RequisitoComandoControlador {
 
     @PreAuthorize("hasAuthority('TEAM_MEMBER_ESCRITURA')")
     @PostMapping("/{id}")
-    @Operation(summary = "Guardar Requisito", description = "Este es usado para guardar el requisito de una etapa por medio del ID de la etapa")
+    @Operation(summary = "Guardar Requisito", description = "Este es usado para guardar el requisito de una versión de una etapa por medio del ID de la versión")
     public ComandoRespuesta<Long> guardar(@RequestBody RequisitoComando requisitoComando, @PathVariable Long id) {
         return this.guardarRequisitoManejador.ejecutar(requisitoComando, id);
     }

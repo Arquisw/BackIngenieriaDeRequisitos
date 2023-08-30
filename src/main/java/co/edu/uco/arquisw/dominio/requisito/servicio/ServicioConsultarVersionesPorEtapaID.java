@@ -5,6 +5,7 @@ import co.edu.uco.arquisw.dominio.requisito.dto.VersionDTO;
 import co.edu.uco.arquisw.dominio.requisito.puerto.consulta.RequisitoRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.Mensajes;
 import co.edu.uco.arquisw.dominio.transversal.validador.ValidarObjeto;
+
 import java.util.List;
 
 public class ServicioConsultarVersionesPorEtapaID {

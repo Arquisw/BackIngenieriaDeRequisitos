@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface RequisitoRepositorioConsulta {
     RequisitoDTO consultarRequisitoPorID(Long id);
-    List<RequisitoDTO> consultarRequisitosPorEtapaID(Long etapaID);
-    VersionDTO consultarVersionPorID(Long versionID);
-    List<VersionDTO> consultarVersionesPorEtapaID(Long etapaID);
+    List<RequisitoDTO> consultarRequisitosPorVersionID(Long versionId);
+    VersionDTO consultarVersionPorID(Long versionId);
+    List<VersionDTO> consultarVersionesPorEtapaID(Long etapaId);
 }

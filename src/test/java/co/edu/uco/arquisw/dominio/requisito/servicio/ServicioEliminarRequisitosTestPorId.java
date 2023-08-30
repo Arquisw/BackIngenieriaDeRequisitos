@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-class ServicioEliminarRequisitosTest {
+class ServicioEliminarRequisitosTestPorId {
     @Test
     void validarServicioEliminacion()
     {
@@ -17,7 +17,7 @@ class ServicioEliminarRequisitosTest {
         var requisitoRepositorioComando = Mockito.mock(RequisitoRepositorioComando.class);
         var requisitoRepositorioConsulta = Mockito.mock(RequisitoRepositorioConsulta.class);
 
-        var servicio = new ServicioEliminarRequisito(requisitoRepositorioComando, requisitoRepositorioConsulta);
+        var servicio = new ServicioEliminarRequisitoPorID(requisitoRepositorioComando, requisitoRepositorioConsulta);
 
         Mockito.when(requisitoRepositorioConsulta.consultarRequisitoPorID(Mockito.anyLong())).thenReturn(requisitoDTO);
 
@@ -34,7 +34,7 @@ class ServicioEliminarRequisitosTest {
         var requisitoRepositorioComando = Mockito.mock(RequisitoRepositorioComando.class);
         var requisitoRepositorioConsulta = Mockito.mock(RequisitoRepositorioConsulta.class);
 
-        var servicio = new ServicioEliminarRequisito(requisitoRepositorioComando, requisitoRepositorioConsulta);
+        var servicio = new ServicioEliminarRequisitoPorID(requisitoRepositorioComando, requisitoRepositorioConsulta);
 
         Mockito.when(requisitoRepositorioConsulta.consultarRequisitoPorID(Mockito.anyLong())).thenReturn(null);
 

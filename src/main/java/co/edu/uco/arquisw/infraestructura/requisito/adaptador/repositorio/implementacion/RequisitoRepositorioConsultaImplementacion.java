@@ -3,13 +3,19 @@ package co.edu.uco.arquisw.infraestructura.requisito.adaptador.repositorio.imple
 import co.edu.uco.arquisw.dominio.requisito.dto.RequisitoDTO;
 import co.edu.uco.arquisw.dominio.requisito.dto.VersionDTO;
 import co.edu.uco.arquisw.dominio.requisito.puerto.consulta.RequisitoRepositorioConsulta;
+import co.edu.uco.arquisw.dominio.transversal.formateador.FechaFormateador;
 import co.edu.uco.arquisw.dominio.transversal.validador.ValidarObjeto;
+import co.edu.uco.arquisw.infraestructura.requisito.adaptador.entidad.RequisitoEntidad;
+import co.edu.uco.arquisw.infraestructura.requisito.adaptador.entidad.VersionEntidad;
 import co.edu.uco.arquisw.infraestructura.requisito.adaptador.mapeador.RequisitoMapeador;
 import co.edu.uco.arquisw.infraestructura.requisito.adaptador.mapeador.VersionMapeador;
 import co.edu.uco.arquisw.infraestructura.requisito.adaptador.repositorio.jpa.RequisitoDAO;
 import co.edu.uco.arquisw.infraestructura.requisito.adaptador.repositorio.jpa.VersionDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
@@ -36,10 +42,12 @@ public class RequisitoRepositorioConsultaImplementacion implements RequisitoRepo
     }
 
     @Override
-    public List<RequisitoDTO> consultarRequisitosPorEtapaID(Long etapaID) {
-        var entidades = this.requisitoDAO.findAll().stream().filter(requisito -> Objects.equals(requisito.getEtapa(), etapaID)).toList();
+    public List<RequisitoDTO> consultarRequisitosPorVersionID(Long versionId) {
+        var entidades = this.requisitoDAO.findAll().stream().filter(requisito -> Objects.equals(requisito.getVersion(), versionId)).toList();
 
-        return this.requisitoMapeador.construirDTOs(entidades);
+        var entidadesOrdenadas = entidades.stream().sorted(Comparator.comparing(RequisitoEntidad::getId)).toList();
+
+        return this.requisitoMapeador.construirDTOs(entidadesOrdenadas);
     }
 
     @Override
@@ -57,6 +65,13 @@ public class RequisitoRepositorioConsultaImplementacion implements RequisitoRepo
     public List<VersionDTO> consultarVersionesPorEtapaID(Long etapaID) {
         var entidades = this.versionDAO.findAll().stream().filter(version -> Objects.equals(version.getEtapa(), etapaID)).toList();
 
-        return this.versionMapeador.construirDTOs(entidades);
+        var entidadesOrdenadas = entidades.stream().sorted((versionUno, versionDos) -> {
+            var fechaUno = FechaFormateador.obtenerFecha(versionUno.getFecha());
+            var fechaDos = FechaFormateador.obtenerFecha(versionDos.getFecha());
+
+            return fechaDos.compareTo(fechaUno);
+        }).toList();
+
+        return this.versionMapeador.construirDTOs(entidadesOrdenadas);
     }
 }

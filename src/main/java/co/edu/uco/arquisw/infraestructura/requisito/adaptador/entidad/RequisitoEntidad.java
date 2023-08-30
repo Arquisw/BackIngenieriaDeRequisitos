@@ -26,5 +26,4 @@ public class RequisitoEntidad {
     @JoinColumn(name = "tipo_requisito")
     private RequisitoTipoRequisitoEntidad tipoRequisito;
     private Long version;
-    private Long etapa;
 }

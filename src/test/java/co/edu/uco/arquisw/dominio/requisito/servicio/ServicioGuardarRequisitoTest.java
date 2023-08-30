@@ -25,17 +25,13 @@ public class ServicioGuardarRequisitoTest {
 
         var requisitoRepositorioComando = Mockito.mock(RequisitoRepositorioComando.class);
         var requisitoRepositorioConsulta = Mockito.mock(RequisitoRepositorioConsulta.class);
-        var faseRepositorioConsulta = Mockito.mock(FaseRepositorioConsulta.class);
-        var servicioObtenerVersionFinal = Mockito.mock(ServicioObtenerVersionFinal.class);
 
-        var servicio = new ServicioGuardarRequisito(requisitoRepositorioComando,requisitoRepositorioConsulta,faseRepositorioConsulta,servicioObtenerVersionFinal);
+        var servicio = new ServicioGuardarRequisito(requisitoRepositorioComando,requisitoRepositorioConsulta);
 
-        Mockito.when(faseRepositorioConsulta.consultarEtapaPorID(Mockito.anyLong())).thenReturn(EtapaDto);
         Mockito.when(requisitoRepositorioConsulta.consultarVersionesPorEtapaID(Mockito.anyLong())).thenReturn(versionDTOS);
-        Mockito.when(servicioObtenerVersionFinal.ejecutar(Mockito.anyList())).thenReturn(versionDto);
         Mockito.when(requisitoRepositorioConsulta.consultarVersionPorID(Mockito.anyLong())).thenReturn(versionDto);
 
-        Mockito.when(requisitoRepositorioComando.guardar(Mockito.any(Requisito.class),Mockito.anyLong(),Mockito.anyLong())).thenReturn(1L);
+        Mockito.when(requisitoRepositorioComando.guardar(Mockito.any(Requisito.class),Mockito.anyLong())).thenReturn(1L);
 
         var id = servicio.ejecutar(requisito,1L);
 
@@ -51,15 +47,12 @@ public class ServicioGuardarRequisitoTest {
 
         var requisitoRepositorioComando = Mockito.mock(RequisitoRepositorioComando.class);
         var requisitoRepositorioConsulta = Mockito.mock(RequisitoRepositorioConsulta.class);
-        var faseRepositorioConsulta = Mockito.mock(FaseRepositorioConsulta.class);
-        var servicioObtenerVersionFinal = Mockito.mock(ServicioObtenerVersionFinal.class);
 
-        var servicio = new ServicioGuardarRequisito(requisitoRepositorioComando,requisitoRepositorioConsulta,faseRepositorioConsulta,servicioObtenerVersionFinal);
+        var servicio = new ServicioGuardarRequisito(requisitoRepositorioComando,requisitoRepositorioConsulta);
 
         Mockito.when(requisitoRepositorioConsulta.consultarVersionesPorEtapaID(Mockito.anyLong())).thenReturn(versionDTOS);
-        Mockito.when(servicioObtenerVersionFinal.ejecutar(Mockito.anyList())).thenReturn(versionDto);
         Mockito.when(requisitoRepositorioConsulta.consultarVersionPorID(Mockito.anyLong())).thenReturn(versionDto);
-        Mockito.when(requisitoRepositorioComando.guardar(Mockito.any(Requisito.class),Mockito.anyLong(),Mockito.anyLong())).thenReturn(1L);
+        Mockito.when(requisitoRepositorioComando.guardar(Mockito.any(Requisito.class),Mockito.anyLong())).thenReturn(1L);
 
         Assertions.assertEquals(Mensajes.NO_EXISTE_ETAPA_CON_EL_ID + 1, Assertions.assertThrows(NullPointerException.class, ()
                 -> servicio.ejecutar(requisito,1L)).getMessage());

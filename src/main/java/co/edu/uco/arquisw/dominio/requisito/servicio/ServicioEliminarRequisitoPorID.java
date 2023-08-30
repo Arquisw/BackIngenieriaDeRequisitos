@@ -5,11 +5,11 @@ import co.edu.uco.arquisw.dominio.requisito.puerto.consulta.RequisitoRepositorio
 import co.edu.uco.arquisw.dominio.transversal.utilitario.Mensajes;
 import co.edu.uco.arquisw.dominio.transversal.validador.ValidarObjeto;
 
-public class ServicioEliminarRequisito {
+public class ServicioEliminarRequisitoPorID {
     private final RequisitoRepositorioComando requisitoRepositorioComando;
     private final RequisitoRepositorioConsulta requisitoRepositorioConsulta;
 
-    public ServicioEliminarRequisito(RequisitoRepositorioComando requisitoRepositorioComando, RequisitoRepositorioConsulta requisitoRepositorioConsulta) {
+    public ServicioEliminarRequisitoPorID(RequisitoRepositorioComando requisitoRepositorioComando, RequisitoRepositorioConsulta requisitoRepositorioConsulta) {
         this.requisitoRepositorioComando = requisitoRepositorioComando;
         this.requisitoRepositorioConsulta = requisitoRepositorioConsulta;
     }
