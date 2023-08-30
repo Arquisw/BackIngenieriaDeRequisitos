@@ -27,31 +27,38 @@ public class RequisitoComandoControlador {
         this.guardarRequisitoManejador = guardarRequisitoManejador;
     }
 
-    @PreAuthorize("hasAuthority('TEAM_MEMBER_ESCRITURA')")
+    @PreAuthorize("hasAuthority('EQUIPO_DESARROLLO_ESCRITURA')")
     @PostMapping("/{id}")
     @Operation(summary = "Guardar Requisito", description = "Este es usado para guardar el requisito de una versión de una etapa por medio del ID de la versión")
     public ComandoRespuesta<Long> guardar(@RequestBody RequisitoComando requisitoComando, @PathVariable Long id) {
         return this.guardarRequisitoManejador.ejecutar(requisitoComando, id);
     }
 
-    @PreAuthorize("hasAuthority('TEAM_MEMBER_ESCRITURA')")
+    @PreAuthorize("hasAuthority('EQUIPO_DESARROLLO_ESCRITURA')")
     @PutMapping("/{id}")
     @Operation(summary = "Actualizar Requisito", description = "Este es usado para actualizar el requisito por medio de su ID")
     public ComandoRespuesta<Long> actualizar(@RequestBody RequisitoComando requisitoComando, @PathVariable Long id) {
         return this.actualizarRequisitoManejador.ejecutar(requisitoComando, id);
     }
 
-    @PreAuthorize("hasAuthority('TEAM_MEMBER_ESCRITURA')")
+    @PreAuthorize("hasAuthority('EQUIPO_DESARROLLO_ELIMINACION')")
     @DeleteMapping("/{id}")
     @Operation(summary = "Eliminar Requisito", description = "Este es usado para eliminar el requisito por medio de su ID")
     public ComandoRespuesta<Long> eliminar(@PathVariable Long id) {
         return this.eliminarRequisitoManejador.ejecutar(id);
     }
 
-    @PreAuthorize("hasAuthority('TEAM_LEADER_ESCRITURA')")
+    @PreAuthorize("hasAuthority('INGENIERIA_ESCRITURA')")
     @PutMapping("/versiones/{id}")
-    @Operation(summary = "Generar Version Final", description = "Este es usado para generar la version final de los requisitos por medio del ID de la Etapa")
+    @Operation(summary = "Generar Version Final", description = "Este es usado para generar la version final de los requisitos por medio del ID de la versión")
     public ComandoRespuesta<Long> generarVersionFinal(@PathVariable Long id) {
+        return this.generarVersionFinalManejador.ejecutar(id);
+    }
+
+    @PreAuthorize("hasAuthority('LIDER_DE_EQUIPO_ESCRITURA')")
+    @PutMapping("/versiones/rechazar/{id}")
+    @Operation(summary = "rechazar Version Final", description = "Este es usado para rechazar la version final de los requisitos por medio del ID de la version")
+    public ComandoRespuesta<Long> rechazarVersionPorId(@PathVariable Long id) {
         return this.generarVersionFinalManejador.ejecutar(id);
     }
 }

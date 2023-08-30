@@ -9,4 +9,5 @@ public interface RequisitoRepositorioComando {
     void eliminar(Long id);
     Long guardarVersion(Version version, Long etapaID);
     Long actualizarVersion(Version version, Long versionID);
+    Long actualizarVersion(boolean estado, Long versionID);
 }

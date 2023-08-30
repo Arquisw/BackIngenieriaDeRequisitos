@@ -48,4 +48,14 @@ public class BeanServicioRequisito {
     public ServicioConsultarRequisitosPorVersionID servicioConsultarRequisitosPorVersionID(RequisitoRepositorioConsulta requisitoRepositorioConsulta) {
         return new ServicioConsultarRequisitosPorVersionID(requisitoRepositorioConsulta);
     }
+
+    @Bean
+    public ServicioGuardarVersionInicial servicioGuardarVersionInicial(RequisitoRepositorioComando requisitoRepositorioComando, FaseRepositorioConsulta faseRepositorioConsulta) {
+        return new ServicioGuardarVersionInicial(requisitoRepositorioComando, faseRepositorioConsulta);
+    }
+
+    @Bean
+    public ServicioRechazarVersiónPorID servicioRechazarVersiónPorID(RequisitoRepositorioComando requisitoRepositorioComando, RequisitoRepositorioConsulta requisitoRepositorioConsulta) {
+        return new ServicioRechazarVersiónPorID(requisitoRepositorioComando, requisitoRepositorioConsulta);
+    }
 }

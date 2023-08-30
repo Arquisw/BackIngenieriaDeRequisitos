@@ -66,4 +66,14 @@ public class RequisitoRepositorioComandoImplementacion implements RequisitoRepos
 
         return this.versionDAO.save(entidad).getId();
     }
+
+    @Override
+    public Long actualizarVersion(boolean estado, Long versionID) {
+        var entidad = this.versionDAO.findById(versionID).orElse(null);
+
+        assert entidad != null;
+        this.versionMapeador.actualizarEntidad(entidad, estado);
+
+        return this.versionDAO.save(entidad).getId();
+    }
 }

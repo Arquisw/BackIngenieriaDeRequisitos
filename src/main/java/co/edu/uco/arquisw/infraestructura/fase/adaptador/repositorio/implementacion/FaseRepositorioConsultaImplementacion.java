@@ -44,14 +44,17 @@ public class FaseRepositorioConsultaImplementacion implements FaseRepositorioCon
 
     @Override
     public FaseDTO consultarFasePorEtapaID(Long etapaID) {
-        var etapaEntidad = this.etapaDAO.findById(etapaID).orElse(null);
-        var entidad = this.faseDAO.findByEtapas(etapaEntidad);
+        var faseEntidad = this.faseDAO.findAll().stream().filter(fase -> {
+            var etapa = fase.getEtapas().stream().filter(unaEtapa -> unaEtapa.getId() == etapaID).findFirst().orElse(null);
 
-        if(ValidarObjeto.esNulo(entidad)) {
+            return !ValidarObjeto.esNulo(etapa);
+        }).findFirst().orElse(null);
+
+        if(ValidarObjeto.esNulo(faseEntidad)) {
             return null;
         }
 
-        return this.faseMapeador.construirDTO(entidad);
+        return this.faseMapeador.construirDTO(faseEntidad);
     }
 
     @Override

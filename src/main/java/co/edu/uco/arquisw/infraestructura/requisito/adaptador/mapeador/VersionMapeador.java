@@ -27,4 +27,8 @@ public class VersionMapeador {
         entidad.setFecha(FechaFormateador.obtenerFechaTexto(version.getFecha()));
     }
 
+    public void actualizarEntidad(VersionEntidad entidad, boolean estado) {
+        entidad.setEsFinal(estado);
+    }
+
 }

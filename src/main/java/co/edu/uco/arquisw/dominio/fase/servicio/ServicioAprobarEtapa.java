@@ -30,7 +30,7 @@ public class ServicioAprobarEtapa {
 
         var etapaActualizada = construirEtapaAprobada(etapa);
 
-        this.faseRepositorioComando.actualizarEtapa(etapaActualizada, etapa.getId());
+        this.faseRepositorioComando.actualizarEtapa(etapaActualizada, etapaID);
 
         return actualizarFase(etapaActualizada, etapaID);
     }
@@ -94,8 +94,6 @@ public class ServicioAprobarEtapa {
                 var fase = construirFaseFinal();
 
                 id = this.faseRepositorioComando.guardar(fase, proyectoID);
-
-
             }
             default -> id = 0L;
         }
