@@ -1,8 +1,9 @@
 package co.edu.uco.arquisw.infraestructura.fase.controlador;
 
-import co.edu.uco.arquisw.aplicacion.fase.consulta.ConsultarFasePorIDManejador;
+import co.edu.uco.arquisw.aplicacion.fase.consulta.ConsultarEtapaPorIDManejador;
 import co.edu.uco.arquisw.aplicacion.fase.consulta.ConsultarFasesPorProyectoIDManejador;
 import co.edu.uco.arquisw.aplicacion.transversal.ComandoRespuesta;
+import co.edu.uco.arquisw.dominio.fase.dto.EtapaDTO;
 import co.edu.uco.arquisw.dominio.fase.dto.FaseDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -18,19 +19,19 @@ import java.util.List;
 @RequestMapping("/fases")
 @Tag(name = "Consulta de la Fase Controlador")
 public class FaseConsultaControlador {
-    private final ConsultarFasePorIDManejador consultarFasePorIDManejador;
+    private final ConsultarEtapaPorIDManejador consultarEtapaPorIDManejador;
     private final ConsultarFasesPorProyectoIDManejador consultarFasesPorProyectoIDManejador;
 
-    public FaseConsultaControlador(ConsultarFasePorIDManejador consultarFasePorIDManejador, ConsultarFasesPorProyectoIDManejador consultarFasesPorProyectoIDManejador) {
-        this.consultarFasePorIDManejador = consultarFasePorIDManejador;
+    public FaseConsultaControlador(ConsultarEtapaPorIDManejador consultarEtapaPorIDManejador, ConsultarFasesPorProyectoIDManejador consultarFasesPorProyectoIDManejador) {
+        this.consultarEtapaPorIDManejador = consultarEtapaPorIDManejador;
         this.consultarFasesPorProyectoIDManejador = consultarFasesPorProyectoIDManejador;
     }
 
     @PreAuthorize("hasAuthority('SELECCIONADO_LECTURA') || hasAuthority('ADMINISTRADOR_LECTURA')")
-    @GetMapping("/{id}")
-    @Operation(summary = "Consultar por ID", description = "Este es usado para consultar una fase por medio de su ID")
-    public ComandoRespuesta<FaseDTO> consultarPorId(@PathVariable Long id) {
-        return this.consultarFasePorIDManejador.ejecutar(id);
+    @GetMapping("/etapa/{id}")
+    @Operation(summary = "Consultar por ID", description = "Este es usado para consultar una etapa por medio de su ID")
+    public ComandoRespuesta<EtapaDTO> consultarPorEtapaId(@PathVariable Long id) {
+        return this.consultarEtapaPorIDManejador.ejecutar(id);
     }
 
     @PreAuthorize("hasAuthority('SELECCIONADO_LECTURA') || hasAuthority('ADMINISTRADOR_LECTURA')")

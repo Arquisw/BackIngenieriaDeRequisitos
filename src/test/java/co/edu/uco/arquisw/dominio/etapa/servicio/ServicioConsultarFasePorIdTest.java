@@ -2,7 +2,7 @@ package co.edu.uco.arquisw.dominio.etapa.servicio;
 
 import co.edu.uco.arquisw.dominio.fase.dto.FaseDTO;
 import co.edu.uco.arquisw.dominio.fase.puerto.consulta.FaseRepositorioConsulta;
-import co.edu.uco.arquisw.dominio.fase.servicio.ServicioConsultarFasePorID;
+import co.edu.uco.arquisw.dominio.fase.servicio.ServicioConsultarEtapaPorID;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.Mensajes;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -16,7 +16,7 @@ class ServicioConsultarFasePorIdTest {
 
         var faseRepositorioConsulta = Mockito.mock(FaseRepositorioConsulta.class);
 
-        var servicio = new ServicioConsultarFasePorID(faseRepositorioConsulta);
+        var servicio = new ServicioConsultarEtapaPorID(faseRepositorioConsulta);
 
         Mockito.when(faseRepositorioConsulta.consultarFasePorID(Mockito.anyLong())).thenReturn(faseDTO);
 
@@ -32,7 +32,7 @@ class ServicioConsultarFasePorIdTest {
     {
         var faseRepositorioConsulta = Mockito.mock(FaseRepositorioConsulta.class);
 
-        var servicio = new ServicioConsultarFasePorID(faseRepositorioConsulta);
+        var servicio = new ServicioConsultarEtapaPorID(faseRepositorioConsulta);
 
         Mockito.when(faseRepositorioConsulta.consultarFasePorID(Mockito.anyLong())).thenReturn(null);
 
