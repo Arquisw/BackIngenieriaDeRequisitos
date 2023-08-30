@@ -6,16 +6,16 @@ Los procesos del sistema corresponden al flujo de las fases y etapas del proceso
 
 ## Tecnología
 
-**Java:** Versión 17.0.5 LTS
-**Spring Boot:** Versión 2.6.7
-**Spring Security:** Versión 5.7.7
-**Gradle:** Versión 7.4.1
-**PostgreSQL:** Versión 15.1
+- **Java:** Versión 17.0.5 LTS
+- **Spring Boot:** Versión 2.6.7
+- **Spring Security:** Versión 5.7.7
+- **Gradle:** Versión 7.4.1
+- **PostgreSQL:** Versión 15.1
 
 ## Arquitectura Implementada
 
-**Arquitectura:**  Hexágonal
-**Patrón Arquitectonico:** CQRS
+- **Arquitectura:**  Hexágonal
+- **Patrón Arquitectonico:** CQRS
 
 ## Documentación
 
