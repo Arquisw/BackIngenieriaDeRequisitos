@@ -56,7 +56,7 @@ public class RequisitoComandoControlador {
         return this.guardarVersionInicialManejador.ejecutar(id);
     }
 
-    @PreAuthorize("hasAuthority('INGENIERIA_ESCRITURA')")
+    @PreAuthorize("hasAuthority('INGENIERIA_ACTUALIZACION')")
     @PutMapping("/versiones/{id}")
     @Operation(summary = "Generar Version Final", description = "Este es usado para generar la version final de los requisitos por medio del ID de la versión")
     public ComandoRespuesta<Long> generarVersionFinal(@PathVariable Long id) {
