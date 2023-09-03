@@ -1,13 +1,12 @@
 package co.edu.uco.arquisw.aplicacion.requisito.consulta;
 
-import co.edu.uco.arquisw.aplicacion.transversal.ComandoRespuesta;
 import co.edu.uco.arquisw.aplicacion.transversal.manejador.ManejadorComandoRespuesta;
 import co.edu.uco.arquisw.dominio.requisito.dto.VersionDTO;
 import co.edu.uco.arquisw.dominio.requisito.servicio.ServicioConsultarVersionPorID;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ConsultarVersionPorIDManejador implements ManejadorComandoRespuesta<Long, ComandoRespuesta<VersionDTO>> {
+public class ConsultarVersionPorIDManejador implements ManejadorComandoRespuesta<Long, VersionDTO> {
     private final ServicioConsultarVersionPorID servicioConsultarVersionPorID;
 
     public ConsultarVersionPorIDManejador(ServicioConsultarVersionPorID servicioConsultarVersionPorID) {
@@ -15,7 +14,7 @@ public class ConsultarVersionPorIDManejador implements ManejadorComandoRespuesta
     }
 
     @Override
-    public ComandoRespuesta<VersionDTO> ejecutar(Long comando) {
-        return new ComandoRespuesta<>(this.servicioConsultarVersionPorID.ejecutar(comando));
+    public VersionDTO ejecutar(Long comando) {
+        return this.servicioConsultarVersionPorID.ejecutar(comando);
     }
 }

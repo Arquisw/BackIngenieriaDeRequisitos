@@ -1,14 +1,14 @@
 package co.edu.uco.arquisw.aplicacion.fase.consulta;
 
-import co.edu.uco.arquisw.aplicacion.transversal.ComandoRespuesta;
 import co.edu.uco.arquisw.aplicacion.transversal.manejador.ManejadorComandoRespuesta;
 import co.edu.uco.arquisw.dominio.fase.dto.FaseDTO;
 import co.edu.uco.arquisw.dominio.fase.servicio.ServicioConsultarFasesPorProyectoID;
 import org.springframework.stereotype.Component;
+
 import java.util.List;
 
 @Component
-public class ConsultarFasesPorProyectoIDManejador implements ManejadorComandoRespuesta<Long, ComandoRespuesta<List<FaseDTO>>> {
+public class ConsultarFasesPorProyectoIDManejador implements ManejadorComandoRespuesta<Long, List<FaseDTO>> {
     private final ServicioConsultarFasesPorProyectoID servicioConsultarFasesPorProyectoID;
 
     public ConsultarFasesPorProyectoIDManejador(ServicioConsultarFasesPorProyectoID servicioConsultarFasesPorProyectoID) {
@@ -16,7 +16,7 @@ public class ConsultarFasesPorProyectoIDManejador implements ManejadorComandoRes
     }
 
     @Override
-    public ComandoRespuesta<List<FaseDTO>> ejecutar(Long comando) {
-        return new ComandoRespuesta<>(this.servicioConsultarFasesPorProyectoID.ejecutar(comando));
+    public List<FaseDTO> ejecutar(Long comando) {
+        return this.servicioConsultarFasesPorProyectoID.ejecutar(comando);
     }
 }

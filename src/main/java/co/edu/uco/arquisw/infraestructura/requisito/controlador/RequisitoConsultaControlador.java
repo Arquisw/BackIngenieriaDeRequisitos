@@ -4,7 +4,6 @@ import co.edu.uco.arquisw.aplicacion.requisito.consulta.ConsultarRequisitoPorIDM
 import co.edu.uco.arquisw.aplicacion.requisito.consulta.ConsultarRequisitosPorVersionIDManejador;
 import co.edu.uco.arquisw.aplicacion.requisito.consulta.ConsultarVersionPorIDManejador;
 import co.edu.uco.arquisw.aplicacion.requisito.consulta.ConsultarVersionesPorEtapaIDManejador;
-import co.edu.uco.arquisw.aplicacion.transversal.ComandoRespuesta;
 import co.edu.uco.arquisw.dominio.requisito.dto.RequisitoDTO;
 import co.edu.uco.arquisw.dominio.requisito.dto.VersionDTO;
 import io.swagger.v3.oas.annotations.Operation;
@@ -36,28 +35,28 @@ public class RequisitoConsultaControlador {
     @PreAuthorize("hasAuthority('SELECCIONADO_LECTURA')")
     @GetMapping("/{id}")
     @Operation(summary = "Consultar por ID", description = "Este es usado para consultar un requisito por medio de su ID")
-    public ComandoRespuesta<RequisitoDTO> consultarPorId(@PathVariable Long id) {
+    public RequisitoDTO consultarPorId(@PathVariable Long id) {
         return this.consultarRequisitoPorIDManejador.ejecutar(id);
     }
 
     @PreAuthorize("hasAuthority('SELECCIONADO_LECTURA')")
     @GetMapping("/versiones/etapa/{id}")
     @Operation(summary = "Consultar Versiones por Etapa ID", description = "Este es usado para consultar las versiones de una etapa por medio de su ID")
-    public ComandoRespuesta<List<VersionDTO>> consultarVersionesPorEtapaId(@PathVariable Long id) {
+    public List<VersionDTO> consultarVersionesPorEtapaId(@PathVariable Long id) {
         return this.consultarVersionesPorEtapaIDManejador.ejecutar(id);
     }
 
     @PreAuthorize("hasAuthority('SELECCIONADO_LECTURA')")
     @GetMapping("/version/{id}")
     @Operation(summary = "Consultar Requisitos por Version ID", description = "Este es usado para consultar los requisitos de una version por medio de su ID")
-    public ComandoRespuesta<List<RequisitoDTO>> consultarRequisitosPorVersionId(@PathVariable Long id) {
+    public List<RequisitoDTO> consultarRequisitosPorVersionId(@PathVariable Long id) {
         return this.consultarRequisitosPorVersionIDManejador.ejecutar(id);
     }
 
     @PreAuthorize("hasAuthority('SELECCIONADO_LECTURA')")
     @GetMapping("/versiones/{id}")
     @Operation(summary = "Consultar Version por ID", description = "Este es usado para consultar una version por medio de su ID")
-    public ComandoRespuesta<VersionDTO> consultarVersionPorId(@PathVariable Long id) {
+    public VersionDTO consultarVersionPorId(@PathVariable Long id) {
         return this.consultarVersionPorIDManejador.ejecutar(id);
     }
 }

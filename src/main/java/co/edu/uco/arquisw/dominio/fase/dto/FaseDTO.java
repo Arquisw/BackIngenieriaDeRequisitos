@@ -14,6 +14,6 @@ public class FaseDTO {
     private Long id;
     private String nombre;
     private String descripcion;
-    private List<EtapaDTO> etapa;
+    private List<EtapaDTO> etapas;
     private Long proyectoID;
 }

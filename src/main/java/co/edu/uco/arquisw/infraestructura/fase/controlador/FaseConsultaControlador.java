@@ -2,7 +2,6 @@ package co.edu.uco.arquisw.infraestructura.fase.controlador;
 
 import co.edu.uco.arquisw.aplicacion.fase.consulta.ConsultarEtapaPorIDManejador;
 import co.edu.uco.arquisw.aplicacion.fase.consulta.ConsultarFasesPorProyectoIDManejador;
-import co.edu.uco.arquisw.aplicacion.transversal.ComandoRespuesta;
 import co.edu.uco.arquisw.dominio.fase.dto.EtapaDTO;
 import co.edu.uco.arquisw.dominio.fase.dto.FaseDTO;
 import io.swagger.v3.oas.annotations.Operation;
@@ -30,14 +29,14 @@ public class FaseConsultaControlador {
     @PreAuthorize("hasAuthority('SELECCIONADO_LECTURA')")
     @GetMapping("/etapa/{id}")
     @Operation(summary = "Consultar por ID", description = "Este es usado para consultar una etapa por medio de su ID")
-    public ComandoRespuesta<EtapaDTO> consultarPorEtapaId(@PathVariable Long id) {
+    public EtapaDTO consultarPorEtapaId(@PathVariable Long id) {
         return this.consultarEtapaPorIDManejador.ejecutar(id);
     }
 
     @PreAuthorize("hasAuthority('SELECCIONADO_LECTURA')")
     @GetMapping("/proyecto/{id}")
     @Operation(summary = "Consultar Fases por Proyecto ID", description = "Este es usado para consultar todas las fases existentes de un proyecto por medio del ID del proyecto")
-    public ComandoRespuesta<List<FaseDTO>> consultarFasesPorProyectoId(@PathVariable Long id) {
+    public List<FaseDTO> consultarFasesPorProyectoId(@PathVariable Long id) {
         return this.consultarFasesPorProyectoIDManejador.ejecutar(id);
     }
 }
