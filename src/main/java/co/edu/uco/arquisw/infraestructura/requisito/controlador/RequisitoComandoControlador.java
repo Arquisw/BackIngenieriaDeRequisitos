@@ -35,7 +35,7 @@ public class RequisitoComandoControlador {
         return this.guardarRequisitoManejador.ejecutar(requisitoComando, id);
     }
 
-    @PreAuthorize("hasAuthority('EQUIPO_DESARROLLO_ESCRITURA')")
+    @PreAuthorize("hasAuthority('EQUIPO_DESARROLLO_ACTUALIZACION')")
     @PutMapping("/{id}")
     @Operation(summary = "Actualizar Requisito", description = "Este es usado para actualizar el requisito por medio de su ID")
     public ComandoRespuesta<Long> actualizar(@RequestBody RequisitoComando requisitoComando, @PathVariable Long id) {
@@ -63,7 +63,7 @@ public class RequisitoComandoControlador {
         return this.generarVersionFinalManejador.ejecutar(id);
     }
 
-    @PreAuthorize("hasAuthority('LIDER_DE_EQUIPO_ESCRITURA')")
+    @PreAuthorize("hasAuthority('LIDER_DE_EQUIPO_ACTUALIZACION')")
     @PutMapping("/versiones/rechazar/{id}")
     @Operation(summary = "rechazar Version Final", description = "Este es usado para rechazar la version final de los requisitos por medio del ID de la version")
     public ComandoRespuesta<Long> rechazarVersionPorId(@PathVariable Long id) {
