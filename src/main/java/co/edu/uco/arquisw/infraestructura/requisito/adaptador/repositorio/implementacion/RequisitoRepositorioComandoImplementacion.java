@@ -28,6 +28,8 @@ public class RequisitoRepositorioComandoImplementacion implements RequisitoRepos
     public Long guardar(Requisito requisito, Long versionId) {
         var entidad = this.requisitoMapeador.consturirEntidad(requisito, versionId);
 
+        entidad.getTipoRequisito().setId(this.requisitoTipoRequisitoDAO.save(entidad.getTipoRequisito()).getId());
+
         return this.requisitoDAO.save(entidad).getId();
     }
 

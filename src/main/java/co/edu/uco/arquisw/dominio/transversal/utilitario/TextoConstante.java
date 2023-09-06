@@ -22,8 +22,8 @@ public class TextoConstante {
     public static final String ETAPA_VALIDACION_DESCRIPCION = "La validación de requisitos es el proceso de garantizar que el sistema satisface las necesidades del usuario. Para ello, se puede realizar un análisis de satisfacción del usuario, pruebas de aceptación del usuario o encuestas. La validación de requisitos es importante para garantizar que el sistema satisfaga los requisitos del usuario y que sea útil y accesible.";
     public static final String FASE_CIERRE_NOMBRE = "Cierre";
     public static final String FASE_CIERRE_DESCRIPCION = "La fase de cierre es la fase final del proceso de ingeniería de requisitos. En esta fase, se entregan los requisitos finales, que luego pueden ser procesados en los diferentes servicios de consultoria que ofrece la plataforma.";
-    public static final String TIPO_REQUISITO_FUNCIONAL = "Funcional";
-    public static final String TIPO_REQUISITO_NO_FUNCIONAL = "NO Funcional";
+    public static final String TIPO_REQUISITO_FUNCIONAL = "Funcional"; // ID = 1
+    public static final String TIPO_REQUISITO_NO_FUNCIONAL = "NO Funcional"; // ID = 2
     public static final String ESTADO_FINALIZADO = "Finalizado"; // ID = 7
 
     private TextoConstante() {}

@@ -21,11 +21,14 @@ public class ProyectoEntidad {
     private Long id;
     @Column(length = 100)
     private String nombre;
-    @Column(length = 500)
+    @Column(length = 5000)
     private String descripcion;
     @OneToOne
     @JoinColumn(name = "estado")
     private EstadoProyectoEntidad estado;
+    @OneToOne
+    @JoinColumn(name = "aprobacion_proyecto")
+    private AprobacionProyectoEntidad aprobacionProyecto;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "proyecto")
     private List<TipoConsultoriaProyectoEntidad> tiposConsultoria;

@@ -15,11 +15,6 @@ public class BeanServicioRequisito {
     }
 
     @Bean
-    public ServicioConsultarRequisitoPorID servicioConsultarRequisitoPorID(RequisitoRepositorioConsulta requisitoRepositorioConsulta) {
-        return new ServicioConsultarRequisitoPorID(requisitoRepositorioConsulta);
-    }
-
-    @Bean
     public ServicioConsultarVersionesPorEtapaID servicioConsultarVersionesPorEtapaID(RequisitoRepositorioConsulta requisitoRepositorioConsulta, FaseRepositorioConsulta faseRepositorioConsulta) {
         return new ServicioConsultarVersionesPorEtapaID(requisitoRepositorioConsulta, faseRepositorioConsulta);
     }

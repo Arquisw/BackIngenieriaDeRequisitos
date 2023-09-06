@@ -1,6 +1,5 @@
 package co.edu.uco.arquisw.infraestructura.requisito.controlador;
 
-import co.edu.uco.arquisw.aplicacion.requisito.consulta.ConsultarRequisitoPorIDManejador;
 import co.edu.uco.arquisw.aplicacion.requisito.consulta.ConsultarRequisitosPorVersionIDManejador;
 import co.edu.uco.arquisw.aplicacion.requisito.consulta.ConsultarVersionPorIDManejador;
 import co.edu.uco.arquisw.aplicacion.requisito.consulta.ConsultarVersionesPorEtapaIDManejador;
@@ -20,23 +19,14 @@ import java.util.List;
 @RequestMapping("/requisitos")
 @Tag(name = "Consulta del Requisito Controlador")
 public class RequisitoConsultaControlador {
-    private final ConsultarRequisitoPorIDManejador consultarRequisitoPorIDManejador;
     private final ConsultarVersionesPorEtapaIDManejador consultarVersionesPorEtapaIDManejador;
     private final ConsultarVersionPorIDManejador consultarVersionPorIDManejador;
     private final ConsultarRequisitosPorVersionIDManejador consultarRequisitosPorVersionIDManejador;
 
-    public RequisitoConsultaControlador(ConsultarRequisitoPorIDManejador consultarRequisitoPorIDManejador, ConsultarVersionesPorEtapaIDManejador consultarVersionesPorEtapaIDManejador, ConsultarVersionPorIDManejador consultarVersionPorIDManejador, ConsultarRequisitosPorVersionIDManejador consultarRequisitosPorVersionIDManejador) {
-        this.consultarRequisitoPorIDManejador = consultarRequisitoPorIDManejador;
+    public RequisitoConsultaControlador(ConsultarVersionesPorEtapaIDManejador consultarVersionesPorEtapaIDManejador, ConsultarVersionPorIDManejador consultarVersionPorIDManejador, ConsultarRequisitosPorVersionIDManejador consultarRequisitosPorVersionIDManejador) {
         this.consultarVersionesPorEtapaIDManejador = consultarVersionesPorEtapaIDManejador;
         this.consultarVersionPorIDManejador = consultarVersionPorIDManejador;
         this.consultarRequisitosPorVersionIDManejador = consultarRequisitosPorVersionIDManejador;
-    }
-
-    @PreAuthorize("hasAuthority('SELECCIONADO_LECTURA')")
-    @GetMapping("/{id}")
-    @Operation(summary = "Consultar por ID", description = "Este es usado para consultar un requisito por medio de su ID")
-    public RequisitoDTO consultarPorId(@PathVariable Long id) {
-        return this.consultarRequisitoPorIDManejador.ejecutar(id);
     }
 
     @PreAuthorize("hasAuthority('SELECCIONADO_LECTURA')")
