@@ -1,4 +1,4 @@
-package co.edu.uco.arquisw.infraestructura.fase.adaptador.entidad;
+package co.edu.uco.arquisw.infraestructura.fase.adaptador.entidad.proyecto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

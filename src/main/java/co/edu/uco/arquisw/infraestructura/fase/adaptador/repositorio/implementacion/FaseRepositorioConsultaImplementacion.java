@@ -2,7 +2,7 @@ package co.edu.uco.arquisw.infraestructura.fase.adaptador.repositorio.implementa
 
 import co.edu.uco.arquisw.dominio.fase.dto.EtapaDTO;
 import co.edu.uco.arquisw.dominio.fase.dto.FaseDTO;
-import co.edu.uco.arquisw.dominio.fase.dto.ProyectoDTO;
+import co.edu.uco.arquisw.dominio.fase.dto.proyecto.ProyectoDTO;
 import co.edu.uco.arquisw.dominio.fase.puerto.consulta.FaseRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.transversal.validador.ValidarObjeto;
 import co.edu.uco.arquisw.infraestructura.fase.adaptador.mapeador.EtapaMapeador;

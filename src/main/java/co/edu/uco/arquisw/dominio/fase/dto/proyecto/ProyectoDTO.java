@@ -1,4 +1,4 @@
-package co.edu.uco.arquisw.dominio.fase.dto;
+package co.edu.uco.arquisw.dominio.fase.dto.proyecto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

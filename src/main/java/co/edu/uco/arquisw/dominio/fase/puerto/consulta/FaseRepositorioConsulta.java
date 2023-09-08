@@ -2,7 +2,7 @@ package co.edu.uco.arquisw.dominio.fase.puerto.consulta;
 
 import co.edu.uco.arquisw.dominio.fase.dto.EtapaDTO;
 import co.edu.uco.arquisw.dominio.fase.dto.FaseDTO;
-import co.edu.uco.arquisw.dominio.fase.dto.ProyectoDTO;
+import co.edu.uco.arquisw.dominio.fase.dto.proyecto.ProyectoDTO;
 import java.util.List;
 
 public interface FaseRepositorioConsulta {

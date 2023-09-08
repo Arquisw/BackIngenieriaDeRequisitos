@@ -1,6 +1,6 @@
 package co.edu.uco.arquisw.dominio.etapa.servicio;
 
-import co.edu.uco.arquisw.dominio.fase.dto.ProyectoDTO;
+import co.edu.uco.arquisw.dominio.fase.dto.proyecto.ProyectoDTO;
 import co.edu.uco.arquisw.dominio.fase.modelo.Fase;
 import co.edu.uco.arquisw.dominio.fase.puerto.comando.FaseRepositorioComando;
 import co.edu.uco.arquisw.dominio.fase.puerto.consulta.FaseRepositorioConsulta;

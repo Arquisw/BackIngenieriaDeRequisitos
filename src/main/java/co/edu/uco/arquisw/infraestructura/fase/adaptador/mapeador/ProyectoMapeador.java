@@ -1,7 +1,7 @@
 package co.edu.uco.arquisw.infraestructura.fase.adaptador.mapeador;
 
-import co.edu.uco.arquisw.dominio.fase.dto.ProyectoDTO;
-import co.edu.uco.arquisw.infraestructura.fase.adaptador.entidad.ProyectoEntidad;
+import co.edu.uco.arquisw.dominio.fase.dto.proyecto.ProyectoDTO;
+import co.edu.uco.arquisw.infraestructura.fase.adaptador.entidad.proyecto.ProyectoEntidad;
 import org.springframework.stereotype.Component;
 import java.util.List;
 

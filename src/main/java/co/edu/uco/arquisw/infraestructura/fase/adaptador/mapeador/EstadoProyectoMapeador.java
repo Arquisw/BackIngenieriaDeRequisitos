@@ -1,10 +1,10 @@
 package co.edu.uco.arquisw.infraestructura.fase.adaptador.mapeador;
 
-import co.edu.uco.arquisw.dominio.fase.dto.EstadoProyectoDTO;
+import co.edu.uco.arquisw.dominio.fase.dto.proyecto.EstadoProyectoDTO;
 import co.edu.uco.arquisw.dominio.fase.modelo.EstadoProyecto;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.TextoConstante;
-import co.edu.uco.arquisw.infraestructura.fase.adaptador.entidad.EstadoEntidad;
-import co.edu.uco.arquisw.infraestructura.fase.adaptador.entidad.EstadoProyectoEntidad;
+import co.edu.uco.arquisw.infraestructura.fase.adaptador.entidad.proyecto.EstadoEntidad;
+import co.edu.uco.arquisw.infraestructura.fase.adaptador.entidad.proyecto.EstadoProyectoEntidad;
 import org.springframework.stereotype.Component;
 
 @Component
