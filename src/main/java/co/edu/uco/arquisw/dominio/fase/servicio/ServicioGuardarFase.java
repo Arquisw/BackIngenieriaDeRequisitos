@@ -4,6 +4,7 @@ import co.edu.uco.arquisw.dominio.fase.modelo.Etapa;
 import co.edu.uco.arquisw.dominio.fase.modelo.Fase;
 import co.edu.uco.arquisw.dominio.fase.puerto.comando.FaseRepositorioComando;
 import co.edu.uco.arquisw.dominio.fase.puerto.consulta.FaseRepositorioConsulta;
+import co.edu.uco.arquisw.dominio.fase.puerto.consulta.ProyectoRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.LogicoConstante;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.Mensajes;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.TextoConstante;
@@ -13,10 +14,12 @@ import java.util.List;
 public class ServicioGuardarFase {
     private final FaseRepositorioComando faseRepositorioComando;
     private final FaseRepositorioConsulta faseRepositorioConsulta;
+    private final ProyectoRepositorioConsulta proyectoRepositorioConsulta;
 
-    public ServicioGuardarFase(FaseRepositorioComando faseRepositorioComando, FaseRepositorioConsulta faseRepositorioConsulta) {
+    public ServicioGuardarFase(FaseRepositorioComando faseRepositorioComando, FaseRepositorioConsulta faseRepositorioConsulta, ProyectoRepositorioConsulta proyectoRepositorioConsulta) {
         this.faseRepositorioComando = faseRepositorioComando;
         this.faseRepositorioConsulta = faseRepositorioConsulta;
+        this.proyectoRepositorioConsulta = proyectoRepositorioConsulta;
     }
 
     public Long ejecutar(Long proyectoID) {
@@ -28,7 +31,7 @@ public class ServicioGuardarFase {
     }
 
     private void validarSiExisteProyectoConID(Long proyectoID) {
-        if(ValidarObjeto.esNulo(this.faseRepositorioConsulta.consultarProyectoPorID(proyectoID))) {
+        if(ValidarObjeto.esNulo(this.proyectoRepositorioConsulta.consultarProyectoPorID(proyectoID))) {
             throw new NullPointerException(Mensajes.NO_EXISTE_PROYECTO_CON_EL_ID + proyectoID);
         }
     }

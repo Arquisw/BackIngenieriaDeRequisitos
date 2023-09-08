@@ -2,8 +2,8 @@ package co.edu.uco.arquisw.infraestructura.fase.adaptador.repositorio.implementa
 
 import co.edu.uco.arquisw.dominio.fase.modelo.EstadoProyecto;
 import co.edu.uco.arquisw.dominio.fase.puerto.comando.ProyectoRepositorioComando;
-import co.edu.uco.arquisw.infraestructura.fase.adaptador.mapeador.EstadoProyectoMapeador;
-import co.edu.uco.arquisw.infraestructura.fase.adaptador.repositorio.jpa.ProyectoDAO;
+import co.edu.uco.arquisw.infraestructura.fase.adaptador.mapeador.proyecto.EstadoProyectoMapeador;
+import co.edu.uco.arquisw.infraestructura.fase.adaptador.repositorio.jpa.proyecto.ProyectoDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class ProyectoRepositorioComandoImplementacion implements ProyectoRepositorioComando {

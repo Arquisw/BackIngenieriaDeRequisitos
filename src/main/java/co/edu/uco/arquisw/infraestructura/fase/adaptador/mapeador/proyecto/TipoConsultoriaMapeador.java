@@ -1,4 +1,4 @@
-package co.edu.uco.arquisw.infraestructura.fase.adaptador.mapeador;
+package co.edu.uco.arquisw.infraestructura.fase.adaptador.mapeador.proyecto;
 
 import co.edu.uco.arquisw.dominio.fase.dto.proyecto.TipoConsultoriaDTO;
 import co.edu.uco.arquisw.infraestructura.fase.adaptador.entidad.proyecto.TipoConsultoriaProyectoEntidad;

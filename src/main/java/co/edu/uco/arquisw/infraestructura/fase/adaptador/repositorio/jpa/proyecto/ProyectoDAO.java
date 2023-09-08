@@ -1,4 +1,4 @@
-package co.edu.uco.arquisw.infraestructura.fase.adaptador.repositorio.jpa;
+package co.edu.uco.arquisw.infraestructura.fase.adaptador.repositorio.jpa.proyecto;
 
 import co.edu.uco.arquisw.infraestructura.fase.adaptador.entidad.proyecto.ProyectoEntidad;
 import org.springframework.data.jpa.repository.JpaRepository;

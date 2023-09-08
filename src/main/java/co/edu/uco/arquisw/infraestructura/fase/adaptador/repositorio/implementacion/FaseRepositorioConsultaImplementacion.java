@@ -2,15 +2,12 @@ package co.edu.uco.arquisw.infraestructura.fase.adaptador.repositorio.implementa
 
 import co.edu.uco.arquisw.dominio.fase.dto.EtapaDTO;
 import co.edu.uco.arquisw.dominio.fase.dto.FaseDTO;
-import co.edu.uco.arquisw.dominio.fase.dto.proyecto.ProyectoDTO;
 import co.edu.uco.arquisw.dominio.fase.puerto.consulta.FaseRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.transversal.validador.ValidarObjeto;
 import co.edu.uco.arquisw.infraestructura.fase.adaptador.mapeador.EtapaMapeador;
 import co.edu.uco.arquisw.infraestructura.fase.adaptador.mapeador.FaseMapeador;
-import co.edu.uco.arquisw.infraestructura.fase.adaptador.mapeador.ProyectoMapeador;
 import co.edu.uco.arquisw.infraestructura.fase.adaptador.repositorio.jpa.EtapaDAO;
 import co.edu.uco.arquisw.infraestructura.fase.adaptador.repositorio.jpa.FaseDAO;
-import co.edu.uco.arquisw.infraestructura.fase.adaptador.repositorio.jpa.ProyectoDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import java.util.List;
@@ -23,13 +20,9 @@ public class FaseRepositorioConsultaImplementacion implements FaseRepositorioCon
     @Autowired
     EtapaDAO etapaDAO;
     @Autowired
-    ProyectoDAO proyectoDAO;
-    @Autowired
     FaseMapeador faseMapeador;
     @Autowired
     EtapaMapeador etapaMapeador;
-    @Autowired
-    ProyectoMapeador proyectoMapeador;
 
     @Override
     public FaseDTO consultarFasePorID(Long faseID) {
@@ -55,17 +48,6 @@ public class FaseRepositorioConsultaImplementacion implements FaseRepositorioCon
         }
 
         return this.faseMapeador.construirDTO(faseEntidad);
-    }
-
-    @Override
-    public ProyectoDTO consultarProyectoPorID(Long proyectoID) {
-        var entidad = this.proyectoDAO.findById(proyectoID).orElse(null);
-
-        if(ValidarObjeto.esNulo(entidad)) {
-            return null;
-        }
-
-        return this.proyectoMapeador.construirDTO(entidad);
     }
 
     @Override

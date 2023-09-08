@@ -2,6 +2,7 @@ package co.edu.uco.arquisw.infraestructura.configuracion;
 
 import co.edu.uco.arquisw.dominio.fase.puerto.comando.FaseRepositorioComando;
 import co.edu.uco.arquisw.dominio.fase.puerto.consulta.FaseRepositorioConsulta;
+import co.edu.uco.arquisw.dominio.fase.puerto.consulta.ProyectoRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.fase.servicio.ServicioAprobarEtapa;
 import co.edu.uco.arquisw.dominio.fase.servicio.ServicioConsultarEtapaPorID;
 import co.edu.uco.arquisw.dominio.fase.servicio.ServicioConsultarFasesPorProyectoID;
@@ -27,7 +28,7 @@ public class BeanServicioFase {
     }
 
     @Bean
-    public ServicioGuardarFase servicioGuardarFase(FaseRepositorioComando faseRepositorioComando, FaseRepositorioConsulta faseRepositorioConsulta) {
-        return new ServicioGuardarFase(faseRepositorioComando, faseRepositorioConsulta);
+    public ServicioGuardarFase servicioGuardarFase(FaseRepositorioComando faseRepositorioComando, FaseRepositorioConsulta faseRepositorioConsulta, ProyectoRepositorioConsulta proyectoRepositorioConsulta) {
+        return new ServicioGuardarFase(faseRepositorioComando, faseRepositorioConsulta, proyectoRepositorioConsulta);
     }
 }
