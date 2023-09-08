@@ -36,7 +36,7 @@ public class TextoConstante {
     public static final String HA_INICIADO_LA_PRIMERA_VERSION_DE_LOS_REQUISITOS = " ha iniciado la primera versión de los requisitos.";
     public static final String VERSION_FINAL_GENERADA_Y_LISTA_PARA_REVISION = "Versión final generada y lista para revisión";
     public static final String LA_VERSION = "La versión #";
-    public static final String DE_LA_ETAPA = " de la etapa";
+    public static final String DE_LA_ETAPA = " de la etapa ";
     public static final String HA_SIDO_ESTABLECIDA_COMO_VERSION_FINAL_POR_LO_TANTO_ESTA_LISTA_PARA_REVISION = " ha sido establecida como versión final por el rol ingeniería, por lo tanto esta lista para su aprobación en la etapa o en el rechazo de la versión si así lo consideras.";
     public static final String HA_SIDO_RECHAZADA_POR_EL_LIDER_DE_EQUIPO = " ha sido rechazada por el Lider de Equipo, evaluen los motivos y mejorenlo en la siguiente versión.";
 
