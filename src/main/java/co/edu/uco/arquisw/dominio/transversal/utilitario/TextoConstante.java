@@ -2,6 +2,7 @@ package co.edu.uco.arquisw.dominio.transversal.utilitario;
 
 public class TextoConstante {
     public static final String VACIO = "";
+    public static final String ESPACIO = " ";
     public static final String FASE_INICIO_NOMBRE = "Inicio";
     public static final String FASE_INICIO_DESCRIPCION = "La fase de inicio, establece las bases para el exito del proyecto, en donde se declararán los requisitos de los que se partira el proceso de ingeniería de requisitos.";
     public static final String ETAPA_DECLARACION_NOMBRE = "Declaración";
