@@ -5,26 +5,44 @@ import co.edu.uco.arquisw.dominio.fase.modelo.Etapa;
 import co.edu.uco.arquisw.dominio.fase.modelo.Fase;
 import co.edu.uco.arquisw.dominio.fase.puerto.comando.FaseRepositorioComando;
 import co.edu.uco.arquisw.dominio.fase.puerto.consulta.FaseRepositorioConsulta;
+import co.edu.uco.arquisw.dominio.fase.puerto.consulta.ProyectoRepositorioConsulta;
+import co.edu.uco.arquisw.dominio.seleccion.puerto.consulta.SeleccionRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.transversal.excepciones.AccionExcepcion;
+import co.edu.uco.arquisw.dominio.transversal.servicio.ServicioEnviarCorreoElectronico;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.LogicoConstante;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.Mensajes;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.TextoConstante;
 import co.edu.uco.arquisw.dominio.transversal.validador.ValidarObjeto;
+import co.edu.uco.arquisw.dominio.usuario.puerto.consulta.PersonaRepositorioConsulta;
+
+import javax.mail.MessagingException;
 import java.util.List;
 
 public class ServicioAprobarEtapa {
     private final FaseRepositorioComando faseRepositorioComando;
     private final FaseRepositorioConsulta faseRepositorioConsulta;
+    private final SeleccionRepositorioConsulta seleccionRepositorioConsulta;
+    private final ProyectoRepositorioConsulta proyectoRepositorioConsulta;
+    private final PersonaRepositorioConsulta personaRepositorioConsulta;
+    private final ServicioEnviarCorreoElectronico servicioEnviarCorreoElectronico;
 
-    public ServicioAprobarEtapa(FaseRepositorioComando faseRepositorioComando, FaseRepositorioConsulta faseRepositorioConsulta) {
+    public ServicioAprobarEtapa(FaseRepositorioComando faseRepositorioComando, FaseRepositorioConsulta faseRepositorioConsulta, SeleccionRepositorioConsulta seleccionRepositorioConsulta, ProyectoRepositorioConsulta proyectoRepositorioConsulta, PersonaRepositorioConsulta personaRepositorioConsulta, ServicioEnviarCorreoElectronico servicioEnviarCorreoElectronico) {
         this.faseRepositorioComando = faseRepositorioComando;
         this.faseRepositorioConsulta = faseRepositorioConsulta;
+        this.seleccionRepositorioConsulta = seleccionRepositorioConsulta;
+        this.proyectoRepositorioConsulta = proyectoRepositorioConsulta;
+        this.personaRepositorioConsulta = personaRepositorioConsulta;
+        this.servicioEnviarCorreoElectronico = servicioEnviarCorreoElectronico;
     }
 
     public Long ejecutar(Long etapaID) {
         validarSiExisteEtapaConID(etapaID);
 
         var etapa = this.faseRepositorioConsulta.consultarEtapaPorID(etapaID);
+        var fase = this.faseRepositorioConsulta.consultarFasePorEtapaID(etapaID);
+        var proyectoId = fase.getProyectoID();
+        var seleccionesDelProyecto = this.seleccionRepositorioConsulta.consultarSeleccionadosPorProyecto(proyectoId);
+        var proyecto = this.proyectoRepositorioConsulta.consultarProyectoPorID(proyectoId);
 
         validarSiEtapaNoEstaCompletada(etapa);
 
@@ -32,7 +50,21 @@ public class ServicioAprobarEtapa {
 
         this.faseRepositorioComando.actualizarEtapa(etapaActualizada, etapaID);
 
-        return actualizarFase(etapaActualizada, etapaID);
+        var respuestId = actualizarFase(etapaActualizada, etapaID);
+
+        seleccionesDelProyecto.forEach(seleccionDelProyecto -> {
+            try {
+                var correo = this.personaRepositorioConsulta.consultarPorId(seleccionDelProyecto.getUsuarioID()).getCorreo();
+                var asunto = TextoConstante.ETAPA_APROBADA_POR_EL_LIDER_DE_EQUIPO;
+                var cuerpo = TextoConstante.LA_ETAPA + etapa.getNombre() + TextoConstante.DE_LA_FASE + fase.getNombre() + TextoConstante.EN_EL_PROYECTO + proyecto.getNombre() + TextoConstante.HA_SIDO_APROBADO_POR_EL_ROL_LIDER_DE_EQUIPO;
+
+                this.servicioEnviarCorreoElectronico.enviarCorreo(correo, asunto, cuerpo);
+            } catch (MessagingException e) {
+                throw new RuntimeException(e.getMessage());
+            }
+        });
+
+        return respuestId;
     }
 
     private void validarSiExisteEtapaConID(Long etapaID) {

@@ -2,12 +2,16 @@ package co.edu.uco.arquisw.dominio.requisito.servicio;
 
 import co.edu.uco.arquisw.dominio.fase.dto.EtapaDTO;
 import co.edu.uco.arquisw.dominio.fase.puerto.consulta.FaseRepositorioConsulta;
+import co.edu.uco.arquisw.dominio.fase.puerto.consulta.ProyectoRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.requisito.dto.VersionDTO;
 import co.edu.uco.arquisw.dominio.requisito.modelo.Version;
 import co.edu.uco.arquisw.dominio.requisito.puerto.comando.RequisitoRepositorioComando;
 import co.edu.uco.arquisw.dominio.requisito.puerto.consulta.RequisitoRepositorioConsulta;
+import co.edu.uco.arquisw.dominio.seleccion.puerto.consulta.SeleccionRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.transversal.excepciones.AccionExcepcion;
+import co.edu.uco.arquisw.dominio.transversal.servicio.ServicioEnviarCorreoElectronico;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.Mensajes;
+import co.edu.uco.arquisw.dominio.usuario.puerto.consulta.PersonaRepositorioConsulta;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -24,8 +28,13 @@ public class ServicioGenerarVersionFinalTest {
 
         var requisitoRepositorioComando = Mockito.mock(RequisitoRepositorioComando.class);
         var requisitoRepositorioConsulta= Mockito.mock(RequisitoRepositorioConsulta.class);
+        var faseRepositorioConsulta= Mockito.mock(FaseRepositorioConsulta.class);
+        var seleccionRepositorioConsulta= Mockito.mock(SeleccionRepositorioConsulta.class);
+        var proyectoRepositorioConsulta= Mockito.mock(ProyectoRepositorioConsulta.class);
+        var personaRepositorioConsulta= Mockito.mock(PersonaRepositorioConsulta.class);
+        var servicioEnviarCorreoElectronico= Mockito.mock(ServicioEnviarCorreoElectronico.class);
 
-        var servicio = new ServicioGenerarVersionFinal(requisitoRepositorioComando,requisitoRepositorioConsulta);
+        var servicio = new ServicioGenerarVersionFinal(requisitoRepositorioComando,requisitoRepositorioConsulta, faseRepositorioConsulta, seleccionRepositorioConsulta, proyectoRepositorioConsulta, personaRepositorioConsulta, servicioEnviarCorreoElectronico);
 
         Mockito.when(requisitoRepositorioComando.actualizarVersion(Mockito.any(Version.class),Mockito.anyLong())).thenReturn(1L);
         Mockito.when(requisitoRepositorioConsulta.consultarVersionesPorEtapaID(Mockito.anyLong())).thenReturn(versionDTOS);
@@ -43,8 +52,13 @@ public class ServicioGenerarVersionFinalTest {
 
         var requisitoRepositorioComando = Mockito.mock(RequisitoRepositorioComando.class);
         var requisitoRepositorioConsulta= Mockito.mock(RequisitoRepositorioConsulta.class);
+        var faseRepositorioConsulta= Mockito.mock(FaseRepositorioConsulta.class);
+        var seleccionRepositorioConsulta= Mockito.mock(SeleccionRepositorioConsulta.class);
+        var proyectoRepositorioConsulta= Mockito.mock(ProyectoRepositorioConsulta.class);
+        var personaRepositorioConsulta= Mockito.mock(PersonaRepositorioConsulta.class);
+        var servicioEnviarCorreoElectronico= Mockito.mock(ServicioEnviarCorreoElectronico.class);
 
-        var servicio = new ServicioGenerarVersionFinal(requisitoRepositorioComando,requisitoRepositorioConsulta);
+        var servicio = new ServicioGenerarVersionFinal(requisitoRepositorioComando,requisitoRepositorioConsulta, faseRepositorioConsulta, seleccionRepositorioConsulta, proyectoRepositorioConsulta, personaRepositorioConsulta, servicioEnviarCorreoElectronico);
 
         Mockito.when(requisitoRepositorioComando.actualizarVersion(Mockito.any(Version.class),Mockito.anyLong())).thenReturn(1L);
 
@@ -62,8 +76,13 @@ public class ServicioGenerarVersionFinalTest {
 
         var requisitoRepositorioComando = Mockito.mock(RequisitoRepositorioComando.class);
         var requisitoRepositorioConsulta= Mockito.mock(RequisitoRepositorioConsulta.class);
+        var faseRepositorioConsulta= Mockito.mock(FaseRepositorioConsulta.class);
+        var seleccionRepositorioConsulta= Mockito.mock(SeleccionRepositorioConsulta.class);
+        var proyectoRepositorioConsulta= Mockito.mock(ProyectoRepositorioConsulta.class);
+        var personaRepositorioConsulta= Mockito.mock(PersonaRepositorioConsulta.class);
+        var servicioEnviarCorreoElectronico= Mockito.mock(ServicioEnviarCorreoElectronico.class);
 
-        var servicio = new ServicioGenerarVersionFinal(requisitoRepositorioComando,requisitoRepositorioConsulta);
+        var servicio = new ServicioGenerarVersionFinal(requisitoRepositorioComando,requisitoRepositorioConsulta, faseRepositorioConsulta, seleccionRepositorioConsulta, proyectoRepositorioConsulta, personaRepositorioConsulta, servicioEnviarCorreoElectronico);
 
         Mockito.when(requisitoRepositorioComando.actualizarVersion(Mockito.any(Version.class),Mockito.anyLong())).thenReturn(1L);
 

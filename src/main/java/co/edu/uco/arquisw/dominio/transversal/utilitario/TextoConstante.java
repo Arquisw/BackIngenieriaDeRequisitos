@@ -3,6 +3,7 @@ package co.edu.uco.arquisw.dominio.transversal.utilitario;
 public class TextoConstante {
     public static final String VACIO = "";
     public static final String ESPACIO = " ";
+    public static final String ROL_LIDER_DEL_EQUIPO = "ROLE_LIDER_DE_EQUIPO";
     public static final String FASE_INICIO_NOMBRE = "Inicio";
     public static final String FASE_INICIO_DESCRIPCION = "La fase de inicio, establece las bases para el exito del proyecto, en donde se declararán los requisitos de los que se partira el proceso de ingeniería de requisitos.";
     public static final String ETAPA_DECLARACION_NOMBRE = "Declaración";
@@ -26,6 +27,18 @@ public class TextoConstante {
     public static final String TIPO_REQUISITO_FUNCIONAL = "Funcional"; // ID = 1
     public static final String TIPO_REQUISITO_NO_FUNCIONAL = "NO Funcional"; // ID = 2
     public static final String ESTADO_FINALIZADO = "Finalizado"; // ID = 7
+    public static final String ETAPA_APROBADA_POR_EL_LIDER_DE_EQUIPO = "Etapa aprobada por el lider de equipo";
+    public static final String LA_ETAPA = "La etapa ";
+    public static final String DE_LA_FASE = " de la fase ";
+    public static final String EN_EL_PROYECTO = " en el proyecto ";
+    public static final String HA_SIDO_APROBADO_POR_EL_ROL_LIDER_DE_EQUIPO = " ha sido aprobada por el lider del equipo.";
+    public static final String PRIMERA_VERSION_DE_LA_ETAPA_INICIADA = "Primera versión de la etapa actual iniciada";
+    public static final String HA_INICIADO_LA_PRIMERA_VERSION_DE_LOS_REQUISITOS = " ha iniciado la primera versión de los requisitos.";
+    public static final String VERSION_FINAL_GENERADA_Y_LISTA_PARA_REVISION = "Versión final generada y lista para revisión";
+    public static final String LA_VERSION = "La versión #";
+    public static final String DE_LA_ETAPA = " de la etapa";
+    public static final String HA_SIDO_ESTABLECIDA_COMO_VERSION_FINAL_POR_LO_TANTO_ESTA_LISTA_PARA_REVISION = " ha sido establecida como versión final por el rol ingeniería, por lo tanto esta lista para su aprobación en la etapa o en el rechazo de la versión si así lo consideras.";
+    public static final String HA_SIDO_RECHAZADA_POR_EL_LIDER_DE_EQUIPO = " ha sido rechazada por el Lider de Equipo, evaluen los motivos y mejorenlo en la siguiente versión.";
 
     private TextoConstante() {}
 }
