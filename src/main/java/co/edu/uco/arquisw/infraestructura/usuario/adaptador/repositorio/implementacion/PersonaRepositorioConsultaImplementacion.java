@@ -6,7 +6,9 @@ import co.edu.uco.arquisw.dominio.usuario.puerto.consulta.PersonaRepositorioCons
 import co.edu.uco.arquisw.infraestructura.usuario.adaptador.mapeador.PersonaMapeador;
 import co.edu.uco.arquisw.infraestructura.usuario.adaptador.repositorio.jpa.PersonaDAO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class PersonaRepositorioConsultaImplementacion implements PersonaRepositorioConsulta {
     @Autowired
     PersonaDAO personaDAO;
