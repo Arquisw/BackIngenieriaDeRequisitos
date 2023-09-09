@@ -12,9 +12,7 @@ import java.util.List;
 
 class ServicioConsultarFasesPorProyectoIDTest {
     @Test
-    void validarServicioConsultarFasesPorProyectoIDExitosa()
-
-    {
+    void validarServicioConsultarFasesPorProyectoIDExitosa() {
         var faseDTO = new FaseDTO();
         List<FaseDTO> faseDTOS = List.of(faseDTO);
 
@@ -32,8 +30,7 @@ class ServicioConsultarFasesPorProyectoIDTest {
     }
 
     @Test
-    void consultaPorIdFallida()
-    {
+    void consultaPorIdFallida() {
         var faseRepositorioConsulta = Mockito.mock(FaseRepositorioConsulta.class);
 
         var servicio = new ServicioConsultarFasesPorProyectoID(faseRepositorioConsulta);

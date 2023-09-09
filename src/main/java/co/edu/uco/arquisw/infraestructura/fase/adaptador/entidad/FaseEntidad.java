@@ -16,8 +16,8 @@ import java.util.List;
 @Table(name = "fase")
 public class FaseEntidad {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator="fase_code_seq")
-    @SequenceGenerator(name="fase_code_seq", sequenceName="fase_code_seq", allocationSize=1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "fase_code_seq")
+    @SequenceGenerator(name = "fase_code_seq", sequenceName = "fase_code_seq", allocationSize = 1)
     private Long id;
     @Column(length = 50)
     private String nombre;

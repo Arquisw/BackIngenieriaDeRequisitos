@@ -2,6 +2,7 @@ package co.edu.uco.arquisw.infraestructura.seleccion.adaptador.mapeador;
 
 import co.edu.uco.arquisw.infraestructura.seleccion.adaptador.entidad.RolProyectoSeleccionEntidad;
 import org.springframework.stereotype.Component;
+
 import java.util.List;
 
 @Component

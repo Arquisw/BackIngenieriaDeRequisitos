@@ -5,12 +5,11 @@ import org.junit.jupiter.api.Test;
 
 public class VersionTest {
     @Test
-    void  validarCreacionVersionExitosa()
-    {
+    void validarCreacionVersionExitosa() {
         boolean esFinal = true;
 
         Version version = Version.crear(esFinal);
 
-        Assertions.assertEquals(esFinal,version.isEsFinal());
+        Assertions.assertEquals(esFinal, version.isEsFinal());
     }
 }

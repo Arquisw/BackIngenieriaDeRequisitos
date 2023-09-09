@@ -9,8 +9,8 @@ public class TipoRequisitoTestDataBuilder {
     public TipoRequisitoTestDataBuilder() {
         this.nombre = "Ingenieria de requisitos";
     }
-    public TipoRequisito build()
-    {
+
+    public TipoRequisito build() {
         return TipoRequisito.crear(nombre);
     }
 }

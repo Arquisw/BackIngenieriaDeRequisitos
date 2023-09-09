@@ -50,10 +50,10 @@ public class ServicioGenerarVersionFinal {
 
         seleccionesDelProyecto.forEach(seleccionDelProyecto -> {
             try {
-                if(seleccionDelProyecto.getRoles().contains(TextoConstante.ROL_LIDER_DEL_EQUIPO)) {
+                if (seleccionDelProyecto.getRoles().contains(TextoConstante.ROL_LIDER_DEL_EQUIPO)) {
                     var correo = this.personaRepositorioConsulta.consultarPorId(seleccionDelProyecto.getUsuarioID()).getCorreo();
-                    var asunto = TextoConstante.VERSION_FINAL_GENERADA_Y_LISTA_PARA_REVISION;
-                    var cuerpo = TextoConstante.LA_VERSION + versionId + TextoConstante.DE_LA_ETAPA + etapa.getNombre() + TextoConstante.DE_LA_FASE + fase.getNombre() + TextoConstante.EN_EL_PROYECTO + proyecto.getNombre() + TextoConstante.HA_SIDO_ESTABLECIDA_COMO_VERSION_FINAL_POR_LO_TANTO_ESTA_LISTA_PARA_REVISION;
+                    var asunto = Mensajes.VERSION_FINAL_GENERADA_Y_LISTA_PARA_REVISION;
+                    var cuerpo = Mensajes.LA_VERSION + versionId + Mensajes.DE_LA_ETAPA + etapa.getNombre() + Mensajes.DE_LA_FASE + fase.getNombre() + Mensajes.EN_EL_PROYECTO + proyecto.getNombre() + Mensajes.HA_SIDO_ESTABLECIDA_COMO_VERSION_FINAL_POR_LO_TANTO_ESTA_LISTA_PARA_REVISION;
 
                     this.servicioEnviarCorreoElectronico.enviarCorreo(correo, asunto, cuerpo);
                 }
@@ -66,7 +66,7 @@ public class ServicioGenerarVersionFinal {
     }
 
     private void validarSiExisteVersionConID(Long versionId) {
-        if(ValidarObjeto.esNulo(this.requisitoRepositorioConsulta.consultarVersionPorID(versionId))) {
+        if (ValidarObjeto.esNulo(this.requisitoRepositorioConsulta.consultarVersionPorID(versionId))) {
             throw new NullPointerException(Mensajes.NO_EXISTE_VERSION_CON_EL_ID + versionId);
         }
     }

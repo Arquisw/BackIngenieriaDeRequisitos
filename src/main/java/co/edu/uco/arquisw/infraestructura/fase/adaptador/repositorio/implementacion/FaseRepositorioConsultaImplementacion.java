@@ -10,6 +10,7 @@ import co.edu.uco.arquisw.infraestructura.fase.adaptador.repositorio.jpa.EtapaDA
 import co.edu.uco.arquisw.infraestructura.fase.adaptador.repositorio.jpa.FaseDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -28,7 +29,7 @@ public class FaseRepositorioConsultaImplementacion implements FaseRepositorioCon
     public FaseDTO consultarFasePorID(Long faseID) {
         var entidad = this.faseDAO.findById(faseID).orElse(null);
 
-        if(ValidarObjeto.esNulo(entidad)) {
+        if (ValidarObjeto.esNulo(entidad)) {
             return null;
         }
 
@@ -43,7 +44,7 @@ public class FaseRepositorioConsultaImplementacion implements FaseRepositorioCon
             return !ValidarObjeto.esNulo(etapa);
         }).findFirst().orElse(null);
 
-        if(ValidarObjeto.esNulo(faseEntidad)) {
+        if (ValidarObjeto.esNulo(faseEntidad)) {
             return null;
         }
 
@@ -54,7 +55,7 @@ public class FaseRepositorioConsultaImplementacion implements FaseRepositorioCon
     public EtapaDTO consultarEtapaPorID(Long etapaID) {
         var entidad = this.etapaDAO.findById(etapaID).orElse(null);
 
-        if(ValidarObjeto.esNulo(entidad)) {
+        if (ValidarObjeto.esNulo(entidad)) {
             return null;
         }
 

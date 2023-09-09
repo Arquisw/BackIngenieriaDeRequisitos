@@ -7,6 +7,7 @@ import co.edu.uco.arquisw.dominio.transversal.validador.ValidarObjeto;
 import co.edu.uco.arquisw.infraestructura.fase.adaptador.entidad.EtapaEntidad;
 import co.edu.uco.arquisw.infraestructura.fase.adaptador.entidad.FaseEntidad;
 import org.springframework.stereotype.Component;
+
 import java.util.List;
 
 @Component

@@ -10,9 +10,7 @@ import org.mockito.Mockito;
 
 class ServicioConsultarVersionPorIDTest {
     @Test
-    void validarServicioConsultarRequisitoPorIDExitosa()
-
-    {
+    void validarServicioConsultarRequisitoPorIDExitosa() {
         var versionDto = new VersionDTO();
         var requisitoRepositorioConsulta = Mockito.mock(RequisitoRepositorioConsulta.class);
         var servicio = new ServicioConsultarVersionPorID(requisitoRepositorioConsulta);
@@ -27,8 +25,7 @@ class ServicioConsultarVersionPorIDTest {
     }
 
     @Test
-    void ConsultarRequisitoPorIDFallida()
-    {
+    void ConsultarRequisitoPorIDFallida() {
         var requisitoRepositorioConsulta = Mockito.mock(RequisitoRepositorioConsulta.class);
 
         var servicio = new ServicioConsultarVersionPorID(requisitoRepositorioConsulta);

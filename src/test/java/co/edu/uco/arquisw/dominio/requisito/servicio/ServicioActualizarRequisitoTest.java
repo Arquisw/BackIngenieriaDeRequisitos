@@ -13,42 +13,41 @@ import org.mockito.Mockito;
 
 class ServicioActualizarRequisitoTest {
     @Test
-    void actualizacionExitosa()
-    {
+    void actualizacionExitosa() {
         var requisito = new RequisitoTestDataBuilder().build();
         var requisitoDto = new RequisitoDTO();
         var versionDto = new VersionDTO();
         requisitoDto.setVersionID(1L);
 
         var requisitoRepositorioComando = Mockito.mock(RequisitoRepositorioComando.class);
-        var requisitoRepositorioConsulta= Mockito.mock(RequisitoRepositorioConsulta.class);
-        var servicio = new ServicioActualizarRequisito(requisitoRepositorioComando,requisitoRepositorioConsulta);
+        var requisitoRepositorioConsulta = Mockito.mock(RequisitoRepositorioConsulta.class);
+        var servicio = new ServicioActualizarRequisito(requisitoRepositorioComando, requisitoRepositorioConsulta);
 
-        Mockito.when(requisitoRepositorioComando.actualizar(Mockito.any(Requisito.class),Mockito.anyLong())).thenReturn(1L);
+        Mockito.when(requisitoRepositorioComando.actualizar(Mockito.any(Requisito.class), Mockito.anyLong())).thenReturn(1L);
         Mockito.when(requisitoRepositorioConsulta.consultarRequisitoPorID(Mockito.anyLong())).thenReturn(requisitoDto);
         Mockito.when(requisitoRepositorioConsulta.consultarVersionPorID(Mockito.anyLong())).thenReturn(versionDto);
 
-        var id = servicio.ejecutar(requisito,1L);
+        var id = servicio.ejecutar(requisito, 1L);
 
-        Assertions.assertEquals(1,id);
+        Assertions.assertEquals(1, id);
     }
+
     @Test
-    void actualizacionFallaNoExisteRequisito()
-    {
+    void actualizacionFallaNoExisteRequisito() {
         var requisito = new RequisitoTestDataBuilder().build();
         var requisitoDto = new RequisitoDTO();
         var versionDto = new VersionDTO();
         requisitoDto.setVersionID(1L);
 
         var requisitoRepositorioComando = Mockito.mock(RequisitoRepositorioComando.class);
-        var requisitoRepositorioConsulta= Mockito.mock(RequisitoRepositorioConsulta.class);
-        var servicio = new ServicioActualizarRequisito(requisitoRepositorioComando,requisitoRepositorioConsulta);
+        var requisitoRepositorioConsulta = Mockito.mock(RequisitoRepositorioConsulta.class);
+        var servicio = new ServicioActualizarRequisito(requisitoRepositorioComando, requisitoRepositorioConsulta);
 
-        Mockito.when(requisitoRepositorioComando.actualizar(Mockito.any(Requisito.class),Mockito.anyLong())).thenReturn(1L);
+        Mockito.when(requisitoRepositorioComando.actualizar(Mockito.any(Requisito.class), Mockito.anyLong())).thenReturn(1L);
         Mockito.when(requisitoRepositorioConsulta.consultarVersionPorID(Mockito.anyLong())).thenReturn(versionDto);
 
         Assertions.assertEquals(Mensajes.NO_EXISTE_REQUISITO_CON_EL_ID + 1, Assertions.assertThrows(NullPointerException.class, ()
-                -> servicio.ejecutar(requisito,1L)).getMessage());
+                -> servicio.ejecutar(requisito, 1L)).getMessage());
 
     }
 }

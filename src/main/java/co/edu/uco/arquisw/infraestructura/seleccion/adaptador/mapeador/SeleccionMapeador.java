@@ -6,6 +6,7 @@ import co.edu.uco.arquisw.infraestructura.seleccion.adaptador.entidad.SeleccionE
 import co.edu.uco.arquisw.infraestructura.usuario.adaptador.repositorio.jpa.PersonaDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class SeleccionMapeador {
 
             var nombre = TextoConstante.VACIO;
 
-            if(persona != null) {
+            if (persona != null) {
                 nombre = persona.getNombre() + TextoConstante.ESPACIO + persona.getApellidos();
             }
 

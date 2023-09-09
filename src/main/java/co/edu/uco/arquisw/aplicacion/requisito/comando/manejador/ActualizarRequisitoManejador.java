@@ -3,12 +3,12 @@ package co.edu.uco.arquisw.aplicacion.requisito.comando.manejador;
 import co.edu.uco.arquisw.aplicacion.requisito.comando.RequisitoComando;
 import co.edu.uco.arquisw.aplicacion.requisito.comando.fabrica.RequisitoFabrica;
 import co.edu.uco.arquisw.aplicacion.transversal.ComandoRespuesta;
-import co.edu.uco.arquisw.aplicacion.transversal.manejador.ManejadorComandoActualizacionRespuesta;
+import co.edu.uco.arquisw.aplicacion.transversal.manejador.ManejadorComandoVariableDeRutaRespuesta;
 import co.edu.uco.arquisw.dominio.requisito.servicio.ServicioActualizarRequisito;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ActualizarRequisitoManejador implements ManejadorComandoActualizacionRespuesta<RequisitoComando, Long, ComandoRespuesta<Long>> {
+public class ActualizarRequisitoManejador implements ManejadorComandoVariableDeRutaRespuesta<RequisitoComando, Long, ComandoRespuesta<Long>> {
     private final ServicioActualizarRequisito servicioActualizarRequisito;
     private final RequisitoFabrica requisitoFabrica;
 

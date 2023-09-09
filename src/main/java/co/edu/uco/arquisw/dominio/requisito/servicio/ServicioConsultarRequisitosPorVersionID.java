@@ -21,7 +21,7 @@ public class ServicioConsultarRequisitosPorVersionID {
     }
 
     private void validarSiExisteVersionConID(Long versionID) {
-        if(ValidarObjeto.esNulo(this.requisitoRepositorioConsulta.consultarVersionPorID(versionID))) {
+        if (ValidarObjeto.esNulo(this.requisitoRepositorioConsulta.consultarVersionPorID(versionID))) {
             throw new NullPointerException(Mensajes.NO_EXISTE_VERSION_CON_EL_ID + versionID);
         }
     }

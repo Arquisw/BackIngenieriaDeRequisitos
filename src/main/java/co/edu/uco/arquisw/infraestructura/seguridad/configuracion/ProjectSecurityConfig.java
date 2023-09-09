@@ -13,36 +13,37 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
+
 import java.util.Arrays;
 import java.util.Collections;
 
 @Configuration
-@EnableGlobalMethodSecurity(prePostEnabled = true,securedEnabled = true,  jsr250Enabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class ProjectSecurityConfig extends WebSecurityConfigurerAdapter {
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().
-		cors().configurationSource(request -> {
-			CorsConfiguration config = new CorsConfiguration();
-			config.setAllowedOrigins(Collections.singletonList("http://localhost:4200"));
-			config.setAllowedMethods(Collections.singletonList("*"));
-			config.setAllowCredentials(true);
-			config.setAllowedHeaders(Collections.singletonList("*"));
-			config.setExposedHeaders(Arrays.asList("Authorization"));
-			config.setMaxAge(3600L);
-			return config;
-		}).and().csrf().disable()
-				.addFilterBefore(new RequestValidationBeforeFilter(), BasicAuthenticationFilter.class)
-				.addFilterBefore(new JWTTokenValidatorFilter(), BasicAuthenticationFilter.class)
-				.authorizeRequests()
-				.antMatchers("/login").authenticated()
-				.antMatchers(HttpMethod.POST, "/fases").permitAll()
-				.antMatchers("/**").authenticated()
-				.and().httpBasic();
-	}
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().
+                cors().configurationSource(request -> {
+                    CorsConfiguration config = new CorsConfiguration();
+                    config.setAllowedOrigins(Collections.singletonList("http://localhost:4200"));
+                    config.setAllowedMethods(Collections.singletonList("*"));
+                    config.setAllowCredentials(true);
+                    config.setAllowedHeaders(Collections.singletonList("*"));
+                    config.setExposedHeaders(Arrays.asList("Authorization"));
+                    config.setMaxAge(3600L);
+                    return config;
+                }).and().csrf().disable()
+                .addFilterBefore(new RequestValidationBeforeFilter(), BasicAuthenticationFilter.class)
+                .addFilterBefore(new JWTTokenValidatorFilter(), BasicAuthenticationFilter.class)
+                .authorizeRequests()
+                .antMatchers("/login").authenticated()
+                .antMatchers(HttpMethod.POST, "/fases").permitAll()
+                .antMatchers("/**").authenticated()
+                .and().httpBasic();
+    }
 
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 }

@@ -10,8 +10,7 @@ import org.mockito.Mockito;
 
 class ServicioEliminarRequisitosTestPorId {
     @Test
-    void validarServicioEliminacion()
-    {
+    void validarServicioEliminacion() {
         var requisitoDTO = new RequisitoDTO();
 
         var requisitoRepositorioComando = Mockito.mock(RequisitoRepositorioComando.class);
@@ -29,8 +28,7 @@ class ServicioEliminarRequisitosTestPorId {
     }
 
     @Test
-    void retornnaErrorNoExisteRequisito()
-    {
+    void retornnaErrorNoExisteRequisito() {
         var requisitoRepositorioComando = Mockito.mock(RequisitoRepositorioComando.class);
         var requisitoRepositorioConsulta = Mockito.mock(RequisitoRepositorioConsulta.class);
 

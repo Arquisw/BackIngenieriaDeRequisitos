@@ -8,7 +8,6 @@ import co.edu.uco.arquisw.dominio.seleccion.puerto.consulta.SeleccionRepositorio
 import co.edu.uco.arquisw.dominio.transversal.servicio.ServicioEnviarCorreoElectronico;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.LogicoConstante;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.Mensajes;
-import co.edu.uco.arquisw.dominio.transversal.utilitario.TextoConstante;
 import co.edu.uco.arquisw.dominio.transversal.validador.ValidarObjeto;
 import co.edu.uco.arquisw.dominio.usuario.puerto.consulta.PersonaRepositorioConsulta;
 
@@ -47,8 +46,8 @@ public class ServicioGuardarVersionInicial {
         seleccionesDelProyecto.forEach(seleccionDelProyecto -> {
             try {
                 var correo = this.personaRepositorioConsulta.consultarPorId(seleccionDelProyecto.getUsuarioID()).getCorreo();
-                var asunto = TextoConstante.PRIMERA_VERSION_DE_LA_ETAPA_INICIADA;
-                var cuerpo = TextoConstante.LA_ETAPA + etapa.getNombre() + TextoConstante.DE_LA_FASE + fase.getNombre() + TextoConstante.EN_EL_PROYECTO + proyecto.getNombre() + TextoConstante.HA_INICIADO_LA_PRIMERA_VERSION_DE_LOS_REQUISITOS;
+                var asunto = Mensajes.PRIMERA_VERSION_DE_LA_ETAPA_INICIADA;
+                var cuerpo = Mensajes.LA_ETAPA + etapa.getNombre() + Mensajes.DE_LA_FASE + fase.getNombre() + Mensajes.EN_EL_PROYECTO + proyecto.getNombre() + Mensajes.HA_INICIADO_LA_PRIMERA_VERSION_DE_LOS_REQUISITOS;
 
                 this.servicioEnviarCorreoElectronico.enviarCorreo(correo, asunto, cuerpo);
             } catch (MessagingException e) {
@@ -60,7 +59,7 @@ public class ServicioGuardarVersionInicial {
     }
 
     private void validarSiExisteEtapaConID(Long etapaId) {
-        if(ValidarObjeto.esNulo(this.faseRepositorioConsulta.consultarEtapaPorID(etapaId))) {
+        if (ValidarObjeto.esNulo(this.faseRepositorioConsulta.consultarEtapaPorID(etapaId))) {
             throw new NullPointerException(Mensajes.NO_EXISTE_ETAPA_CON_EL_ID + etapaId);
         }
     }

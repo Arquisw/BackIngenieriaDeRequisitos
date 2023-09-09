@@ -19,7 +19,7 @@ public class PersonaRepositorioConsultaImplementacion implements PersonaReposito
     public PersonaDTO consultarPorId(Long id) {
         var entidad = this.personaDAO.findById(id).orElse(null);
 
-        if(ValidarObjeto.esNulo(entidad)) {
+        if (ValidarObjeto.esNulo(entidad)) {
             return null;
         }
 

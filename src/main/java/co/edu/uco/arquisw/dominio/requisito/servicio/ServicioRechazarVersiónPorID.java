@@ -9,7 +9,6 @@ import co.edu.uco.arquisw.dominio.seleccion.puerto.consulta.SeleccionRepositorio
 import co.edu.uco.arquisw.dominio.transversal.servicio.ServicioEnviarCorreoElectronico;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.LogicoConstante;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.Mensajes;
-import co.edu.uco.arquisw.dominio.transversal.utilitario.TextoConstante;
 import co.edu.uco.arquisw.dominio.transversal.validador.ValidarObjeto;
 import co.edu.uco.arquisw.dominio.usuario.puerto.consulta.PersonaRepositorioConsulta;
 
@@ -54,8 +53,8 @@ public class ServicioRechazarVersiónPorID {
         seleccionesDelProyecto.forEach(seleccionDelProyecto -> {
             try {
                 var correo = this.personaRepositorioConsulta.consultarPorId(seleccionDelProyecto.getUsuarioID()).getCorreo();
-                var asunto = TextoConstante.PRIMERA_VERSION_DE_LA_ETAPA_INICIADA;
-                var cuerpo = TextoConstante.LA_VERSION + versionId + TextoConstante.DE_LA_ETAPA + etapa.getNombre() + TextoConstante.DE_LA_FASE + fase.getNombre() + TextoConstante.EN_EL_PROYECTO + proyecto.getNombre() + TextoConstante.HA_SIDO_RECHAZADA_POR_EL_LIDER_DE_EQUIPO;
+                var asunto = Mensajes.PRIMERA_VERSION_DE_LA_ETAPA_INICIADA;
+                var cuerpo = Mensajes.LA_VERSION + versionId + Mensajes.DE_LA_ETAPA + etapa.getNombre() + Mensajes.DE_LA_FASE + fase.getNombre() + Mensajes.EN_EL_PROYECTO + proyecto.getNombre() + Mensajes.HA_SIDO_RECHAZADA_POR_EL_LIDER_DE_EQUIPO;
 
 
                 this.servicioEnviarCorreoElectronico.enviarCorreo(correo, asunto, cuerpo);
@@ -68,7 +67,7 @@ public class ServicioRechazarVersiónPorID {
     }
 
     private void validarSiExisteVersionConID(Long versionId) {
-        if(ValidarObjeto.esNulo(this.requisitoRepositorioConsulta.consultarVersionPorID(versionId))) {
+        if (ValidarObjeto.esNulo(this.requisitoRepositorioConsulta.consultarVersionPorID(versionId))) {
             throw new NullPointerException(Mensajes.NO_EXISTE_VERSION_CON_EL_ID + versionId);
         }
     }

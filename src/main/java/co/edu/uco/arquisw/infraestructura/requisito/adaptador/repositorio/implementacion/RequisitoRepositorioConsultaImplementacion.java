@@ -6,7 +6,6 @@ import co.edu.uco.arquisw.dominio.requisito.puerto.consulta.RequisitoRepositorio
 import co.edu.uco.arquisw.dominio.transversal.formateador.FechaFormateador;
 import co.edu.uco.arquisw.dominio.transversal.validador.ValidarObjeto;
 import co.edu.uco.arquisw.infraestructura.requisito.adaptador.entidad.RequisitoEntidad;
-import co.edu.uco.arquisw.infraestructura.requisito.adaptador.entidad.VersionEntidad;
 import co.edu.uco.arquisw.infraestructura.requisito.adaptador.mapeador.RequisitoMapeador;
 import co.edu.uco.arquisw.infraestructura.requisito.adaptador.mapeador.VersionMapeador;
 import co.edu.uco.arquisw.infraestructura.requisito.adaptador.repositorio.jpa.RequisitoDAO;
@@ -14,7 +13,6 @@ import co.edu.uco.arquisw.infraestructura.requisito.adaptador.repositorio.jpa.Ve
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
@@ -34,7 +32,7 @@ public class RequisitoRepositorioConsultaImplementacion implements RequisitoRepo
     public RequisitoDTO consultarRequisitoPorID(Long id) {
         var entidad = this.requisitoDAO.findById(id).orElse(null);
 
-        if(ValidarObjeto.esNulo(entidad)) {
+        if (ValidarObjeto.esNulo(entidad)) {
             return null;
         }
 
@@ -54,7 +52,7 @@ public class RequisitoRepositorioConsultaImplementacion implements RequisitoRepo
     public VersionDTO consultarVersionPorID(Long versionID) {
         var entidad = this.versionDAO.findById(versionID).orElse(null);
 
-        if(ValidarObjeto.esNulo(entidad)) {
+        if (ValidarObjeto.esNulo(entidad)) {
             return null;
         }
 

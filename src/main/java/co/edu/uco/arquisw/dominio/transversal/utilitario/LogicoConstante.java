@@ -6,5 +6,6 @@ public class LogicoConstante {
     public static final boolean ESTADO_ETAPA_POR_DEFECTO = false;
     public static final boolean ESTADO_ETAPA_COMPLETADA = true;
 
-    private LogicoConstante() {}
+    private LogicoConstante() {
+    }
 }

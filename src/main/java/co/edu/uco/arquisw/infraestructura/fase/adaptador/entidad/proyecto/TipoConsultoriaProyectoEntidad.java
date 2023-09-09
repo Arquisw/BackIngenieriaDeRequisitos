@@ -15,8 +15,8 @@ import javax.persistence.*;
 @Table(name = "tipo_consultoria_proyecto")
 public class TipoConsultoriaProyectoEntidad {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator="tipo_consultoria_proyecto_code_seq")
-    @SequenceGenerator(name="tipo_consultoria_proyecto_code_seq", sequenceName="tipo_consultoria_proyecto_code_seq", allocationSize=1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "tipo_consultoria_proyecto_code_seq")
+    @SequenceGenerator(name = "tipo_consultoria_proyecto_code_seq", sequenceName = "tipo_consultoria_proyecto_code_seq", allocationSize = 1)
     private Long id;
     @ManyToOne
     @JoinColumn(name = "tipo_consultoria")

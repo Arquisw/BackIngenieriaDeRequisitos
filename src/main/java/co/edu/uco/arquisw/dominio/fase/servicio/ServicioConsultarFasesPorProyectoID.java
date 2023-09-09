@@ -4,6 +4,7 @@ import co.edu.uco.arquisw.dominio.fase.dto.FaseDTO;
 import co.edu.uco.arquisw.dominio.fase.puerto.consulta.FaseRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.Mensajes;
 import co.edu.uco.arquisw.dominio.transversal.validador.ValidarObjeto;
+
 import java.util.List;
 
 public class ServicioConsultarFasesPorProyectoID {
@@ -20,7 +21,7 @@ public class ServicioConsultarFasesPorProyectoID {
     }
 
     private void validarSiExisteProyectoConID(Long proyectoID) {
-        if(ValidarObjeto.esNulo(this.faseRepositorioConsulta.consultarFasesPorProyectoID(proyectoID))) {
+        if (ValidarObjeto.esNulo(this.faseRepositorioConsulta.consultarFasesPorProyectoID(proyectoID))) {
             throw new NullPointerException(Mensajes.NO_EXISTE_PROYECTO_CON_EL_ID + proyectoID);
         }
     }

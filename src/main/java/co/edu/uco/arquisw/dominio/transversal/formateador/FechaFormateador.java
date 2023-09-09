@@ -6,7 +6,8 @@ import java.time.format.DateTimeFormatter;
 public class FechaFormateador {
     private static final String FORMATO_YYYY_MM_DD = "yyyy/MM/dd";
 
-    private FechaFormateador() {}
+    private FechaFormateador() {
+    }
 
     public static LocalDate obtenerFechaActual() {
         return LocalDate.now();

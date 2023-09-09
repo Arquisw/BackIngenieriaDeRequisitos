@@ -13,46 +13,43 @@ import java.util.List;
 
 class FaseTest {
     @Test
-    void  validarCreacionFaseExitosa()
-    {
-        Etapa etapa = Etapa.crear("etapa","descripcion", true);
-        String nombre =  "fase uno";
+    void validarCreacionFaseExitosa() {
+        Etapa etapa = Etapa.crear("etapa", "descripcion", true);
+        String nombre = "fase uno";
         String descripcion = "primera fase";
-        List<Etapa> etapas = new ArrayList<>() ;
+        List<Etapa> etapas = new ArrayList<>();
         etapas.add(etapa);
 
-        Fase fase = Fase.crear(nombre, descripcion,etapas);
+        Fase fase = Fase.crear(nombre, descripcion, etapas);
 
-        Assertions.assertEquals(nombre,fase.getNombre());
-        Assertions.assertEquals(descripcion,fase.getDescripcion());
-        Assertions.assertEquals(etapas,fase.getEtapas());
-
+        Assertions.assertEquals(nombre, fase.getNombre());
+        Assertions.assertEquals(descripcion, fase.getDescripcion());
+        Assertions.assertEquals(etapas, fase.getEtapas());
     }
+
     @Test
-    void validarCamposFaltantes()
-    {
-        Etapa etapa = Etapa.crear("etapa","descripcion", true);
-        List<Etapa> etapas = new ArrayList<>() ;
+    void validarCamposFaltantes() {
+        Etapa etapa = Etapa.crear("etapa", "descripcion", true);
+        List<Etapa> etapas = new ArrayList<>();
         etapas.add(etapa);
 
-        Assertions.assertEquals(Mensajes.NOMBRE_FASE_VACIO,Assertions.assertThrows(ValorObligatorioExcepcion.class,() ->
-                Fase.crear("","descripcion", etapas)).getMessage());
+        Assertions.assertEquals(Mensajes.NOMBRE_FASE_VACIO, Assertions.assertThrows(ValorObligatorioExcepcion.class, () ->
+                Fase.crear("", "descripcion", etapas)).getMessage());
 
-        Assertions.assertEquals(Mensajes.DESCRIPCION_FASE_VACIO,Assertions.assertThrows(ValorObligatorioExcepcion.class,() ->
-                Fase.crear("nombre","", etapas)).getMessage());
-
+        Assertions.assertEquals(Mensajes.DESCRIPCION_FASE_VACIO, Assertions.assertThrows(ValorObligatorioExcepcion.class, () ->
+                Fase.crear("nombre", "", etapas)).getMessage());
     }
+
     @Test
-    void validarPatronesIncorrecto()
-    {
-        Etapa etapa = Etapa.crear("etapa","descripcion", true);
-        List<Etapa> etapas = new ArrayList<>() ;
+    void validarPatronesIncorrecto() {
+        Etapa etapa = Etapa.crear("etapa", "descripcion", true);
+        List<Etapa> etapas = new ArrayList<>();
         etapas.add(etapa);
 
-        Assertions.assertEquals(Mensajes.PATRON_NOMBRE_FASE_NO_ES_VALIDO,Assertions.assertThrows(PatronExcepcion.class,() ->
-                Fase.crear("@-12+*_-°","descripcion", etapas)).getMessage());
+        Assertions.assertEquals(Mensajes.PATRON_NOMBRE_FASE_NO_ES_VALIDO, Assertions.assertThrows(PatronExcepcion.class, () ->
+                Fase.crear("@-12+*_-°", "descripcion", etapas)).getMessage());
 
-        Assertions.assertEquals(Mensajes.PATRON_DESCRIPCION_FASE_NO_ES_VALIDO,Assertions.assertThrows(PatronExcepcion.class,() ->
-                Fase.crear("nombre","@-12+*_-°", etapas)).getMessage());
+        Assertions.assertEquals(Mensajes.PATRON_DESCRIPCION_FASE_NO_ES_VALIDO, Assertions.assertThrows(PatronExcepcion.class, () ->
+                Fase.crear("nombre", "@-12+*_-°", etapas)).getMessage());
     }
 }

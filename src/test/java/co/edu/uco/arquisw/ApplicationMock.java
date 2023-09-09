@@ -10,11 +10,9 @@ import javax.sql.DataSource;
 
 @ComponentScan({"co.edu.uco.arquisw"})
 @EnableJpaRepositories(basePackages = "co.edu.uco.arquisw")
-public class ApplicationMock
-{
+public class ApplicationMock {
     @Bean
-    public DataSource h2DataSource()
-    {
+    public DataSource h2DataSource() {
         return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).build();
     }
 }

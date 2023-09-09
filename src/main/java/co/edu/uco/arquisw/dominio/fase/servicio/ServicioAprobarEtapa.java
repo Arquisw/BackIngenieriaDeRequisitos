@@ -55,8 +55,8 @@ public class ServicioAprobarEtapa {
         seleccionesDelProyecto.forEach(seleccionDelProyecto -> {
             try {
                 var correo = this.personaRepositorioConsulta.consultarPorId(seleccionDelProyecto.getUsuarioID()).getCorreo();
-                var asunto = TextoConstante.ETAPA_APROBADA_POR_EL_LIDER_DE_EQUIPO;
-                var cuerpo = TextoConstante.LA_ETAPA + etapa.getNombre() + TextoConstante.DE_LA_FASE + fase.getNombre() + TextoConstante.EN_EL_PROYECTO + proyecto.getNombre() + TextoConstante.HA_SIDO_APROBADO_POR_EL_ROL_LIDER_DE_EQUIPO;
+                var asunto = Mensajes.ETAPA_APROBADA_POR_EL_LIDER_DE_EQUIPO;
+                var cuerpo = Mensajes.LA_ETAPA + etapa.getNombre() + Mensajes.DE_LA_FASE + fase.getNombre() + Mensajes.EN_EL_PROYECTO + proyecto.getNombre() + Mensajes.HA_SIDO_APROBADO_POR_EL_ROL_LIDER_DE_EQUIPO;
 
                 this.servicioEnviarCorreoElectronico.enviarCorreo(correo, asunto, cuerpo);
             } catch (MessagingException e) {
@@ -68,13 +68,13 @@ public class ServicioAprobarEtapa {
     }
 
     private void validarSiExisteEtapaConID(Long etapaID) {
-        if(ValidarObjeto.esNulo(this.faseRepositorioConsulta.consultarEtapaPorID(etapaID))) {
+        if (ValidarObjeto.esNulo(this.faseRepositorioConsulta.consultarEtapaPorID(etapaID))) {
             throw new NullPointerException(Mensajes.NO_EXISTE_ETAPA_CON_EL_ID + etapaID);
         }
     }
 
     private void validarSiEtapaNoEstaCompletada(EtapaDTO etapa) {
-        if(etapa.isCompletada()) {
+        if (etapa.isCompletada()) {
             throw new AccionExcepcion(Mensajes.ETAPA_CON_ID + etapa.getId() + Mensajes.ETAPA_YA_ESTA_COMPLETADA);
         }
     }
@@ -136,6 +136,7 @@ public class ServicioAprobarEtapa {
     private Fase construirNuevaFase(String nombreFase, String descripcionFase, String nombreEtapa, String descripcionEtapa) {
         return Fase.crear(nombreFase, descripcionFase, construirNuevasEtapas(nombreEtapa, descripcionEtapa));
     }
+
     private List<Etapa> construirNuevasEtapas(String nombreEtapa, String descripcionEtapa) {
         var nuevaEtapa = Etapa.crear(nombreEtapa, descripcionEtapa, LogicoConstante.ESTADO_ETAPA_POR_DEFECTO);
 
@@ -145,6 +146,7 @@ public class ServicioAprobarEtapa {
     private Fase construirFaseActualizada(Etapa etapaAnterior) {
         return Fase.crear(TextoConstante.FASE_MONITOREO_Y_CONTROL_NOMBRE, TextoConstante.FASE_MONITOREO_Y_CONTROL_DESCRIPCION, construirEtapasActualizadas(etapaAnterior));
     }
+
     private List<Etapa> construirEtapasActualizadas(Etapa etapaAnterior) {
         var etapaVerificacion = Etapa.crear(etapaAnterior.getNombre(), etapaAnterior.getDescripcion(), etapaAnterior.isCompletada());
         var etapaValidacion = Etapa.crear(TextoConstante.ETAPA_VALIDACION_NOMBRE, TextoConstante.ETAPA_VALIDACION_DESCRIPCION, LogicoConstante.ESTADO_ETAPA_POR_DEFECTO);
@@ -155,6 +157,7 @@ public class ServicioAprobarEtapa {
     private Fase construirFaseFinal() {
         return Fase.crear(TextoConstante.FASE_CIERRE_NOMBRE, TextoConstante.FASE_CIERRE_DESCRIPCION, construirEtapasFinales());
     }
+
     private List<Etapa> construirEtapasFinales() {
         var etapaVacia = Etapa.crear(TextoConstante.VACIO, TextoConstante.VACIO, LogicoConstante.ESTADO_ETAPA_POR_DEFECTO);
 

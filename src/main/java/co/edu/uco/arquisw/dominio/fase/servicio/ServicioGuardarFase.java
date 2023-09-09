@@ -9,6 +9,7 @@ import co.edu.uco.arquisw.dominio.transversal.utilitario.LogicoConstante;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.Mensajes;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.TextoConstante;
 import co.edu.uco.arquisw.dominio.transversal.validador.ValidarObjeto;
+
 import java.util.List;
 
 public class ServicioGuardarFase {
@@ -31,7 +32,7 @@ public class ServicioGuardarFase {
     }
 
     private void validarSiExisteProyectoConID(Long proyectoID) {
-        if(ValidarObjeto.esNulo(this.proyectoRepositorioConsulta.consultarProyectoPorID(proyectoID))) {
+        if (ValidarObjeto.esNulo(this.proyectoRepositorioConsulta.consultarProyectoPorID(proyectoID))) {
             throw new NullPointerException(Mensajes.NO_EXISTE_PROYECTO_CON_EL_ID + proyectoID);
         }
     }

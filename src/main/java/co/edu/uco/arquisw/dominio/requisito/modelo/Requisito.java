@@ -17,7 +17,7 @@ public class Requisito {
     }
 
     public static Requisito crear(String nombre, String descripcion, TipoRequisito tipoRequisito) {
-        return new Requisito(nombre,descripcion,tipoRequisito);
+        return new Requisito(nombre, descripcion, tipoRequisito);
     }
 
     private void setNombre(String nombre) {

@@ -14,31 +14,31 @@ import org.mockito.Mockito;
 
 class ServicioGuardarFaseTest {
     @Test
-    void guardarExitoso()
-    {
+    void guardarExitoso() {
         var ProyectoDto = new ProyectoDTO();
 
         var faseRepositorioComando = Mockito.mock(FaseRepositorioComando.class);
         var faseRepositorioConsulta = Mockito.mock(FaseRepositorioConsulta.class);
         var proyectoRepositorioConsulta = Mockito.mock(ProyectoRepositorioConsulta.class);
 
-        var servicio = new ServicioGuardarFase(faseRepositorioComando,faseRepositorioConsulta, proyectoRepositorioConsulta);
+        var servicio = new ServicioGuardarFase(faseRepositorioComando, faseRepositorioConsulta, proyectoRepositorioConsulta);
 
         Mockito.when(proyectoRepositorioConsulta.consultarProyectoPorID(Mockito.anyLong())).thenReturn(ProyectoDto);
         Mockito.when(faseRepositorioComando.guardar(Mockito.any(Fase.class), Mockito.anyLong())).thenReturn(1L);
 
         var id = servicio.ejecutar(1l);
 
-        Assertions.assertEquals(1L,id);
+        Assertions.assertEquals(1L, id);
     }
+
     @Test
     void deberiaValidarLaExistenciaPreviaDelProyecto() {
 
         var faseRepositorioComando = Mockito.mock(FaseRepositorioComando.class);
-        var faseRepositorioConsulta= Mockito.mock(FaseRepositorioConsulta.class);
+        var faseRepositorioConsulta = Mockito.mock(FaseRepositorioConsulta.class);
         var proyectoRepositorioConsulta = Mockito.mock(ProyectoRepositorioConsulta.class);
 
-        var servicio = new ServicioGuardarFase(faseRepositorioComando,faseRepositorioConsulta, proyectoRepositorioConsulta);
+        var servicio = new ServicioGuardarFase(faseRepositorioComando, faseRepositorioConsulta, proyectoRepositorioConsulta);
 
         Mockito.when(proyectoRepositorioConsulta.consultarProyectoPorID(Mockito.anyLong())).thenReturn(null);
         Mockito.when(faseRepositorioComando.guardar(Mockito.any(Fase.class), Mockito.anyLong())).thenReturn(1L);

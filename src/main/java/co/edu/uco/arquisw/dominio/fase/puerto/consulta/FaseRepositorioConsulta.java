@@ -7,7 +7,10 @@ import java.util.List;
 
 public interface FaseRepositorioConsulta {
     FaseDTO consultarFasePorID(Long faseID);
+
     FaseDTO consultarFasePorEtapaID(Long etapaID);
+
     EtapaDTO consultarEtapaPorID(Long etapaID);
+
     List<FaseDTO> consultarFasesPorProyectoID(Long proyectoID);
 }

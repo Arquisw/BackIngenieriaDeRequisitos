@@ -19,7 +19,7 @@ public class ProyectoRepositorioConsultaImplementacion implements ProyectoReposi
     public ProyectoDTO consultarProyectoPorID(Long proyectoID) {
         var entidad = this.proyectoDAO.findById(proyectoID).orElse(null);
 
-        if(ValidarObjeto.esNulo(entidad)) {
+        if (ValidarObjeto.esNulo(entidad)) {
             return null;
         }
 

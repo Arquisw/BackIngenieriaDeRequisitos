@@ -13,8 +13,8 @@ public class RequisitoTestDataBuilder {
         this.descripcion = "descripcion";
         this.tipoRequisito = new TipoRequisitoTestDataBuilder().build();
     }
-    public Requisito build()
-    {
-        return Requisito.crear(nombre,descripcion,tipoRequisito);
+
+    public Requisito build() {
+        return Requisito.crear(nombre, descripcion, tipoRequisito);
     }
 }
