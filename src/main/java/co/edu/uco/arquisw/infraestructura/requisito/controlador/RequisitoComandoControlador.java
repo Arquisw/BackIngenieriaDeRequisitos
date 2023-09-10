@@ -1,5 +1,6 @@
 package co.edu.uco.arquisw.infraestructura.requisito.controlador;
 
+import co.edu.uco.arquisw.aplicacion.requisito.comando.MotivoRechazoVersionComando;
 import co.edu.uco.arquisw.aplicacion.requisito.comando.RequisitoComando;
 import co.edu.uco.arquisw.aplicacion.requisito.comando.manejador.*;
 import co.edu.uco.arquisw.aplicacion.transversal.ComandoRespuesta;
@@ -17,15 +18,15 @@ public class RequisitoComandoControlador {
     private final GenerarVersionFinalManejador generarVersionFinalManejador;
     private final GuardarRequisitoManejador guardarRequisitoManejador;
     private final GuardarVersionInicialManejador guardarVersionInicialManejador;
-    private final RechazarVersiónPorIDManejador rechazarVersiónPorIDManejador;
+    private final RechazarVersionPorIDManejador rechazarVersionPorIDManejador;
 
-    public RequisitoComandoControlador(ActualizarRequisitoManejador actualizarRequisitoManejador, EliminarRequisitoManejador eliminarRequisitoManejador, GenerarVersionFinalManejador generarVersionFinalManejador, GuardarRequisitoManejador guardarRequisitoManejador, GuardarVersionInicialManejador guardarVersionInicialManejador, RechazarVersiónPorIDManejador rechazarVersiónPorIDManejador) {
+    public RequisitoComandoControlador(ActualizarRequisitoManejador actualizarRequisitoManejador, EliminarRequisitoManejador eliminarRequisitoManejador, GenerarVersionFinalManejador generarVersionFinalManejador, GuardarRequisitoManejador guardarRequisitoManejador, GuardarVersionInicialManejador guardarVersionInicialManejador, RechazarVersionPorIDManejador rechazarVersionPorIDManejador) {
         this.actualizarRequisitoManejador = actualizarRequisitoManejador;
         this.eliminarRequisitoManejador = eliminarRequisitoManejador;
         this.generarVersionFinalManejador = generarVersionFinalManejador;
         this.guardarRequisitoManejador = guardarRequisitoManejador;
         this.guardarVersionInicialManejador = guardarVersionInicialManejador;
-        this.rechazarVersiónPorIDManejador = rechazarVersiónPorIDManejador;
+        this.rechazarVersionPorIDManejador = rechazarVersionPorIDManejador;
     }
 
     @PreAuthorize("hasAuthority('EQUIPO_DESARROLLO_ESCRITURA')")
@@ -66,7 +67,7 @@ public class RequisitoComandoControlador {
     @PreAuthorize("hasAuthority('LIDER_DE_EQUIPO_ACTUALIZACION')")
     @PutMapping("/versiones/rechazar/{id}")
     @Operation(summary = "rechazar Version Final", description = "Este es usado para rechazar la version final de los requisitos por medio del ID de la version")
-    public ComandoRespuesta<Long> rechazarVersionPorId(@PathVariable Long id) {
-        return this.rechazarVersiónPorIDManejador.ejecutar(id);
+    public ComandoRespuesta<Long> rechazarVersionPorId(@RequestBody MotivoRechazoVersionComando comando, @PathVariable Long id) {
+        return this.rechazarVersionPorIDManejador.ejecutar(comando, id);
     }
 }

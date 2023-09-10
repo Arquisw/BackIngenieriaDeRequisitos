@@ -2,6 +2,7 @@ package co.edu.uco.arquisw.dominio.requisito.servicio;
 
 import co.edu.uco.arquisw.dominio.fase.puerto.consulta.FaseRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.fase.puerto.consulta.ProyectoRepositorioConsulta;
+import co.edu.uco.arquisw.dominio.requisito.modelo.MotivoRechazoVersion;
 import co.edu.uco.arquisw.dominio.requisito.modelo.Version;
 import co.edu.uco.arquisw.dominio.requisito.puerto.comando.RequisitoRepositorioComando;
 import co.edu.uco.arquisw.dominio.requisito.puerto.consulta.RequisitoRepositorioConsulta;
@@ -14,7 +15,7 @@ import co.edu.uco.arquisw.dominio.usuario.puerto.consulta.PersonaRepositorioCons
 
 import javax.mail.MessagingException;
 
-public class ServicioRechazarVersiónPorID {
+public class ServicioRechazarVersionPorID {
     private final RequisitoRepositorioComando requisitoRepositorioComando;
     private final RequisitoRepositorioConsulta requisitoRepositorioConsulta;
     private final FaseRepositorioConsulta faseRepositorioConsulta;
@@ -23,7 +24,7 @@ public class ServicioRechazarVersiónPorID {
     private final PersonaRepositorioConsulta personaRepositorioConsulta;
     private final ServicioEnviarCorreoElectronico servicioEnviarCorreoElectronico;
 
-    public ServicioRechazarVersiónPorID(RequisitoRepositorioComando requisitoRepositorioComando, RequisitoRepositorioConsulta requisitoRepositorioConsulta, FaseRepositorioConsulta faseRepositorioConsulta, SeleccionRepositorioConsulta seleccionRepositorioConsulta, ProyectoRepositorioConsulta proyectoRepositorioConsulta, PersonaRepositorioConsulta personaRepositorioConsulta, ServicioEnviarCorreoElectronico servicioEnviarCorreoElectronico) {
+    public ServicioRechazarVersionPorID(RequisitoRepositorioComando requisitoRepositorioComando, RequisitoRepositorioConsulta requisitoRepositorioConsulta, FaseRepositorioConsulta faseRepositorioConsulta, SeleccionRepositorioConsulta seleccionRepositorioConsulta, ProyectoRepositorioConsulta proyectoRepositorioConsulta, PersonaRepositorioConsulta personaRepositorioConsulta, ServicioEnviarCorreoElectronico servicioEnviarCorreoElectronico) {
         this.requisitoRepositorioComando = requisitoRepositorioComando;
         this.requisitoRepositorioConsulta = requisitoRepositorioConsulta;
         this.faseRepositorioConsulta = faseRepositorioConsulta;
@@ -33,7 +34,7 @@ public class ServicioRechazarVersiónPorID {
         this.servicioEnviarCorreoElectronico = servicioEnviarCorreoElectronico;
     }
 
-    public Long ejecutar(Long versionId) {
+    public Long ejecutar(MotivoRechazoVersion motivoRechazoVersion, Long versionId) {
         validarSiExisteVersionConID(versionId);
 
         var versionDTO = this.requisitoRepositorioConsulta.consultarVersionPorID(versionId);
@@ -44,9 +45,10 @@ public class ServicioRechazarVersiónPorID {
         var seleccionesDelProyecto = this.seleccionRepositorioConsulta.consultarSeleccionadosPorProyecto(proyectoId);
         var proyecto = this.proyectoRepositorioConsulta.consultarProyectoPorID(proyectoId);
 
-        this.requisitoRepositorioComando.actualizarVersion(LogicoConstante.ESTADO_VERSION_POR_DEFECTO, versionId);
+        this.requisitoRepositorioComando.guardarMotivoRechazoVersion(motivoRechazoVersion, versionId);
+        this.requisitoRepositorioComando.actualizarVersion(LogicoConstante.ESTADO_VERSION_POR_DEFECTO, LogicoConstante.ESTA_RECHAZADA, versionId);
 
-        var nuevaVersion = Version.crear(LogicoConstante.ESTADO_VERSION_POR_DEFECTO);
+        var nuevaVersion = Version.crear(LogicoConstante.ESTADO_VERSION_POR_DEFECTO, LogicoConstante.NO_ESTA_RECHAZADA);
 
         var respuestaId = this.requisitoRepositorioComando.guardarVersion(nuevaVersion, etapaID);
 

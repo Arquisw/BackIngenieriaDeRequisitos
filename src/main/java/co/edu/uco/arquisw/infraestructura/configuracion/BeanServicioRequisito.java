@@ -54,7 +54,7 @@ public class BeanServicioRequisito {
     }
 
     @Bean
-    public ServicioRechazarVersiónPorID servicioRechazarVersiónPorID(RequisitoRepositorioComando requisitoRepositorioComando, RequisitoRepositorioConsulta requisitoRepositorioConsulta, FaseRepositorioConsulta faseRepositorioConsulta, SeleccionRepositorioConsulta seleccionRepositorioConsulta, ProyectoRepositorioConsulta proyectoRepositorioConsulta, PersonaRepositorioConsulta personaRepositorioConsulta, ServicioEnviarCorreoElectronico servicioEnviarCorreoElectronico) {
-        return new ServicioRechazarVersiónPorID(requisitoRepositorioComando, requisitoRepositorioConsulta, faseRepositorioConsulta, seleccionRepositorioConsulta, proyectoRepositorioConsulta, personaRepositorioConsulta, servicioEnviarCorreoElectronico);
+    public ServicioRechazarVersionPorID servicioRechazarVersiónPorID(RequisitoRepositorioComando requisitoRepositorioComando, RequisitoRepositorioConsulta requisitoRepositorioConsulta, FaseRepositorioConsulta faseRepositorioConsulta, SeleccionRepositorioConsulta seleccionRepositorioConsulta, ProyectoRepositorioConsulta proyectoRepositorioConsulta, PersonaRepositorioConsulta personaRepositorioConsulta, ServicioEnviarCorreoElectronico servicioEnviarCorreoElectronico) {
+        return new ServicioRechazarVersionPorID(requisitoRepositorioComando, requisitoRepositorioConsulta, faseRepositorioConsulta, seleccionRepositorioConsulta, proyectoRepositorioConsulta, personaRepositorioConsulta, servicioEnviarCorreoElectronico);
     }
 }

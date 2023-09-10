@@ -37,7 +37,7 @@ public class ServicioGenerarVersionFinal {
     public Long ejecutar(Long versionId) {
         validarSiExisteVersionConID(versionId);
 
-        var nuevaVersion = Version.crear(LogicoConstante.ESTADO_VERSION_FINAL);
+        var nuevaVersion = Version.crear(LogicoConstante.ESTADO_VERSION_FINAL, LogicoConstante.NO_ESTA_RECHAZADA);
 
         var etapaID = this.requisitoRepositorioConsulta.consultarVersionPorID(versionId).getEtapaID();
         var etapa = this.faseRepositorioConsulta.consultarEtapaPorID(etapaID);

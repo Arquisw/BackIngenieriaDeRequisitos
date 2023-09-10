@@ -7,8 +7,9 @@ public class VersionTest {
     @Test
     void validarCreacionVersionExitosa() {
         boolean esFinal = true;
+        boolean estaRechazada = false;
 
-        Version version = Version.crear(esFinal);
+        Version version = Version.crear(esFinal, estaRechazada);
 
         Assertions.assertEquals(esFinal, version.isEsFinal());
     }

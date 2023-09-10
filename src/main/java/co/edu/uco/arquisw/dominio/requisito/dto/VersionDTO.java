@@ -12,6 +12,8 @@ import lombok.Setter;
 public class VersionDTO {
     private Long id;
     private boolean esFinal;
+    private boolean estaRechazada;
+    private String motivoRechazo;
     private String fecha;
     private Long etapaID;
 }

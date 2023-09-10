@@ -33,7 +33,7 @@ public class ServicioGuardarVersionInicial {
     public Long ejecutar(Long etapaId) {
         validarSiExisteEtapaConID(etapaId);
 
-        var version = Version.crear(LogicoConstante.ESTADO_VERSION_FINAL);
+        var version = Version.crear(LogicoConstante.ESTADO_VERSION_FINAL, LogicoConstante.NO_ESTA_RECHAZADA);
 
         var etapa = this.faseRepositorioConsulta.consultarEtapaPorID(etapaId);
         var fase = this.faseRepositorioConsulta.consultarFasePorEtapaID(etapaId);
