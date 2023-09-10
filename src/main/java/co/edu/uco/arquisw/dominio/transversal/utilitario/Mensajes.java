@@ -36,7 +36,7 @@ public class Mensajes {
     public static final String LA_VERSION = "La versión #";
     public static final String DE_LA_ETAPA = " de la etapa ";
     public static final String HA_SIDO_ESTABLECIDA_COMO_VERSION_FINAL_POR_LO_TANTO_ESTA_LISTA_PARA_REVISION = " ha sido establecida como versión final por el rol ingeniería, por lo tanto esta lista para su aprobación en la etapa o en el rechazo de la versión si así lo consideras.";
-    public static final String HA_SIDO_RECHAZADA_POR_EL_LIDER_DE_EQUIPO = " ha sido rechazada por el Lider de Equipo, evaluen los motivos y mejorenlo en la siguiente versión.";
+    public static final String HA_SIDO_RECHAZADA_POR_EL_LIDER_DE_EQUIPO_CUYO_MOTIVO_ES = " ha sido rechazada por el Lider de Equipo. El motivo del rechazo es por ";
     public static final String MOTIVO_RECHAZO_VERSION_NO_PUEDE_ESTAR_VACIO = "El motivo de Rechazo de la version no puede estar vacio";
     public static final String PATRON_MOTIVO_RECHAZO_VERSION_NO_ES_VALIDO = "El motivo de Rechazo de la version debe ser alfanúmerico";
 
