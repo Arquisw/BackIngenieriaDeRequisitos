@@ -75,7 +75,7 @@ public class RequisitoComandoControlador {
         return this.rechazarVersionPorIDManejador.ejecutar(comando, id);
     }
 
-    @PreAuthorize("hasAuthority('LIDER_DE_EQUIPO__ESCRITURA)")
+    @PreAuthorize("hasAuthority('LIDER_DE_EQUIPO_ESCRITURA')")
     @PostMapping("/finales/{id}")
     @Operation(summary = "Guardar Requisitos Finales por ID", description = "Este es usado para guardar los requisitos finales por medio del ID de la Fase de cierre")
     public ComandoRespuesta<Long> guardarRequisitosFinales(@RequestBody RequisitosFinalesComando comando, @PathVariable Long id) {

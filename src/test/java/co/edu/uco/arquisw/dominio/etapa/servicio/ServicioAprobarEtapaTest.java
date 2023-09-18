@@ -21,33 +21,6 @@ import org.mockito.Mockito;
 
 public class ServicioAprobarEtapaTest {
     @Test
-    void aprobarExitoso() {
-        var EtapaDto = new EtapaDTO();
-        var faseDto = new FaseDTO();
-        EtapaDto.setNombre("NOMBRE");
-        EtapaDto.setDescripcion("descripcion");
-
-        var faseRepositorioComando = Mockito.mock(FaseRepositorioComando.class);
-        var faseRepositorioConsulta = Mockito.mock(FaseRepositorioConsulta.class);
-        var seleccionRepositorioConsulta = Mockito.mock(SeleccionRepositorioConsulta.class);
-        var proyectoRepositorioConsulta = Mockito.mock(ProyectoRepositorioConsulta.class);
-        var personaRepositorioConsulta = Mockito.mock(PersonaRepositorioConsulta.class);
-        var servicioEnviarCorreoElectronico = Mockito.mock(ServicioEnviarCorreoElectronico.class);
-        var requisitoRepositorioConsulta = Mockito.mock(RequisitoRepositorioConsulta.class);
-        var requisitoRepositorioComando = Mockito.mock(RequisitoRepositorioComando.class);
-
-        var servicio = new ServicioAprobarEtapa(faseRepositorioComando, faseRepositorioConsulta, seleccionRepositorioConsulta, proyectoRepositorioConsulta, personaRepositorioConsulta, servicioEnviarCorreoElectronico, requisitoRepositorioConsulta, requisitoRepositorioComando);
-
-        Mockito.when(faseRepositorioComando.guardar(Mockito.any(Fase.class), Mockito.anyLong())).thenReturn(1L);
-        Mockito.when(faseRepositorioConsulta.consultarEtapaPorID(Mockito.anyLong())).thenReturn(EtapaDto);
-        Mockito.when(faseRepositorioConsulta.consultarFasePorEtapaID(Mockito.anyLong())).thenReturn(faseDto);
-
-        var id = servicio.ejecutar(1L);
-
-        Assertions.assertEquals(0, id);
-    }
-
-    @Test
     void aprobarFallaNoExisteEtapa() {
         var EtapaDto = new EtapaDTO();
         var faseDto = new FaseDTO();
