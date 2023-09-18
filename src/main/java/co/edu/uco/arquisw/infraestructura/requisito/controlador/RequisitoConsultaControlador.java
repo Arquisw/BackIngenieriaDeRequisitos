@@ -1,9 +1,11 @@
 package co.edu.uco.arquisw.infraestructura.requisito.controlador;
 
+import co.edu.uco.arquisw.aplicacion.requisito.consulta.ConsultarRequisitosFinalesPorFaseIDManejador;
 import co.edu.uco.arquisw.aplicacion.requisito.consulta.ConsultarRequisitosPorVersionIDManejador;
 import co.edu.uco.arquisw.aplicacion.requisito.consulta.ConsultarVersionPorIDManejador;
 import co.edu.uco.arquisw.aplicacion.requisito.consulta.ConsultarVersionesPorEtapaIDManejador;
 import co.edu.uco.arquisw.dominio.requisito.dto.RequisitoDTO;
+import co.edu.uco.arquisw.dominio.requisito.dto.RequisitosFinalesDTO;
 import co.edu.uco.arquisw.dominio.requisito.dto.VersionDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -22,11 +24,14 @@ public class RequisitoConsultaControlador {
     private final ConsultarVersionesPorEtapaIDManejador consultarVersionesPorEtapaIDManejador;
     private final ConsultarVersionPorIDManejador consultarVersionPorIDManejador;
     private final ConsultarRequisitosPorVersionIDManejador consultarRequisitosPorVersionIDManejador;
+    private final ConsultarRequisitosFinalesPorFaseIDManejador consultarRequisitosFinalesPorFaseIDManejador;
 
-    public RequisitoConsultaControlador(ConsultarVersionesPorEtapaIDManejador consultarVersionesPorEtapaIDManejador, ConsultarVersionPorIDManejador consultarVersionPorIDManejador, ConsultarRequisitosPorVersionIDManejador consultarRequisitosPorVersionIDManejador) {
+
+    public RequisitoConsultaControlador(ConsultarVersionesPorEtapaIDManejador consultarVersionesPorEtapaIDManejador, ConsultarVersionPorIDManejador consultarVersionPorIDManejador, ConsultarRequisitosPorVersionIDManejador consultarRequisitosPorVersionIDManejador, ConsultarRequisitosFinalesPorFaseIDManejador consultarRequisitosFinalesPorFaseIDManejador) {
         this.consultarVersionesPorEtapaIDManejador = consultarVersionesPorEtapaIDManejador;
         this.consultarVersionPorIDManejador = consultarVersionPorIDManejador;
         this.consultarRequisitosPorVersionIDManejador = consultarRequisitosPorVersionIDManejador;
+        this.consultarRequisitosFinalesPorFaseIDManejador = consultarRequisitosFinalesPorFaseIDManejador;
     }
 
     @PreAuthorize("hasAuthority('SELECCIONADO_LECTURA')")
@@ -48,5 +53,12 @@ public class RequisitoConsultaControlador {
     @Operation(summary = "Consultar Version por ID", description = "Este es usado para consultar una version por medio de su ID")
     public VersionDTO consultarVersionPorId(@PathVariable Long id) {
         return this.consultarVersionPorIDManejador.ejecutar(id);
+    }
+
+    @PreAuthorize("hasAuthority('SELECCIONADO_LECTURA')")
+    @GetMapping("/finales/{id}")
+    @Operation(summary = "Consultar Requisitos Finales por ID", description = "Este es usado para consultar los requisitos finales por medio del ID de la fase de cierre.")
+    public RequisitosFinalesDTO consultarRequisitosFinalesPorFaseID(@PathVariable Long id) {
+        return this.consultarRequisitosFinalesPorFaseIDManejador.ejecutar(id);
     }
 }

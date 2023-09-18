@@ -6,6 +6,12 @@ import co.edu.uco.arquisw.dominio.fase.modelo.Fase;
 import co.edu.uco.arquisw.dominio.fase.puerto.comando.FaseRepositorioComando;
 import co.edu.uco.arquisw.dominio.fase.puerto.consulta.FaseRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.fase.puerto.consulta.ProyectoRepositorioConsulta;
+import co.edu.uco.arquisw.dominio.requisito.dto.RequisitoDTO;
+import co.edu.uco.arquisw.dominio.requisito.modelo.Requisito;
+import co.edu.uco.arquisw.dominio.requisito.modelo.TipoRequisito;
+import co.edu.uco.arquisw.dominio.requisito.modelo.Version;
+import co.edu.uco.arquisw.dominio.requisito.puerto.comando.RequisitoRepositorioComando;
+import co.edu.uco.arquisw.dominio.requisito.puerto.consulta.RequisitoRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.seleccion.puerto.consulta.SeleccionRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.transversal.excepciones.AccionExcepcion;
 import co.edu.uco.arquisw.dominio.transversal.servicio.ServicioEnviarCorreoElectronico;
@@ -25,14 +31,18 @@ public class ServicioAprobarEtapa {
     private final ProyectoRepositorioConsulta proyectoRepositorioConsulta;
     private final PersonaRepositorioConsulta personaRepositorioConsulta;
     private final ServicioEnviarCorreoElectronico servicioEnviarCorreoElectronico;
+    private final RequisitoRepositorioConsulta requisitoRepositorioConsulta;
+    private final RequisitoRepositorioComando requisitoRepositorioComando;
 
-    public ServicioAprobarEtapa(FaseRepositorioComando faseRepositorioComando, FaseRepositorioConsulta faseRepositorioConsulta, SeleccionRepositorioConsulta seleccionRepositorioConsulta, ProyectoRepositorioConsulta proyectoRepositorioConsulta, PersonaRepositorioConsulta personaRepositorioConsulta, ServicioEnviarCorreoElectronico servicioEnviarCorreoElectronico) {
+    public ServicioAprobarEtapa(FaseRepositorioComando faseRepositorioComando, FaseRepositorioConsulta faseRepositorioConsulta, SeleccionRepositorioConsulta seleccionRepositorioConsulta, ProyectoRepositorioConsulta proyectoRepositorioConsulta, PersonaRepositorioConsulta personaRepositorioConsulta, ServicioEnviarCorreoElectronico servicioEnviarCorreoElectronico, RequisitoRepositorioConsulta requisitoRepositorioConsulta, RequisitoRepositorioComando requisitoRepositorioComando) {
         this.faseRepositorioComando = faseRepositorioComando;
         this.faseRepositorioConsulta = faseRepositorioConsulta;
         this.seleccionRepositorioConsulta = seleccionRepositorioConsulta;
         this.proyectoRepositorioConsulta = proyectoRepositorioConsulta;
         this.personaRepositorioConsulta = personaRepositorioConsulta;
         this.servicioEnviarCorreoElectronico = servicioEnviarCorreoElectronico;
+        this.requisitoRepositorioConsulta = requisitoRepositorioConsulta;
+        this.requisitoRepositorioComando = requisitoRepositorioComando;
     }
 
     public Long ejecutar(Long etapaID) {
@@ -86,6 +96,8 @@ public class ServicioAprobarEtapa {
     private Long actualizarFase(Etapa etapaAnterior, Long etapaID) {
         Long id;
         var proyectoID = this.faseRepositorioConsulta.consultarFasePorEtapaID(etapaID).getProyectoID();
+        var ultimaVersionEtapa = this.requisitoRepositorioConsulta.consultarUltimaVersionPorEtapaID(etapaID);
+        var requisitosUltimaVersion = this.requisitoRepositorioConsulta.consultarRequisitosPorVersionID(ultimaVersionEtapa.getId());
 
         switch (etapaAnterior.getNombre()) {
             case (TextoConstante.ETAPA_DECLARACION_NOMBRE) -> {
@@ -96,7 +108,13 @@ public class ServicioAprobarEtapa {
 
                 var fase = construirNuevaFase(nombreSiguienteFase, descripcionSiguienteFase, nombreSiguienteEtapa, descripcionSiguienteEtapa);
 
-                id = this.faseRepositorioComando.guardar(fase, proyectoID);
+                var faseId = this.faseRepositorioComando.guardar(fase, proyectoID);
+
+                var nuevaFase = this.faseRepositorioConsulta.consultarFasePorID(faseId);
+
+                id = nuevaFase.getEtapas().get(0).getId();
+
+                guardarRequisitos(requisitosUltimaVersion, id);
             }
             case (TextoConstante.ETAPA_ANALISIS_NOMBRE) -> {
                 var nombreSiguienteFase = TextoConstante.FASE_EJECUCION_NOMBRE;
@@ -105,7 +123,13 @@ public class ServicioAprobarEtapa {
                 var descripcionSiguienteEtapa = TextoConstante.ETAPA_NEGOCIACION_DESCRIPCION;
                 var fase = construirNuevaFase(nombreSiguienteFase, descripcionSiguienteFase, nombreSiguienteEtapa, descripcionSiguienteEtapa);
 
-                id = this.faseRepositorioComando.guardar(fase, proyectoID);
+                var faseId = this.faseRepositorioComando.guardar(fase, proyectoID);
+
+                var nuevaFase = this.faseRepositorioConsulta.consultarFasePorID(faseId);
+
+                id = nuevaFase.getEtapas().get(0).getId();
+
+                guardarRequisitos(requisitosUltimaVersion, id);
             }
             case (TextoConstante.ETAPA_NEGOCIACION_NOMBRE) -> {
                 var nombreSiguienteFase = TextoConstante.FASE_MONITOREO_Y_CONTROL_NOMBRE;
@@ -114,18 +138,38 @@ public class ServicioAprobarEtapa {
                 var descripcionSiguienteEtapa = TextoConstante.ETAPA_VERIFICACION_DESCRIPCION;
                 var fase = construirNuevaFase(nombreSiguienteFase, descripcionSiguienteFase, nombreSiguienteEtapa, descripcionSiguienteEtapa);
 
-                id = this.faseRepositorioComando.guardar(fase, proyectoID);
+                var faseId = this.faseRepositorioComando.guardar(fase, proyectoID);
+
+                var nuevaFase = this.faseRepositorioConsulta.consultarFasePorID(faseId);
+
+                id = nuevaFase.getEtapas().get(0).getId();
+
+                guardarRequisitos(requisitosUltimaVersion, id);
             }
             case (TextoConstante.ETAPA_VERIFICACION_NOMBRE) -> {
                 var fase = construirFaseActualizada(etapaAnterior);
                 var faseID = this.faseRepositorioConsulta.consultarFasePorEtapaID(etapaID).getId();
 
-                id = this.faseRepositorioComando.actualizar(fase, faseID);
+                var faseId = this.faseRepositorioComando.actualizar(fase, faseID);
+
+                var nuevaFase = this.faseRepositorioConsulta.consultarFasePorID(faseId);
+
+                id = nuevaFase.getEtapas().get(1).getId();
+
+                guardarRequisitos(requisitosUltimaVersion, id);
             }
             case (TextoConstante.ETAPA_VALIDACION_NOMBRE) -> {
                 var fase = construirFaseFinal();
 
-                id = this.faseRepositorioComando.guardar(fase, proyectoID);
+                var faseId = this.faseRepositorioComando.guardar(fase, proyectoID);
+
+                var nuevaFase = this.faseRepositorioConsulta.consultarFasePorID(faseId);
+
+                id = nuevaFase.getEtapas().get(0).getId();
+
+                guardarRequisitos(requisitosUltimaVersion, id);
+
+                enviarRequisitosFinalesAlSistemaDeSQAYSQC(requisitosUltimaVersion, proyectoID);
             }
             default -> id = 0L;
         }
@@ -159,8 +203,24 @@ public class ServicioAprobarEtapa {
     }
 
     private List<Etapa> construirEtapasFinales() {
-        var etapaVacia = Etapa.crear(TextoConstante.VACIO, TextoConstante.VACIO, LogicoConstante.ESTADO_ETAPA_POR_DEFECTO);
+        var etapaDefinitiva = Etapa.crear(TextoConstante.ETAPA_DEFINITIVA_NOMBRE, TextoConstante.ETAPA_DEFINITIVA_DESCRIPCION, LogicoConstante.ESTADO_ETAPA_COMPLETADA);
 
-        return List.of(etapaVacia);
+        return List.of(etapaDefinitiva);
+    }
+
+    private void guardarRequisitos(List<RequisitoDTO> requisitosUltimaVersion, Long etapaId) {
+        var nuevaVersion = Version.crear(LogicoConstante.ESTADO_VERSION_POR_DEFECTO, LogicoConstante.NO_ESTA_RECHAZADA);
+        var versionId = this.requisitoRepositorioComando.guardarVersion(nuevaVersion, etapaId);
+
+        requisitosUltimaVersion.forEach(requisitoDTO -> {
+            var tipoRequisito = TipoRequisito.crear(requisitoDTO.getTipoRequisito().getNombre());
+            var requisito = Requisito.crear(requisitoDTO.getNombre(), requisitoDTO.getDescripcion(), tipoRequisito);
+
+            this.requisitoRepositorioComando.guardar(requisito, versionId);
+        });
+    }
+
+    private void enviarRequisitosFinalesAlSistemaDeSQAYSQC(List<RequisitoDTO> requisitosUltimaVersion, Long proyectoID) {
+        // Crear aquí el flujo
     }
 }

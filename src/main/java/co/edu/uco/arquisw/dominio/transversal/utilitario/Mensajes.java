@@ -39,6 +39,8 @@ public class Mensajes {
     public static final String HA_SIDO_RECHAZADA_POR_EL_LIDER_DE_EQUIPO_CUYO_MOTIVO_ES = " ha sido rechazada por el Lider de Equipo. El motivo del rechazo es por ";
     public static final String MOTIVO_RECHAZO_VERSION_NO_PUEDE_ESTAR_VACIO = "El motivo de Rechazo de la version no puede estar vacio";
     public static final String PATRON_MOTIVO_RECHAZO_VERSION_NO_ES_VALIDO = "El motivo de Rechazo de la version debe ser alfanúmerico";
+    public static final String RUTA_ARCHIVO_REQUISITOS_NO_PUEDE_ESTAR_VACIO = "La ruta del archivo de los requisitos no puede estar vacio";
+    public static final String PATRON_RUTA_ARCHIVO_REQUISITOS_NO_ES_VALIDO = "La ruta del archivo de los requisitos es incorrecto";
 
     private Mensajes() {
     }

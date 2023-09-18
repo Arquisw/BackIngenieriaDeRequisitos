@@ -4,7 +4,6 @@ import co.edu.uco.arquisw.dominio.requisito.dto.VersionDTO;
 import co.edu.uco.arquisw.dominio.requisito.modelo.Version;
 import co.edu.uco.arquisw.dominio.transversal.formateador.FechaFormateador;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.TextoConstante;
-import co.edu.uco.arquisw.infraestructura.requisito.adaptador.entidad.MotivoRechazoVersionEntidad;
 import co.edu.uco.arquisw.infraestructura.requisito.adaptador.entidad.VersionEntidad;
 import co.edu.uco.arquisw.infraestructura.requisito.adaptador.repositorio.jpa.MotivoRechazoVersionDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,7 @@ public class VersionMapeador {
         return new VersionEntidad(0L, version.isEsFinal(), version.isEstaRechazada(), FechaFormateador.obtenerFechaTexto(version.getFecha()), etapaID);
     }
 
-    public VersionDTO consturirDTO(VersionEntidad version) {
+    public VersionDTO construirDTO(VersionEntidad version) {
         return new VersionDTO(version.getId(), version.isEsFinal(), version.isEstaRechazado(), obtenerMotivoRechazo(version), version.getFecha(), version.getEtapa());
     }
 
@@ -34,7 +33,7 @@ public class VersionMapeador {
     }
 
     public List<VersionDTO> construirDTOs(List<VersionEntidad> versiones) {
-        return versiones.stream().map(new VersionMapeador()::consturirDTO).toList();
+        return versiones.stream().map(new VersionMapeador()::construirDTO).toList();
     }
 
     public void actualizarEntidad(VersionEntidad entidad, Version version) {

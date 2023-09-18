@@ -1,14 +1,18 @@
 package co.edu.uco.arquisw.infraestructura.requisito.adaptador.repositorio.implementacion;
 
 import co.edu.uco.arquisw.dominio.requisito.dto.RequisitoDTO;
+import co.edu.uco.arquisw.dominio.requisito.dto.RequisitosFinalesDTO;
 import co.edu.uco.arquisw.dominio.requisito.dto.VersionDTO;
 import co.edu.uco.arquisw.dominio.requisito.puerto.consulta.RequisitoRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.transversal.formateador.FechaFormateador;
 import co.edu.uco.arquisw.dominio.transversal.validador.ValidarObjeto;
 import co.edu.uco.arquisw.infraestructura.requisito.adaptador.entidad.RequisitoEntidad;
+import co.edu.uco.arquisw.infraestructura.requisito.adaptador.entidad.VersionEntidad;
 import co.edu.uco.arquisw.infraestructura.requisito.adaptador.mapeador.RequisitoMapeador;
+import co.edu.uco.arquisw.infraestructura.requisito.adaptador.mapeador.RequisitosFinalesMapeador;
 import co.edu.uco.arquisw.infraestructura.requisito.adaptador.mapeador.VersionMapeador;
 import co.edu.uco.arquisw.infraestructura.requisito.adaptador.repositorio.jpa.RequisitoDAO;
+import co.edu.uco.arquisw.infraestructura.requisito.adaptador.repositorio.jpa.RequisitosFinalesDAO;
 import co.edu.uco.arquisw.infraestructura.requisito.adaptador.repositorio.jpa.VersionDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -27,6 +31,10 @@ public class RequisitoRepositorioConsultaImplementacion implements RequisitoRepo
     RequisitoMapeador requisitoMapeador;
     @Autowired
     VersionMapeador versionMapeador;
+    @Autowired
+    RequisitosFinalesMapeador requisitosFinalesMapeador;
+    @Autowired
+    RequisitosFinalesDAO requisitosFinalesDAO;
 
     @Override
     public RequisitoDTO consultarRequisitoPorID(Long id) {
@@ -56,7 +64,7 @@ public class RequisitoRepositorioConsultaImplementacion implements RequisitoRepo
             return null;
         }
 
-        return this.versionMapeador.consturirDTO(entidad);
+        return this.versionMapeador.construirDTO(entidad);
     }
 
     @Override
@@ -71,5 +79,26 @@ public class RequisitoRepositorioConsultaImplementacion implements RequisitoRepo
         }).toList();
 
         return this.versionMapeador.construirDTOs(entidadesOrdenadas);
+    }
+
+    @Override
+    public VersionDTO consultarUltimaVersionPorEtapaID(Long etapaId) {
+        var entidades = this.versionDAO.findAll().stream().filter(version -> Objects.equals(version.getEtapa(), etapaId)).toList();
+
+        var versionFinal = entidades.stream().filter(VersionEntidad::isEsFinal).findFirst().orElse(null);
+
+        assert versionFinal != null;
+        return this.versionMapeador.construirDTO(versionFinal);
+    }
+
+    @Override
+    public RequisitosFinalesDTO consultarRequisitosFinalesPorFaseID(Long faseId) {
+        var entidad = this.requisitosFinalesDAO.findByFase(faseId);
+
+        if (ValidarObjeto.esNulo(entidad)) {
+            return null;
+        }
+
+        return this.requisitosFinalesMapeador.construirDTO(entidad);
     }
 }

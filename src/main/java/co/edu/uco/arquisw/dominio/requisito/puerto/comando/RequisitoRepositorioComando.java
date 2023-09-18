@@ -2,6 +2,7 @@ package co.edu.uco.arquisw.dominio.requisito.puerto.comando;
 
 import co.edu.uco.arquisw.dominio.requisito.modelo.MotivoRechazoVersion;
 import co.edu.uco.arquisw.dominio.requisito.modelo.Requisito;
+import co.edu.uco.arquisw.dominio.requisito.modelo.RequisitosFinales;
 import co.edu.uco.arquisw.dominio.requisito.modelo.Version;
 
 public interface RequisitoRepositorioComando {
@@ -15,6 +16,9 @@ public interface RequisitoRepositorioComando {
 
     Long actualizarVersion(Version version, Long versionID);
 
-    Long actualizarVersion(boolean estado, boolean rechazado, Long versionID);
-    Long guardarMotivoRechazoVersion(MotivoRechazoVersion motivoRechazoVersion, Long versionId);
+    void actualizarVersion(boolean estado, boolean rechazado, Long versionID);
+
+    void guardarMotivoRechazoVersion(MotivoRechazoVersion motivoRechazoVersion, Long versionId);
+
+    Long guardarRequisitosFinales(RequisitosFinales requisitosFinales, Long faseId);
 }

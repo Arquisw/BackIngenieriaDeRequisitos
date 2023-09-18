@@ -8,6 +8,8 @@ import co.edu.uco.arquisw.dominio.fase.puerto.comando.FaseRepositorioComando;
 import co.edu.uco.arquisw.dominio.fase.puerto.consulta.FaseRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.fase.puerto.consulta.ProyectoRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.fase.servicio.ServicioAprobarEtapa;
+import co.edu.uco.arquisw.dominio.requisito.puerto.comando.RequisitoRepositorioComando;
+import co.edu.uco.arquisw.dominio.requisito.puerto.consulta.RequisitoRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.seleccion.puerto.consulta.SeleccionRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.transversal.excepciones.AccionExcepcion;
 import co.edu.uco.arquisw.dominio.transversal.servicio.ServicioEnviarCorreoElectronico;
@@ -31,8 +33,10 @@ public class ServicioAprobarEtapaTest {
         var proyectoRepositorioConsulta = Mockito.mock(ProyectoRepositorioConsulta.class);
         var personaRepositorioConsulta = Mockito.mock(PersonaRepositorioConsulta.class);
         var servicioEnviarCorreoElectronico = Mockito.mock(ServicioEnviarCorreoElectronico.class);
+        var requisitoRepositorioConsulta = Mockito.mock(RequisitoRepositorioConsulta.class);
+        var requisitoRepositorioComando = Mockito.mock(RequisitoRepositorioComando.class);
 
-        var servicio = new ServicioAprobarEtapa(faseRepositorioComando, faseRepositorioConsulta, seleccionRepositorioConsulta, proyectoRepositorioConsulta, personaRepositorioConsulta, servicioEnviarCorreoElectronico);
+        var servicio = new ServicioAprobarEtapa(faseRepositorioComando, faseRepositorioConsulta, seleccionRepositorioConsulta, proyectoRepositorioConsulta, personaRepositorioConsulta, servicioEnviarCorreoElectronico, requisitoRepositorioConsulta, requisitoRepositorioComando);
 
         Mockito.when(faseRepositorioComando.guardar(Mockito.any(Fase.class), Mockito.anyLong())).thenReturn(1L);
         Mockito.when(faseRepositorioConsulta.consultarEtapaPorID(Mockito.anyLong())).thenReturn(EtapaDto);
@@ -56,8 +60,10 @@ public class ServicioAprobarEtapaTest {
         var proyectoRepositorioConsulta = Mockito.mock(ProyectoRepositorioConsulta.class);
         var personaRepositorioConsulta = Mockito.mock(PersonaRepositorioConsulta.class);
         var servicioEnviarCorreoElectronico = Mockito.mock(ServicioEnviarCorreoElectronico.class);
+        var requisitoRepositorioConsulta = Mockito.mock(RequisitoRepositorioConsulta.class);
+        var requisitoRepositorioComando = Mockito.mock(RequisitoRepositorioComando.class);
 
-        var servicio = new ServicioAprobarEtapa(faseRepositorioComando, faseRepositorioConsulta, seleccionRepositorioConsulta, proyectoRepositorioConsulta, personaRepositorioConsulta, servicioEnviarCorreoElectronico);
+        var servicio = new ServicioAprobarEtapa(faseRepositorioComando, faseRepositorioConsulta, seleccionRepositorioConsulta, proyectoRepositorioConsulta, personaRepositorioConsulta, servicioEnviarCorreoElectronico, requisitoRepositorioConsulta, requisitoRepositorioComando);
 
         Mockito.when(faseRepositorioComando.guardar(Mockito.any(Fase.class), Mockito.anyLong())).thenReturn(1L);
         Mockito.when(faseRepositorioConsulta.consultarFasePorEtapaID(Mockito.anyLong())).thenReturn(faseDto);
@@ -81,8 +87,10 @@ public class ServicioAprobarEtapaTest {
         var proyectoRepositorioConsulta = Mockito.mock(ProyectoRepositorioConsulta.class);
         var personaRepositorioConsulta = Mockito.mock(PersonaRepositorioConsulta.class);
         var servicioEnviarCorreoElectronico = Mockito.mock(ServicioEnviarCorreoElectronico.class);
+        var requisitoRepositorioConsulta = Mockito.mock(RequisitoRepositorioConsulta.class);
+        var requisitoRepositorioComando = Mockito.mock(RequisitoRepositorioComando.class);
 
-        var servicio = new ServicioAprobarEtapa(faseRepositorioComando, faseRepositorioConsulta, seleccionRepositorioConsulta, proyectoRepositorioConsulta, personaRepositorioConsulta, servicioEnviarCorreoElectronico);
+        var servicio = new ServicioAprobarEtapa(faseRepositorioComando, faseRepositorioConsulta, seleccionRepositorioConsulta, proyectoRepositorioConsulta, personaRepositorioConsulta, servicioEnviarCorreoElectronico, requisitoRepositorioConsulta, requisitoRepositorioComando);
 
         Mockito.when(faseRepositorioComando.guardar(Mockito.any(Fase.class), Mockito.anyLong())).thenReturn(1L);
         Mockito.when(faseRepositorioConsulta.consultarEtapaPorID(Mockito.anyLong())).thenReturn(EtapaDto);
