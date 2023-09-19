@@ -86,7 +86,10 @@ public class RequisitoRepositorioConsultaImplementacion implements RequisitoRepo
 
         var versionFinal = entidades.stream().filter(VersionEntidad::isEsFinal).findFirst().orElse(null);
 
-        assert versionFinal != null;
+        if (ValidarObjeto.esNulo(versionFinal)) {
+            return null;
+        }
+
         return this.versionMapeador.construirDTO(versionFinal);
     }
 

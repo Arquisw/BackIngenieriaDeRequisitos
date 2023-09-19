@@ -41,6 +41,7 @@ public class Mensajes {
     public static final String PATRON_MOTIVO_RECHAZO_VERSION_NO_ES_VALIDO = "El motivo de Rechazo de la version debe ser alfanúmerico";
     public static final String RUTA_ARCHIVO_REQUISITOS_NO_PUEDE_ESTAR_VACIO = "La ruta del archivo de los requisitos no puede estar vacio";
     public static final String PATRON_RUTA_ARCHIVO_REQUISITOS_NO_ES_VALIDO = "La ruta del archivo de los requisitos es incorrecto";
+    public static final String NO_SE_HA_GENERADO_UNA_VERSION_FINAL_PARA_LA_ETAPA_ACTUAL = "No se ha generado una versión final para la etapa actual, por lo tanto, no puede aprobar la etapa.";
 
     private Mensajes() {
     }

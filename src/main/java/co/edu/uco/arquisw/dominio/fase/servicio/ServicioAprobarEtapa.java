@@ -14,6 +14,7 @@ import co.edu.uco.arquisw.dominio.requisito.puerto.comando.RequisitoRepositorioC
 import co.edu.uco.arquisw.dominio.requisito.puerto.consulta.RequisitoRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.seleccion.puerto.consulta.SeleccionRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.transversal.excepciones.AccionExcepcion;
+import co.edu.uco.arquisw.dominio.transversal.excepciones.AutorizacionExcepcion;
 import co.edu.uco.arquisw.dominio.transversal.servicio.ServicioEnviarCorreoElectronico;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.LogicoConstante;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.Mensajes;
@@ -55,6 +56,7 @@ public class ServicioAprobarEtapa {
         var proyecto = this.proyectoRepositorioConsulta.consultarProyectoPorID(proyectoId);
 
         validarSiEtapaNoEstaCompletada(etapa);
+        validarSiVersionFinalFueGenerada(etapaID);
 
         var etapaActualizada = construirEtapaAprobada(etapa);
 
@@ -86,6 +88,12 @@ public class ServicioAprobarEtapa {
     private void validarSiEtapaNoEstaCompletada(EtapaDTO etapa) {
         if (etapa.isCompletada()) {
             throw new AccionExcepcion(Mensajes.ETAPA_CON_ID + etapa.getId() + Mensajes.ETAPA_YA_ESTA_COMPLETADA);
+        }
+    }
+
+    private void validarSiVersionFinalFueGenerada(Long etapaID) {
+        if (ValidarObjeto.esNulo(this.requisitoRepositorioConsulta.consultarUltimaVersionPorEtapaID(etapaID))) {
+            throw new AutorizacionExcepcion(Mensajes.NO_SE_HA_GENERADO_UNA_VERSION_FINAL_PARA_LA_ETAPA_ACTUAL);
         }
     }
 
