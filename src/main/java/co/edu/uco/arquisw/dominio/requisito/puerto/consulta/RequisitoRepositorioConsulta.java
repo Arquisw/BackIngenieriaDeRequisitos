@@ -17,5 +17,5 @@ public interface RequisitoRepositorioConsulta {
 
     VersionDTO consultarUltimaVersionPorEtapaID(Long etapaId);
 
-    RequisitosFinalesDTO consultarRequisitosFinalesPorFaseID(Long faseId);
+    RequisitosFinalesDTO consultarRequisitosFinalesPorEtapaID(Long etapaId);
 }

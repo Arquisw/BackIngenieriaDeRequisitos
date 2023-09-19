@@ -72,10 +72,9 @@ public class RequisitoRepositorioConsultaImplementacion implements RequisitoRepo
         var entidades = this.versionDAO.findAll().stream().filter(version -> Objects.equals(version.getEtapa(), etapaID)).toList();
 
         var entidadesOrdenadas = entidades.stream().sorted((versionUno, versionDos) -> {
-            var fechaUno = FechaFormateador.obtenerFecha(versionUno.getFecha());
-            var fechaDos = FechaFormateador.obtenerFecha(versionDos.getFecha());
-
-            return fechaDos.compareTo(fechaUno);
+            var idUno = versionUno.getId();
+            var idDos = versionDos.getId();
+            return idDos.compareTo(idUno);
         }).toList();
 
         return this.versionMapeador.construirDTOs(entidadesOrdenadas);
@@ -92,8 +91,8 @@ public class RequisitoRepositorioConsultaImplementacion implements RequisitoRepo
     }
 
     @Override
-    public RequisitosFinalesDTO consultarRequisitosFinalesPorFaseID(Long faseId) {
-        var entidad = this.requisitosFinalesDAO.findByFase(faseId);
+    public RequisitosFinalesDTO consultarRequisitosFinalesPorEtapaID(Long etapaId) {
+        var entidad = this.requisitosFinalesDAO.findByEtapa(etapaId);
 
         if (ValidarObjeto.esNulo(entidad)) {
             return null;

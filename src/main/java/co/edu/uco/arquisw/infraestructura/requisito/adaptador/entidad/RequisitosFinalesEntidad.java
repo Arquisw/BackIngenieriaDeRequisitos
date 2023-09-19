@@ -20,5 +20,5 @@ public class RequisitosFinalesEntidad {
     private Long id;
     @Column(length = 3000)
     private String rutaArchivo;
-    private Long fase;
+    private Long etapa;
 }

@@ -59,12 +59,12 @@ public class BeanServicioRequisito {
     }
 
     @Bean
-    public ServicioConsultarRequisitosFinalesPorFaseID servicioConsultarRequisitosFinalesPorFaseID(RequisitoRepositorioConsulta requisitoRepositorioConsulta, FaseRepositorioConsulta faseRepositorioConsulta) {
-        return new ServicioConsultarRequisitosFinalesPorFaseID(requisitoRepositorioConsulta, faseRepositorioConsulta);
+    public ServicioConsultarRequisitosFinalesPorEtapaID servicioConsultarRequisitosFinalesPorFaseID(RequisitoRepositorioConsulta requisitoRepositorioConsulta, FaseRepositorioConsulta faseRepositorioConsulta) {
+        return new ServicioConsultarRequisitosFinalesPorEtapaID(requisitoRepositorioConsulta, faseRepositorioConsulta);
     }
 
     @Bean
-    public ServicioGuardarRequisitosFinalesPorFaseID servicioGuardarRequisitosFinalesPorFaseID(RequisitoRepositorioComando requisitoRepositorioComando, FaseRepositorioConsulta faseRepositorioConsulta) {
-        return new ServicioGuardarRequisitosFinalesPorFaseID(requisitoRepositorioComando, faseRepositorioConsulta);
+    public ServicioGuardarRequisitosFinalesPorEtapaID servicioGuardarRequisitosFinalesPorFaseID(RequisitoRepositorioComando requisitoRepositorioComando, FaseRepositorioConsulta faseRepositorioConsulta) {
+        return new ServicioGuardarRequisitosFinalesPorEtapaID(requisitoRepositorioComando, faseRepositorioConsulta);
     }
 }

@@ -97,8 +97,8 @@ public class RequisitoRepositorioComandoImplementacion implements RequisitoRepos
     }
 
     @Override
-    public Long guardarRequisitosFinales(RequisitosFinales requisitosFinales, Long faseId) {
-        var entidad = this.requisitosFinalesMapeador.construir(requisitosFinales, faseId);
+    public Long guardarRequisitosFinales(RequisitosFinales requisitosFinales, Long etapaId) {
+        var entidad = this.requisitosFinalesMapeador.construir(requisitosFinales, etapaId);
 
         return this.requisitosFinalesDAO.save(entidad).getId();
     }

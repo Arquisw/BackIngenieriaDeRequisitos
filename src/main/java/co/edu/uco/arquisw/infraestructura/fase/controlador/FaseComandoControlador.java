@@ -27,7 +27,7 @@ public class FaseComandoControlador {
         return this.guardarFaseManejador.ejecutar(id);
     }
 
-    @PreAuthorize("hasRole('LIDER_DE_EQUIPO_ACTUALIZACION')")
+    @PreAuthorize("hasAuthority('LIDER_DE_EQUIPO_ACTUALIZACION')")
     @PutMapping("/aprobacion/{id}")
     @Operation(summary = "Aprobar Etapa", description = "Este es usado para aprobar una etapa")
     public ComandoRespuesta<Long> aprobarEtapa(@PathVariable Long id) {

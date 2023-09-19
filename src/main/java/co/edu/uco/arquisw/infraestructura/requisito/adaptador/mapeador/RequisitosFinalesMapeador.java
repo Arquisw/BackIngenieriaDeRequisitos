@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class RequisitosFinalesMapeador {
-    public RequisitosFinalesEntidad construir(RequisitosFinales requisitosFinales, Long faseId) {
-        return new RequisitosFinalesEntidad(0L, requisitosFinales.getRutaArchivo(), faseId);
+    public RequisitosFinalesEntidad construir(RequisitosFinales requisitosFinales, Long etapaId) {
+        return new RequisitosFinalesEntidad(0L, requisitosFinales.getRutaArchivo(), etapaId);
     }
 
     public RequisitosFinalesDTO construirDTO(RequisitosFinalesEntidad requisitosFinales) {

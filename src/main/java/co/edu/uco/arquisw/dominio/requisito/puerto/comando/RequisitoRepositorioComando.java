@@ -20,5 +20,5 @@ public interface RequisitoRepositorioComando {
 
     void guardarMotivoRechazoVersion(MotivoRechazoVersion motivoRechazoVersion, Long versionId);
 
-    Long guardarRequisitosFinales(RequisitosFinales requisitosFinales, Long faseId);
+    Long guardarRequisitosFinales(RequisitosFinales requisitosFinales, Long etapaId);
 }

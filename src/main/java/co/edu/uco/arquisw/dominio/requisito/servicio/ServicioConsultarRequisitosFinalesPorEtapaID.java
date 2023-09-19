@@ -6,24 +6,24 @@ import co.edu.uco.arquisw.dominio.requisito.puerto.consulta.RequisitoRepositorio
 import co.edu.uco.arquisw.dominio.transversal.utilitario.Mensajes;
 import co.edu.uco.arquisw.dominio.transversal.validador.ValidarObjeto;
 
-public class ServicioConsultarRequisitosFinalesPorFaseID {
+public class ServicioConsultarRequisitosFinalesPorEtapaID {
     private final RequisitoRepositorioConsulta requisitoRepositorioConsulta;
     private final FaseRepositorioConsulta faseRepositorioConsulta;
 
-    public ServicioConsultarRequisitosFinalesPorFaseID(RequisitoRepositorioConsulta requisitoRepositorioConsulta, FaseRepositorioConsulta faseRepositorioConsulta) {
+    public ServicioConsultarRequisitosFinalesPorEtapaID(RequisitoRepositorioConsulta requisitoRepositorioConsulta, FaseRepositorioConsulta faseRepositorioConsulta) {
         this.requisitoRepositorioConsulta = requisitoRepositorioConsulta;
         this.faseRepositorioConsulta = faseRepositorioConsulta;
     }
 
-    public RequisitosFinalesDTO ejecutar(Long faseId) {
-        validarSiExisteFaseConId(faseId);
+    public RequisitosFinalesDTO ejecutar(Long etapaId) {
+        validarSiExisteEtapaConId(etapaId);
 
-        return this.requisitoRepositorioConsulta.consultarRequisitosFinalesPorFaseID(faseId);
+        return this.requisitoRepositorioConsulta.consultarRequisitosFinalesPorEtapaID(etapaId);
     }
 
-    private void validarSiExisteFaseConId(Long faseId) {
-        if (ValidarObjeto.esNulo(this.faseRepositorioConsulta.consultarFasePorID(faseId))) {
-            throw new NullPointerException(Mensajes.NO_EXISTE_FASE_CON_EL_ID + faseId);
+    private void validarSiExisteEtapaConId(Long etapaId) {
+        if (ValidarObjeto.esNulo(this.faseRepositorioConsulta.consultarFasePorID(etapaId))) {
+            throw new NullPointerException(Mensajes.NO_EXISTE_ETAPA_CON_EL_ID + etapaId);
         }
     }
 }

@@ -20,16 +20,16 @@ public class RequisitoComandoControlador {
     private final GuardarRequisitoManejador guardarRequisitoManejador;
     private final GuardarVersionInicialManejador guardarVersionInicialManejador;
     private final RechazarVersionPorIDManejador rechazarVersionPorIDManejador;
-    private final GuardarRequisitosFinalesPorFaseIDManejador guardarRequisitosFinalesPorFaseIDManejador;
+    private final GuardarRequisitosFinalesPorEtapaIDManejador guardarRequisitosFinalesPorEtapaIDManejador;
 
-    public RequisitoComandoControlador(ActualizarRequisitoManejador actualizarRequisitoManejador, EliminarRequisitoManejador eliminarRequisitoManejador, GenerarVersionFinalManejador generarVersionFinalManejador, GuardarRequisitoManejador guardarRequisitoManejador, GuardarVersionInicialManejador guardarVersionInicialManejador, RechazarVersionPorIDManejador rechazarVersionPorIDManejador, GuardarRequisitosFinalesPorFaseIDManejador guardarRequisitosFinalesPorFaseIDManejador) {
+    public RequisitoComandoControlador(ActualizarRequisitoManejador actualizarRequisitoManejador, EliminarRequisitoManejador eliminarRequisitoManejador, GenerarVersionFinalManejador generarVersionFinalManejador, GuardarRequisitoManejador guardarRequisitoManejador, GuardarVersionInicialManejador guardarVersionInicialManejador, RechazarVersionPorIDManejador rechazarVersionPorIDManejador, GuardarRequisitosFinalesPorEtapaIDManejador guardarRequisitosFinalesPorEtapaIDManejador) {
         this.actualizarRequisitoManejador = actualizarRequisitoManejador;
         this.eliminarRequisitoManejador = eliminarRequisitoManejador;
         this.generarVersionFinalManejador = generarVersionFinalManejador;
         this.guardarRequisitoManejador = guardarRequisitoManejador;
         this.guardarVersionInicialManejador = guardarVersionInicialManejador;
         this.rechazarVersionPorIDManejador = rechazarVersionPorIDManejador;
-        this.guardarRequisitosFinalesPorFaseIDManejador = guardarRequisitosFinalesPorFaseIDManejador;
+        this.guardarRequisitosFinalesPorEtapaIDManejador = guardarRequisitosFinalesPorEtapaIDManejador;
     }
 
 
@@ -77,8 +77,8 @@ public class RequisitoComandoControlador {
 
     @PreAuthorize("hasAuthority('LIDER_DE_EQUIPO_ESCRITURA')")
     @PostMapping("/finales/{id}")
-    @Operation(summary = "Guardar Requisitos Finales por ID", description = "Este es usado para guardar los requisitos finales por medio del ID de la Fase de cierre")
+    @Operation(summary = "Guardar Requisitos Finales por ID", description = "Este es usado para guardar los requisitos finales por medio del ID de la etapa definitiva")
     public ComandoRespuesta<Long> guardarRequisitosFinales(@RequestBody RequisitosFinalesComando comando, @PathVariable Long id) {
-        return this.guardarRequisitosFinalesPorFaseIDManejador.ejecutar(comando, id);
+        return this.guardarRequisitosFinalesPorEtapaIDManejador.ejecutar(comando, id);
     }
 }
