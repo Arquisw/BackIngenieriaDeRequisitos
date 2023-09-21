@@ -5,7 +5,9 @@ import co.edu.uco.arquisw.dominio.fase.puerto.comando.ProyectoRepositorioComando
 import co.edu.uco.arquisw.infraestructura.fase.adaptador.mapeador.proyecto.EstadoProyectoMapeador;
 import co.edu.uco.arquisw.infraestructura.fase.adaptador.repositorio.jpa.proyecto.ProyectoDAO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class ProyectoRepositorioComandoImplementacion implements ProyectoRepositorioComando {
     @Autowired
     ProyectoDAO proyectoDAO;
