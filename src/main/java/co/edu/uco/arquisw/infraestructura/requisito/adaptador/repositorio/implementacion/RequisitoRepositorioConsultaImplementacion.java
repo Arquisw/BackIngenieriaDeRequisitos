@@ -17,6 +17,7 @@ import co.edu.uco.arquisw.infraestructura.requisito.adaptador.repositorio.jpa.Ve
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
@@ -50,6 +51,10 @@ public class RequisitoRepositorioConsultaImplementacion implements RequisitoRepo
     @Override
     public List<RequisitoDTO> consultarRequisitosPorVersionID(Long versionId) {
         var entidades = this.requisitoDAO.findAll().stream().filter(requisito -> Objects.equals(requisito.getVersion(), versionId)).toList();
+
+        if(entidades.isEmpty()) {
+            return new ArrayList<>();
+        }
 
         var entidadesOrdenadas = entidades.stream().sorted(Comparator.comparing(RequisitoEntidad::getId)).toList();
 
