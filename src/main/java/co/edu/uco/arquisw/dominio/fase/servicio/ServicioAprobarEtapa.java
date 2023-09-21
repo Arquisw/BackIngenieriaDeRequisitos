@@ -1,9 +1,11 @@
 package co.edu.uco.arquisw.dominio.fase.servicio;
 
 import co.edu.uco.arquisw.dominio.fase.dto.EtapaDTO;
+import co.edu.uco.arquisw.dominio.fase.modelo.EstadoProyecto;
 import co.edu.uco.arquisw.dominio.fase.modelo.Etapa;
 import co.edu.uco.arquisw.dominio.fase.modelo.Fase;
 import co.edu.uco.arquisw.dominio.fase.puerto.comando.FaseRepositorioComando;
+import co.edu.uco.arquisw.dominio.fase.puerto.comando.ProyectoRepositorioComando;
 import co.edu.uco.arquisw.dominio.fase.puerto.consulta.FaseRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.fase.puerto.consulta.ProyectoRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.requisito.dto.RequisitoDTO;
@@ -30,16 +32,18 @@ public class ServicioAprobarEtapa {
     private final FaseRepositorioConsulta faseRepositorioConsulta;
     private final SeleccionRepositorioConsulta seleccionRepositorioConsulta;
     private final ProyectoRepositorioConsulta proyectoRepositorioConsulta;
+    private final ProyectoRepositorioComando proyectoRepositorioComando;
     private final PersonaRepositorioConsulta personaRepositorioConsulta;
     private final ServicioEnviarCorreoElectronico servicioEnviarCorreoElectronico;
     private final RequisitoRepositorioConsulta requisitoRepositorioConsulta;
     private final RequisitoRepositorioComando requisitoRepositorioComando;
 
-    public ServicioAprobarEtapa(FaseRepositorioComando faseRepositorioComando, FaseRepositorioConsulta faseRepositorioConsulta, SeleccionRepositorioConsulta seleccionRepositorioConsulta, ProyectoRepositorioConsulta proyectoRepositorioConsulta, PersonaRepositorioConsulta personaRepositorioConsulta, ServicioEnviarCorreoElectronico servicioEnviarCorreoElectronico, RequisitoRepositorioConsulta requisitoRepositorioConsulta, RequisitoRepositorioComando requisitoRepositorioComando) {
+    public ServicioAprobarEtapa(FaseRepositorioComando faseRepositorioComando, FaseRepositorioConsulta faseRepositorioConsulta, SeleccionRepositorioConsulta seleccionRepositorioConsulta, ProyectoRepositorioConsulta proyectoRepositorioConsulta, ProyectoRepositorioComando proyectoRepositorioComando, PersonaRepositorioConsulta personaRepositorioConsulta, ServicioEnviarCorreoElectronico servicioEnviarCorreoElectronico, RequisitoRepositorioConsulta requisitoRepositorioConsulta, RequisitoRepositorioComando requisitoRepositorioComando) {
         this.faseRepositorioComando = faseRepositorioComando;
         this.faseRepositorioConsulta = faseRepositorioConsulta;
         this.seleccionRepositorioConsulta = seleccionRepositorioConsulta;
         this.proyectoRepositorioConsulta = proyectoRepositorioConsulta;
+        this.proyectoRepositorioComando = proyectoRepositorioComando;
         this.personaRepositorioConsulta = personaRepositorioConsulta;
         this.servicioEnviarCorreoElectronico = servicioEnviarCorreoElectronico;
         this.requisitoRepositorioConsulta = requisitoRepositorioConsulta;
@@ -177,12 +181,22 @@ public class ServicioAprobarEtapa {
 
                 guardarRequisitos(requisitosUltimaVersion, id);
 
-                enviarRequisitosFinalesAlSistemaDeSQAYSQC(requisitosUltimaVersion, proyectoID);
+                cerrarProcesoDeIngenieriaDeRequisitos(requisitosUltimaVersion, proyectoID);
             }
             default -> id = 0L;
         }
 
         return id;
+    }
+
+    private void cerrarProcesoDeIngenieriaDeRequisitos(List<RequisitoDTO> requisitosUltimaVersion, Long proyectoID) {
+        var proyecto = this.proyectoRepositorioConsulta.consultarProyectoPorID(proyectoID);
+
+        if(proyecto.getTiposConsultoria().size() == 1 && proyecto.getTiposConsultoria().stream().anyMatch(tipoConsultoria -> tipoConsultoria.getNombre().equals(TextoConstante.INGENIERIA_DE_REQUISITOS))) {
+            this.proyectoRepositorioComando.actualizarEstadoProyecto(EstadoProyecto.crear(TextoConstante.ESTADO_FINALIZADO), proyectoID);
+        } else if(proyecto.getTiposConsultoria().stream().anyMatch(tipoConsultoria -> tipoConsultoria.getNombre().equals(TextoConstante.SQA) || tipoConsultoria.getNombre().equals(TextoConstante.SQC))) {
+            enviarRequisitosFinalesAlSistemaDeSQAYSQC(requisitosUltimaVersion, proyectoID);
+        }
     }
 
     private Fase construirNuevaFase(String nombreFase, String descripcionFase, String nombreEtapa, String descripcionEtapa) {

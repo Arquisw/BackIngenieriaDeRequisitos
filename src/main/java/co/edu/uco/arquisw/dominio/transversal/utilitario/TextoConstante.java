@@ -29,6 +29,10 @@ public class TextoConstante {
     public static final String TIPO_REQUISITO_FUNCIONAL = "Funcional"; // ID = 1
     public static final String TIPO_REQUISITO_NO_FUNCIONAL = "NO Funcional"; // ID = 2
     public static final String ESTADO_FINALIZADO = "Finalizado"; // ID = 7
+    public static final String INGENIERIA_DE_REQUISITOS = "Ingenieria de Requisitos"; // ID = 1
+    public static final String SQA = "SQA"; // ID = 2
+    public static final String SQC = "SQC"; // ID = 3
+    public static final String ESTADO_FINALIZADO = "Finalizado"; // ID = 7
 
     private TextoConstante() {
     }

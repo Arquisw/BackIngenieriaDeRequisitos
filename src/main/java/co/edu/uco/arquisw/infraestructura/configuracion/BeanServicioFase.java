@@ -1,6 +1,7 @@
 package co.edu.uco.arquisw.infraestructura.configuracion;
 
 import co.edu.uco.arquisw.dominio.fase.puerto.comando.FaseRepositorioComando;
+import co.edu.uco.arquisw.dominio.fase.puerto.comando.ProyectoRepositorioComando;
 import co.edu.uco.arquisw.dominio.fase.puerto.consulta.FaseRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.fase.puerto.consulta.ProyectoRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.fase.servicio.ServicioAprobarEtapa;
@@ -18,8 +19,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class BeanServicioFase {
     @Bean
-    public ServicioAprobarEtapa servicioAprobarEtapa(FaseRepositorioComando faseRepositorioComando, FaseRepositorioConsulta faseRepositorioConsulta, SeleccionRepositorioConsulta seleccionRepositorioConsulta, ProyectoRepositorioConsulta proyectoRepositorioConsulta, PersonaRepositorioConsulta personaRepositorioConsulta, ServicioEnviarCorreoElectronico servicioEnviarCorreoElectronico, RequisitoRepositorioConsulta requisitoRepositorioConsulta, RequisitoRepositorioComando requisitoRepositorioComando) {
-        return new ServicioAprobarEtapa(faseRepositorioComando, faseRepositorioConsulta, seleccionRepositorioConsulta, proyectoRepositorioConsulta, personaRepositorioConsulta, servicioEnviarCorreoElectronico, requisitoRepositorioConsulta, requisitoRepositorioComando);
+    public ServicioAprobarEtapa servicioAprobarEtapa(FaseRepositorioComando faseRepositorioComando, FaseRepositorioConsulta faseRepositorioConsulta, SeleccionRepositorioConsulta seleccionRepositorioConsulta, ProyectoRepositorioConsulta proyectoRepositorioConsulta, ProyectoRepositorioComando proyectoRepositorioComando, PersonaRepositorioConsulta personaRepositorioConsulta, ServicioEnviarCorreoElectronico servicioEnviarCorreoElectronico, RequisitoRepositorioConsulta requisitoRepositorioConsulta, RequisitoRepositorioComando requisitoRepositorioComando) {
+        return new ServicioAprobarEtapa(faseRepositorioComando, faseRepositorioConsulta, seleccionRepositorioConsulta, proyectoRepositorioConsulta, proyectoRepositorioComando, personaRepositorioConsulta, servicioEnviarCorreoElectronico, requisitoRepositorioConsulta, requisitoRepositorioComando);
     }
 
     @Bean
