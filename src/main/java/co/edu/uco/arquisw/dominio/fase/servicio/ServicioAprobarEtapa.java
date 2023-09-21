@@ -14,6 +14,7 @@ import co.edu.uco.arquisw.dominio.requisito.modelo.TipoRequisito;
 import co.edu.uco.arquisw.dominio.requisito.modelo.Version;
 import co.edu.uco.arquisw.dominio.requisito.puerto.comando.RequisitoRepositorioComando;
 import co.edu.uco.arquisw.dominio.requisito.puerto.consulta.RequisitoRepositorioConsulta;
+import co.edu.uco.arquisw.dominio.seleccion.dto.SeleccionDTO;
 import co.edu.uco.arquisw.dominio.seleccion.puerto.consulta.SeleccionRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.transversal.excepciones.AccionExcepcion;
 import co.edu.uco.arquisw.dominio.transversal.excepciones.AutorizacionExcepcion;
@@ -22,6 +23,8 @@ import co.edu.uco.arquisw.dominio.transversal.utilitario.LogicoConstante;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.Mensajes;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.TextoConstante;
 import co.edu.uco.arquisw.dominio.transversal.validador.ValidarObjeto;
+import co.edu.uco.arquisw.dominio.usuario.modelo.Rol;
+import co.edu.uco.arquisw.dominio.usuario.puerto.consulta.PersonaRepositorioComando;
 import co.edu.uco.arquisw.dominio.usuario.puerto.consulta.PersonaRepositorioConsulta;
 
 import javax.mail.MessagingException;
@@ -34,17 +37,19 @@ public class ServicioAprobarEtapa {
     private final ProyectoRepositorioConsulta proyectoRepositorioConsulta;
     private final ProyectoRepositorioComando proyectoRepositorioComando;
     private final PersonaRepositorioConsulta personaRepositorioConsulta;
+    private final PersonaRepositorioComando personaRepositorioComando;
     private final ServicioEnviarCorreoElectronico servicioEnviarCorreoElectronico;
     private final RequisitoRepositorioConsulta requisitoRepositorioConsulta;
     private final RequisitoRepositorioComando requisitoRepositorioComando;
 
-    public ServicioAprobarEtapa(FaseRepositorioComando faseRepositorioComando, FaseRepositorioConsulta faseRepositorioConsulta, SeleccionRepositorioConsulta seleccionRepositorioConsulta, ProyectoRepositorioConsulta proyectoRepositorioConsulta, ProyectoRepositorioComando proyectoRepositorioComando, PersonaRepositorioConsulta personaRepositorioConsulta, ServicioEnviarCorreoElectronico servicioEnviarCorreoElectronico, RequisitoRepositorioConsulta requisitoRepositorioConsulta, RequisitoRepositorioComando requisitoRepositorioComando) {
+    public ServicioAprobarEtapa(FaseRepositorioComando faseRepositorioComando, FaseRepositorioConsulta faseRepositorioConsulta, SeleccionRepositorioConsulta seleccionRepositorioConsulta, ProyectoRepositorioConsulta proyectoRepositorioConsulta, ProyectoRepositorioComando proyectoRepositorioComando, PersonaRepositorioConsulta personaRepositorioConsulta, PersonaRepositorioComando personaRepositorioComando, ServicioEnviarCorreoElectronico servicioEnviarCorreoElectronico, RequisitoRepositorioConsulta requisitoRepositorioConsulta, RequisitoRepositorioComando requisitoRepositorioComando) {
         this.faseRepositorioComando = faseRepositorioComando;
         this.faseRepositorioConsulta = faseRepositorioConsulta;
         this.seleccionRepositorioConsulta = seleccionRepositorioConsulta;
         this.proyectoRepositorioConsulta = proyectoRepositorioConsulta;
         this.proyectoRepositorioComando = proyectoRepositorioComando;
         this.personaRepositorioConsulta = personaRepositorioConsulta;
+        this.personaRepositorioComando = personaRepositorioComando;
         this.servicioEnviarCorreoElectronico = servicioEnviarCorreoElectronico;
         this.requisitoRepositorioConsulta = requisitoRepositorioConsulta;
         this.requisitoRepositorioComando = requisitoRepositorioComando;
@@ -66,7 +71,7 @@ public class ServicioAprobarEtapa {
 
         this.faseRepositorioComando.actualizarEtapa(etapaActualizada, etapaID);
 
-        var respuestId = actualizarFase(etapaActualizada, etapaID);
+        var respuestId = actualizarFase(etapaActualizada, etapaID, seleccionesDelProyecto);
 
         seleccionesDelProyecto.forEach(seleccionDelProyecto -> {
             try {
@@ -105,7 +110,7 @@ public class ServicioAprobarEtapa {
         return Etapa.crear(etapa.getNombre(), etapa.getDescripcion(), LogicoConstante.ESTADO_ETAPA_COMPLETADA);
     }
 
-    private Long actualizarFase(Etapa etapaAnterior, Long etapaID) {
+    private Long actualizarFase(Etapa etapaAnterior, Long etapaID, List<SeleccionDTO> seleccionesDelProyecto) {
         Long id;
         var proyectoID = this.faseRepositorioConsulta.consultarFasePorEtapaID(etapaID).getProyectoID();
         var ultimaVersionEtapa = this.requisitoRepositorioConsulta.consultarUltimaVersionPorEtapaID(etapaID);
@@ -181,7 +186,7 @@ public class ServicioAprobarEtapa {
 
                 guardarRequisitos(requisitosUltimaVersion, id);
 
-                cerrarProcesoDeIngenieriaDeRequisitos(requisitosUltimaVersion, proyectoID);
+                cerrarProcesoDeIngenieriaDeRequisitos(requisitosUltimaVersion, proyectoID, seleccionesDelProyecto);
             }
             default -> id = 0L;
         }
@@ -189,14 +194,26 @@ public class ServicioAprobarEtapa {
         return id;
     }
 
-    private void cerrarProcesoDeIngenieriaDeRequisitos(List<RequisitoDTO> requisitosUltimaVersion, Long proyectoID) {
+    private void cerrarProcesoDeIngenieriaDeRequisitos(List<RequisitoDTO> requisitosUltimaVersion, Long proyectoID, List<SeleccionDTO> seleccionesDelProyecto) {
         var proyecto = this.proyectoRepositorioConsulta.consultarProyectoPorID(proyectoID);
 
         if(proyecto.getTiposConsultoria().size() == 1 && proyecto.getTiposConsultoria().stream().anyMatch(tipoConsultoria -> tipoConsultoria.getNombre().equals(TextoConstante.INGENIERIA_DE_REQUISITOS))) {
             this.proyectoRepositorioComando.actualizarEstadoProyecto(EstadoProyecto.crear(TextoConstante.ESTADO_FINALIZADO), proyectoID);
+
+            eliminarRolesDelProyectoALosUsuariosSeleccionados(seleccionesDelProyecto);
         } else if(proyecto.getTiposConsultoria().stream().anyMatch(tipoConsultoria -> tipoConsultoria.getNombre().equals(TextoConstante.SQA) || tipoConsultoria.getNombre().equals(TextoConstante.SQC))) {
             enviarRequisitosFinalesAlSistemaDeSQAYSQC(requisitosUltimaVersion, proyectoID);
         }
+    }
+
+    private void eliminarRolesDelProyectoALosUsuariosSeleccionados(List<SeleccionDTO> seleccionesDelProyecto) {
+        seleccionesDelProyecto.forEach(seleccion -> {
+            this.personaRepositorioComando.eliminarRol(Rol.crear(TextoConstante.ROL_SELECCIONADO), seleccion.getUsuarioID());
+
+            seleccion.getRoles().forEach(rol -> {
+                this.personaRepositorioComando.eliminarRol(Rol.crear(rol), seleccion.getUsuarioID());
+            });
+        });
     }
 
     private Fase construirNuevaFase(String nombreFase, String descripcionFase, String nombreEtapa, String descripcionEtapa) {

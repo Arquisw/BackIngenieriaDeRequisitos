@@ -132,8 +132,8 @@ public class ServicioGenerarVersionFinal {
     }
 
     private static boolean sonIguales(RequisitoDTO requisito1, RequisitoDTO requisito2) {
-        return requisito1.getId().equals(requisito2.getId()) &&
-                requisito1.getNombre().equals(requisito2.getNombre()) &&
-                requisito1.getDescripcion().equals(requisito2.getDescripcion());
+        return requisito1.getNombre().equals(requisito2.getNombre()) &&
+                requisito1.getDescripcion().equals(requisito2.getDescripcion()) &&
+                requisito1.getTipoRequisito().getNombre().equals(requisito2.getTipoRequisito().getNombre());
     }
 }

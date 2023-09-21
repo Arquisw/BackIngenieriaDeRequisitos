@@ -44,6 +44,10 @@ public class Mensajes {
     public static final String NO_SE_HA_GENERADO_UNA_VERSION_FINAL_PARA_LA_ETAPA_ACTUAL = "No se ha generado una versión final para la etapa actual, por lo tanto, no puede aprobar la etapa.";
     public static final String NO_HAY_REQUISITOS_PARA_LA_VERSION_ACTUAL = "No hay requisitos en la version actual, por lo tanto no puede generar la versión final.";
     public static final String LA_VERSION_NO_HA_SUFRIDO_NINGUN_CAMBIO_CON_RESPECTO_A_LA_ETAPA_ANTERIOR = "La versión no ha sufrido ningun cambio con respecto a la versión definitiva de la etapa anterior, por lo tanto no puede generar la versión final.";
+    public static final String NO_HAY_REQUISITOS_PARA_LA_VERSION_ACTUAL_NO_PUEDE_RECHAZAR = "No hay requisitos en la version actual, por lo tanto no puede rechazar.";
+    public static final String LA_VERSION_NO_HA_SUFRIDO_NINGUN_CAMBIO_CON_RESPECTO_A_LA_ETAPA_ANTERIOR_NO_PUEDE_RECHAZAR = "La versión no ha sufrido ningun cambio con respecto a la versión definitiva de la etapa anterior, por lo tanto no se puede rechazar.";
+    public static final String NOMBRE_ROL_VACIO = "El nombre no puede estar vacio";
+    public static final String PATRON_NOMBRE_ROL_INVALIDO = "El nombre solo puede contener letras y numeros";
 
     private Mensajes() {
     }
