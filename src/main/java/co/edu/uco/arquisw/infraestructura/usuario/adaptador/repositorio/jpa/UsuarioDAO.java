@@ -4,4 +4,5 @@ import co.edu.uco.arquisw.infraestructura.usuario.adaptador.entidad.UsuarioEntid
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UsuarioDAO extends JpaRepository<UsuarioEntidad, Long> {
+    UsuarioEntidad findByCorreo(String correo);
 }

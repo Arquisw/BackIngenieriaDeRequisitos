@@ -120,15 +120,16 @@ public class ServicioGenerarVersionFinal {
     }
 
     public static boolean tienenElementosComunes(List<RequisitoDTO> lista1, List<RequisitoDTO> lista2) {
-        for (RequisitoDTO requisito1 : lista1) {
-            for (RequisitoDTO requisito2 : lista2) {
-                if (sonIguales(requisito1, requisito2)) {
-                    return true;
-                }
+        for (int i = 0; i < lista1.size(); i++) {
+            var requisito1 = lista1.get(i);
+            var requisito2 = lista2.get(i);
+
+            if (!sonIguales(requisito1, requisito2)) {
+                return false;
             }
         }
 
-        return false;
+        return true;
     }
 
     private static boolean sonIguales(RequisitoDTO requisito1, RequisitoDTO requisito2) {

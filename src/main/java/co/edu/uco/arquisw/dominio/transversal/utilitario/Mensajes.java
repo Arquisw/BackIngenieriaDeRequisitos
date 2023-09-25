@@ -48,6 +48,7 @@ public class Mensajes {
     public static final String LA_VERSION_NO_HA_SUFRIDO_NINGUN_CAMBIO_CON_RESPECTO_A_LA_ETAPA_ANTERIOR_NO_PUEDE_RECHAZAR = "La versión no ha sufrido ningun cambio con respecto a la versión definitiva de la etapa anterior, por lo tanto no se puede rechazar.";
     public static final String NOMBRE_ROL_VACIO = "El nombre no puede estar vacio";
     public static final String PATRON_NOMBRE_ROL_INVALIDO = "El nombre solo puede contener letras y numeros";
+    public static final String EXISTE_USUARIO_CON_CORREO = "Ya existe un usuario con ese correo ";
 
     private Mensajes() {
     }

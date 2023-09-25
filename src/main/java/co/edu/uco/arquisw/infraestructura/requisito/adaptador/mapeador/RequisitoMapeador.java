@@ -3,6 +3,7 @@ package co.edu.uco.arquisw.infraestructura.requisito.adaptador.mapeador;
 import co.edu.uco.arquisw.dominio.requisito.dto.RequisitoDTO;
 import co.edu.uco.arquisw.dominio.requisito.modelo.Requisito;
 import co.edu.uco.arquisw.infraestructura.requisito.adaptador.entidad.RequisitoEntidad;
+import co.edu.uco.arquisw.infraestructura.requisito.adaptador.entidad.RequisitoTipoRequisitoEntidad;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -30,6 +31,7 @@ public class RequisitoMapeador {
     public void actualizarRequisito(RequisitoEntidad entidad, Requisito requisito) {
         entidad.setNombre(requisito.getNombre());
         entidad.setDescripcion(requisito.getDescripcion());
-        entidad.getTipoRequisito().getTipoRequisito().setNombre(requisito.getTipoRequisito().getNombre());
+
+        this.tipoRequisitoMapeador.actualizarTipoRequisito(entidad.getTipoRequisito(), requisito.getTipoRequisito());
     }
 }

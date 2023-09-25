@@ -18,6 +18,7 @@ import co.edu.uco.arquisw.dominio.seleccion.dto.SeleccionDTO;
 import co.edu.uco.arquisw.dominio.seleccion.puerto.consulta.SeleccionRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.transversal.excepciones.AccionExcepcion;
 import co.edu.uco.arquisw.dominio.transversal.excepciones.AutorizacionExcepcion;
+import co.edu.uco.arquisw.dominio.transversal.servicio.ServicioActualizarToken;
 import co.edu.uco.arquisw.dominio.transversal.servicio.ServicioEnviarCorreoElectronico;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.LogicoConstante;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.Mensajes;
@@ -41,8 +42,9 @@ public class ServicioAprobarEtapa {
     private final ServicioEnviarCorreoElectronico servicioEnviarCorreoElectronico;
     private final RequisitoRepositorioConsulta requisitoRepositorioConsulta;
     private final RequisitoRepositorioComando requisitoRepositorioComando;
+    private final ServicioActualizarToken servicioActualizarToken;
 
-    public ServicioAprobarEtapa(FaseRepositorioComando faseRepositorioComando, FaseRepositorioConsulta faseRepositorioConsulta, SeleccionRepositorioConsulta seleccionRepositorioConsulta, ProyectoRepositorioConsulta proyectoRepositorioConsulta, ProyectoRepositorioComando proyectoRepositorioComando, PersonaRepositorioConsulta personaRepositorioConsulta, PersonaRepositorioComando personaRepositorioComando, ServicioEnviarCorreoElectronico servicioEnviarCorreoElectronico, RequisitoRepositorioConsulta requisitoRepositorioConsulta, RequisitoRepositorioComando requisitoRepositorioComando) {
+    public ServicioAprobarEtapa(FaseRepositorioComando faseRepositorioComando, FaseRepositorioConsulta faseRepositorioConsulta, SeleccionRepositorioConsulta seleccionRepositorioConsulta, ProyectoRepositorioConsulta proyectoRepositorioConsulta, ProyectoRepositorioComando proyectoRepositorioComando, PersonaRepositorioConsulta personaRepositorioConsulta, PersonaRepositorioComando personaRepositorioComando, ServicioEnviarCorreoElectronico servicioEnviarCorreoElectronico, RequisitoRepositorioConsulta requisitoRepositorioConsulta, RequisitoRepositorioComando requisitoRepositorioComando, ServicioActualizarToken servicioActualizarToken) {
         this.faseRepositorioComando = faseRepositorioComando;
         this.faseRepositorioConsulta = faseRepositorioConsulta;
         this.seleccionRepositorioConsulta = seleccionRepositorioConsulta;
@@ -53,6 +55,7 @@ public class ServicioAprobarEtapa {
         this.servicioEnviarCorreoElectronico = servicioEnviarCorreoElectronico;
         this.requisitoRepositorioConsulta = requisitoRepositorioConsulta;
         this.requisitoRepositorioComando = requisitoRepositorioComando;
+        this.servicioActualizarToken = servicioActualizarToken;
     }
 
     public Long ejecutar(Long etapaID) {
@@ -214,6 +217,8 @@ public class ServicioAprobarEtapa {
                 this.personaRepositorioComando.eliminarRol(Rol.crear(rol), seleccion.getUsuarioID());
             });
         });
+
+        this.servicioActualizarToken.ejecutar();
     }
 
     private Fase construirNuevaFase(String nombreFase, String descripcionFase, String nombreEtapa, String descripcionEtapa) {

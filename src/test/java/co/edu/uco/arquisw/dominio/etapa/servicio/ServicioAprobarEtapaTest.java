@@ -13,6 +13,7 @@ import co.edu.uco.arquisw.dominio.requisito.puerto.comando.RequisitoRepositorioC
 import co.edu.uco.arquisw.dominio.requisito.puerto.consulta.RequisitoRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.seleccion.puerto.consulta.SeleccionRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.transversal.excepciones.AccionExcepcion;
+import co.edu.uco.arquisw.dominio.transversal.servicio.ServicioActualizarToken;
 import co.edu.uco.arquisw.dominio.transversal.servicio.ServicioEnviarCorreoElectronico;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.Mensajes;
 import co.edu.uco.arquisw.dominio.usuario.puerto.consulta.PersonaRepositorioComando;
@@ -39,8 +40,9 @@ public class ServicioAprobarEtapaTest {
         var servicioEnviarCorreoElectronico = Mockito.mock(ServicioEnviarCorreoElectronico.class);
         var requisitoRepositorioConsulta = Mockito.mock(RequisitoRepositorioConsulta.class);
         var requisitoRepositorioComando = Mockito.mock(RequisitoRepositorioComando.class);
+        var servicioActualizarToken = Mockito.mock(ServicioActualizarToken.class);
 
-        var servicio = new ServicioAprobarEtapa(faseRepositorioComando, faseRepositorioConsulta, seleccionRepositorioConsulta, proyectoRepositorioConsulta, proyectoRepositorioComando, personaRepositorioConsulta, personaRepositorioComando, servicioEnviarCorreoElectronico, requisitoRepositorioConsulta, requisitoRepositorioComando);
+        var servicio = new ServicioAprobarEtapa(faseRepositorioComando, faseRepositorioConsulta, seleccionRepositorioConsulta, proyectoRepositorioConsulta, proyectoRepositorioComando, personaRepositorioConsulta, personaRepositorioComando, servicioEnviarCorreoElectronico, requisitoRepositorioConsulta, requisitoRepositorioComando, servicioActualizarToken);
 
         Mockito.when(faseRepositorioComando.guardar(Mockito.any(Fase.class), Mockito.anyLong())).thenReturn(1L);
         Mockito.when(faseRepositorioConsulta.consultarFasePorEtapaID(Mockito.anyLong())).thenReturn(faseDto);
@@ -68,8 +70,9 @@ public class ServicioAprobarEtapaTest {
         var servicioEnviarCorreoElectronico = Mockito.mock(ServicioEnviarCorreoElectronico.class);
         var requisitoRepositorioConsulta = Mockito.mock(RequisitoRepositorioConsulta.class);
         var requisitoRepositorioComando = Mockito.mock(RequisitoRepositorioComando.class);
+        var servicioActualizarToken = Mockito.mock(ServicioActualizarToken.class);
 
-        var servicio = new ServicioAprobarEtapa(faseRepositorioComando, faseRepositorioConsulta, seleccionRepositorioConsulta, proyectoRepositorioConsulta, proyectoRepositorioComando, personaRepositorioConsulta, personaRepositorioComando, servicioEnviarCorreoElectronico, requisitoRepositorioConsulta, requisitoRepositorioComando);
+        var servicio = new ServicioAprobarEtapa(faseRepositorioComando, faseRepositorioConsulta, seleccionRepositorioConsulta, proyectoRepositorioConsulta, proyectoRepositorioComando, personaRepositorioConsulta, personaRepositorioComando, servicioEnviarCorreoElectronico, requisitoRepositorioConsulta, requisitoRepositorioComando, servicioActualizarToken);
 
         Mockito.when(faseRepositorioComando.guardar(Mockito.any(Fase.class), Mockito.anyLong())).thenReturn(1L);
         Mockito.when(faseRepositorioConsulta.consultarEtapaPorID(Mockito.anyLong())).thenReturn(EtapaDto);
