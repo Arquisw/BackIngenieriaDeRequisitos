@@ -2,14 +2,15 @@ package co.edu.uco.arquisw.infraestructura.requisito.adaptador.repositorio.imple
 
 import co.edu.uco.arquisw.dominio.requisito.modelo.MotivoRechazoVersion;
 import co.edu.uco.arquisw.dominio.requisito.modelo.Requisito;
-import co.edu.uco.arquisw.dominio.requisito.modelo.RequisitosFinales;
 import co.edu.uco.arquisw.dominio.requisito.modelo.Version;
 import co.edu.uco.arquisw.dominio.requisito.puerto.comando.RequisitoRepositorioComando;
 import co.edu.uco.arquisw.infraestructura.requisito.adaptador.mapeador.MotivoRechazoVersionMapeador;
 import co.edu.uco.arquisw.infraestructura.requisito.adaptador.mapeador.RequisitoMapeador;
-import co.edu.uco.arquisw.infraestructura.requisito.adaptador.mapeador.RequisitosFinalesMapeador;
 import co.edu.uco.arquisw.infraestructura.requisito.adaptador.mapeador.VersionMapeador;
-import co.edu.uco.arquisw.infraestructura.requisito.adaptador.repositorio.jpa.*;
+import co.edu.uco.arquisw.infraestructura.requisito.adaptador.repositorio.jpa.MotivoRechazoVersionDAO;
+import co.edu.uco.arquisw.infraestructura.requisito.adaptador.repositorio.jpa.RequisitoDAO;
+import co.edu.uco.arquisw.infraestructura.requisito.adaptador.repositorio.jpa.RequisitoTipoRequisitoDAO;
+import co.edu.uco.arquisw.infraestructura.requisito.adaptador.repositorio.jpa.VersionDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -29,10 +30,6 @@ public class RequisitoRepositorioComandoImplementacion implements RequisitoRepos
     MotivoRechazoVersionDAO motivoRechazoVersionDAO;
     @Autowired
     MotivoRechazoVersionMapeador motivoRechazoVersionMapeador;
-    @Autowired
-    RequisitosFinalesMapeador requisitosFinalesMapeador;
-    @Autowired
-    RequisitosFinalesDAO requisitosFinalesDAO;
 
     @Override
     public Long guardar(Requisito requisito, Long versionId) {
@@ -94,12 +91,5 @@ public class RequisitoRepositorioComandoImplementacion implements RequisitoRepos
         var entidad = this.motivoRechazoVersionMapeador.construirEntidad(motivoRechazoVersion, versionId);
 
         this.motivoRechazoVersionDAO.save(entidad);
-    }
-
-    @Override
-    public Long guardarRequisitosFinales(RequisitosFinales requisitosFinales, Long etapaId) {
-        var entidad = this.requisitosFinalesMapeador.construir(requisitosFinales, etapaId);
-
-        return this.requisitosFinalesDAO.save(entidad).getId();
     }
 }

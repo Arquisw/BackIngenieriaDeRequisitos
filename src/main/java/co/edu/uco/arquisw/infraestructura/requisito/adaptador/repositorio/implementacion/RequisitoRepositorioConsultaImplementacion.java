@@ -1,18 +1,14 @@
 package co.edu.uco.arquisw.infraestructura.requisito.adaptador.repositorio.implementacion;
 
 import co.edu.uco.arquisw.dominio.requisito.dto.RequisitoDTO;
-import co.edu.uco.arquisw.dominio.requisito.dto.RequisitosFinalesDTO;
 import co.edu.uco.arquisw.dominio.requisito.dto.VersionDTO;
 import co.edu.uco.arquisw.dominio.requisito.puerto.consulta.RequisitoRepositorioConsulta;
-import co.edu.uco.arquisw.dominio.transversal.formateador.FechaFormateador;
 import co.edu.uco.arquisw.dominio.transversal.validador.ValidarObjeto;
 import co.edu.uco.arquisw.infraestructura.requisito.adaptador.entidad.RequisitoEntidad;
 import co.edu.uco.arquisw.infraestructura.requisito.adaptador.entidad.VersionEntidad;
 import co.edu.uco.arquisw.infraestructura.requisito.adaptador.mapeador.RequisitoMapeador;
-import co.edu.uco.arquisw.infraestructura.requisito.adaptador.mapeador.RequisitosFinalesMapeador;
 import co.edu.uco.arquisw.infraestructura.requisito.adaptador.mapeador.VersionMapeador;
 import co.edu.uco.arquisw.infraestructura.requisito.adaptador.repositorio.jpa.RequisitoDAO;
-import co.edu.uco.arquisw.infraestructura.requisito.adaptador.repositorio.jpa.RequisitosFinalesDAO;
 import co.edu.uco.arquisw.infraestructura.requisito.adaptador.repositorio.jpa.VersionDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -32,10 +28,6 @@ public class RequisitoRepositorioConsultaImplementacion implements RequisitoRepo
     RequisitoMapeador requisitoMapeador;
     @Autowired
     VersionMapeador versionMapeador;
-    @Autowired
-    RequisitosFinalesMapeador requisitosFinalesMapeador;
-    @Autowired
-    RequisitosFinalesDAO requisitosFinalesDAO;
 
     @Override
     public RequisitoDTO consultarRequisitoPorID(Long id) {
@@ -52,7 +44,7 @@ public class RequisitoRepositorioConsultaImplementacion implements RequisitoRepo
     public List<RequisitoDTO> consultarRequisitosPorVersionID(Long versionId) {
         var entidades = this.requisitoDAO.findAll().stream().filter(requisito -> Objects.equals(requisito.getVersion(), versionId)).toList();
 
-        if(entidades.isEmpty()) {
+        if (entidades.isEmpty()) {
             return new ArrayList<>();
         }
 
@@ -96,16 +88,5 @@ public class RequisitoRepositorioConsultaImplementacion implements RequisitoRepo
         }
 
         return this.versionMapeador.construirDTO(versionFinal);
-    }
-
-    @Override
-    public RequisitosFinalesDTO consultarRequisitosFinalesPorEtapaID(Long etapaId) {
-        var entidad = this.requisitosFinalesDAO.findByEtapa(etapaId);
-
-        if (ValidarObjeto.esNulo(entidad)) {
-            return null;
-        }
-
-        return this.requisitosFinalesMapeador.construirDTO(entidad);
     }
 }
