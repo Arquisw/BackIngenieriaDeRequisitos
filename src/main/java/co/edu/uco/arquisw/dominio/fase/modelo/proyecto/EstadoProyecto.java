@@ -1,4 +1,4 @@
-package co.edu.uco.arquisw.dominio.fase.modelo;
+package co.edu.uco.arquisw.dominio.fase.modelo.proyecto;
 
 import co.edu.uco.arquisw.dominio.transversal.utilitario.Mensajes;
 import co.edu.uco.arquisw.dominio.transversal.validador.ValidarTexto;

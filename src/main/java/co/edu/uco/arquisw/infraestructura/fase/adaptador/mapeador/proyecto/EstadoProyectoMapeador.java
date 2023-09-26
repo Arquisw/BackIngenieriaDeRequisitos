@@ -1,7 +1,7 @@
 package co.edu.uco.arquisw.infraestructura.fase.adaptador.mapeador.proyecto;
 
 import co.edu.uco.arquisw.dominio.fase.dto.proyecto.EstadoProyectoDTO;
-import co.edu.uco.arquisw.dominio.fase.modelo.EstadoProyecto;
+import co.edu.uco.arquisw.dominio.fase.modelo.proyecto.EstadoProyecto;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.TextoConstante;
 import co.edu.uco.arquisw.infraestructura.fase.adaptador.entidad.proyecto.EstadoEntidad;
 import co.edu.uco.arquisw.infraestructura.fase.adaptador.entidad.proyecto.EstadoProyectoEntidad;

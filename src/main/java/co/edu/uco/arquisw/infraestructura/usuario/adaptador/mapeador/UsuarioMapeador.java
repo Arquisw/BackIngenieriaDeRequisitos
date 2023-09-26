@@ -13,6 +13,6 @@ public class UsuarioMapeador {
     }
 
     public UsuarioDTO construirDTO(UsuarioEntidad usuario) {
-        return new UsuarioDTO(usuario.getId(), usuario.getCorreo(), this.rolMapeador.construirDTOs(usuario.getRoles()));
+        return new UsuarioDTO(usuario.getId(), usuario.getCorreo(), usuario.isActivado(), this.rolMapeador.construirDTOs(usuario.getRoles()));
     }
 }
