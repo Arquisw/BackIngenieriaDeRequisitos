@@ -12,14 +12,19 @@ import co.edu.uco.arquisw.dominio.requisito.puerto.consulta.RequisitoRepositorio
 import co.edu.uco.arquisw.dominio.seleccion.dto.SeleccionDTO;
 import co.edu.uco.arquisw.dominio.seleccion.puerto.consulta.SeleccionRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.transversal.servicio.ServicioEnviarCorreoElectronico;
+import co.edu.uco.arquisw.dominio.transversal.servicio.notificacion.factoria.ServicioEnviarNotificacionFactoria;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.LogicoConstante;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.Mensajes;
+import co.edu.uco.arquisw.dominio.transversal.utilitario.TextoConstante;
 import co.edu.uco.arquisw.dominio.transversal.validador.ValidarObjeto;
 import co.edu.uco.arquisw.dominio.usuario.puerto.consulta.PersonaRepositorioConsulta;
 import lombok.AllArgsConstructor;
 
 import javax.mail.MessagingException;
 import java.util.List;
+
+import static co.edu.uco.arquisw.dominio.transversal.TipoNotificacion.VERSION_INICIAL_GUARDADA;
+import static co.edu.uco.arquisw.dominio.transversal.TipoNotificacion.VERSION_RECHAZADA;
 
 @AllArgsConstructor
 public class ServicioRechazarVersionPorID {
@@ -28,10 +33,9 @@ public class ServicioRechazarVersionPorID {
     private final FaseRepositorioConsulta faseRepositorioConsulta;
     private final SeleccionRepositorioConsulta seleccionRepositorioConsulta;
     private final ProyectoRepositorioConsulta proyectoRepositorioConsulta;
-    private final PersonaRepositorioConsulta personaRepositorioConsulta;
-    private final ServicioEnviarCorreoElectronico servicioEnviarCorreoElectronico;
     private final ServicioObtenerRequisitosEtapaAnterior servicioObtenerRequisitosEtapaAnterior;
     private final ServicioGuardarRequisitos servicioGuardarRequisitos;
+    private final ServicioEnviarNotificacionFactoria servicioEnviarNotificacionFactoria;
 
     public Long ejecutar(MotivoRechazoVersion motivoRechazoVersion, Long versionId) {
         validarSiExisteVersionConID(versionId);
@@ -62,7 +66,7 @@ public class ServicioRechazarVersionPorID {
 
         this.servicioGuardarRequisitos.guardarRequisitosSegunEtapa(etapa, respuestaId, proyectoId);
 
-        notificar(seleccionesDelProyecto, versionId, etapa, fase, proyecto, motivoRechazoVersion);
+        this.servicioEnviarNotificacionFactoria.orquestarNotificacion(seleccionesDelProyecto, etapa, fase, proyecto, versionId, versionDTO.getMotivoRechazo(), VERSION_RECHAZADA);
 
         return respuestaId;
     }
@@ -71,19 +75,5 @@ public class ServicioRechazarVersionPorID {
         if (ValidarObjeto.esNulo(this.requisitoRepositorioConsulta.consultarVersionPorID(versionId))) {
             throw new NullPointerException(Mensajes.NO_EXISTE_VERSION_CON_EL_ID + versionId);
         }
-    }
-
-    private void notificar(List<SeleccionDTO> seleccionesDelProyecto, Long versionId, EtapaDTO etapa, FaseDTO fase, ProyectoDTO proyecto, MotivoRechazoVersion motivoRechazoVersion) {
-        seleccionesDelProyecto.forEach(seleccionDelProyecto -> {
-            try {
-                var correo = this.personaRepositorioConsulta.consultarPorId(seleccionDelProyecto.getUsuarioID()).getCorreo();
-                var asunto = Mensajes.VERSION_DE_LA_ETAPA_RECHAZADA;
-                var cuerpo = Mensajes.LA_VERSION + versionId + Mensajes.DE_LA_ETAPA + etapa.getNombre() + Mensajes.DE_LA_FASE + fase.getNombre() + Mensajes.EN_EL_PROYECTO + proyecto.getNombre() + Mensajes.HA_SIDO_RECHAZADA_POR_EL_LIDER_DE_EQUIPO_CUYO_MOTIVO_ES + motivoRechazoVersion.getMotivo();
-
-                this.servicioEnviarCorreoElectronico.enviarCorreo(correo, asunto, cuerpo);
-            } catch (MessagingException e) {
-                throw new RuntimeException(e.getMessage());
-            }
-        });
     }
 }

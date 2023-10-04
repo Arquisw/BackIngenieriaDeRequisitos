@@ -5,30 +5,23 @@ import co.edu.uco.arquisw.dominio.fase.puerto.consulta.ProyectoRepositorioConsul
 import co.edu.uco.arquisw.dominio.requisito.modelo.Version;
 import co.edu.uco.arquisw.dominio.requisito.puerto.comando.RequisitoRepositorioComando;
 import co.edu.uco.arquisw.dominio.seleccion.puerto.consulta.SeleccionRepositorioConsulta;
-import co.edu.uco.arquisw.dominio.transversal.servicio.ServicioEnviarCorreoElectronico;
+import co.edu.uco.arquisw.dominio.transversal.servicio.notificacion.factoria.ServicioEnviarNotificacionFactoria;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.LogicoConstante;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.Mensajes;
+import co.edu.uco.arquisw.dominio.transversal.utilitario.TextoConstante;
 import co.edu.uco.arquisw.dominio.transversal.validador.ValidarObjeto;
-import co.edu.uco.arquisw.dominio.usuario.puerto.consulta.PersonaRepositorioConsulta;
+import lombok.AllArgsConstructor;
 
-import javax.mail.MessagingException;
+import static co.edu.uco.arquisw.dominio.transversal.TipoNotificacion.VERSION_INICIAL_GUARDADA;
 
+@AllArgsConstructor
 public class ServicioGuardarVersionInicial {
     private final RequisitoRepositorioComando requisitoRepositorioComando;
     private final FaseRepositorioConsulta faseRepositorioConsulta;
     private final SeleccionRepositorioConsulta seleccionRepositorioConsulta;
     private final ProyectoRepositorioConsulta proyectoRepositorioConsulta;
-    private final PersonaRepositorioConsulta personaRepositorioConsulta;
-    private final ServicioEnviarCorreoElectronico servicioEnviarCorreoElectronico;
+    private final ServicioEnviarNotificacionFactoria servicioEnviarNotificacionFactoria;
 
-    public ServicioGuardarVersionInicial(RequisitoRepositorioComando requisitoRepositorioComando, FaseRepositorioConsulta faseRepositorioConsulta, SeleccionRepositorioConsulta seleccionRepositorioConsulta, ProyectoRepositorioConsulta proyectoRepositorioConsulta, PersonaRepositorioConsulta personaRepositorioConsulta, ServicioEnviarCorreoElectronico servicioEnviarCorreoElectronico) {
-        this.requisitoRepositorioComando = requisitoRepositorioComando;
-        this.faseRepositorioConsulta = faseRepositorioConsulta;
-        this.seleccionRepositorioConsulta = seleccionRepositorioConsulta;
-        this.proyectoRepositorioConsulta = proyectoRepositorioConsulta;
-        this.personaRepositorioConsulta = personaRepositorioConsulta;
-        this.servicioEnviarCorreoElectronico = servicioEnviarCorreoElectronico;
-    }
 
     public Long ejecutar(Long etapaId) {
         validarSiExisteEtapaConID(etapaId);
@@ -43,17 +36,7 @@ public class ServicioGuardarVersionInicial {
 
         var versionId = this.requisitoRepositorioComando.guardarVersion(version, etapaId);
 
-        seleccionesDelProyecto.forEach(seleccionDelProyecto -> {
-            try {
-                var correo = this.personaRepositorioConsulta.consultarPorId(seleccionDelProyecto.getUsuarioID()).getCorreo();
-                var asunto = Mensajes.PRIMERA_VERSION_DE_LA_ETAPA_INICIADA;
-                var cuerpo = Mensajes.LA_ETAPA + etapa.getNombre() + Mensajes.DE_LA_FASE + fase.getNombre() + Mensajes.EN_EL_PROYECTO + proyecto.getNombre() + Mensajes.HA_INICIADO_LA_PRIMERA_VERSION_DE_LOS_REQUISITOS;
-
-                this.servicioEnviarCorreoElectronico.enviarCorreo(correo, asunto, cuerpo);
-            } catch (MessagingException e) {
-                throw new RuntimeException(e.getMessage());
-            }
-        });
+        this.servicioEnviarNotificacionFactoria.orquestarNotificacion(seleccionesDelProyecto, etapa, fase, proyecto, 0L, TextoConstante.VACIO, VERSION_INICIAL_GUARDADA);
 
         return versionId;
     }

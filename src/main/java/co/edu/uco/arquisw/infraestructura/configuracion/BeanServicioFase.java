@@ -13,6 +13,7 @@ import co.edu.uco.arquisw.dominio.requisito.servicio.ServicioGuardarRequisitos;
 import co.edu.uco.arquisw.dominio.seleccion.puerto.consulta.SeleccionRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.transversal.servicio.ServicioActualizarToken;
 import co.edu.uco.arquisw.dominio.transversal.servicio.ServicioEnviarCorreoElectronico;
+import co.edu.uco.arquisw.dominio.transversal.servicio.notificacion.factoria.ServicioEnviarNotificacionFactoria;
 import co.edu.uco.arquisw.dominio.usuario.puerto.consulta.PersonaRepositorioComando;
 import co.edu.uco.arquisw.dominio.usuario.puerto.consulta.PersonaRepositorioConsulta;
 import org.springframework.context.annotation.Bean;
@@ -26,8 +27,8 @@ public class BeanServicioFase {
     }
 
     @Bean
-    public ServicioAprobarEtapa servicioAprobarEtapa(FaseRepositorioComando faseRepositorioComando, FaseRepositorioConsulta faseRepositorioConsulta, SeleccionRepositorioConsulta seleccionRepositorioConsulta, ProyectoRepositorioConsulta proyectoRepositorioConsulta, PersonaRepositorioConsulta personaRepositorioConsulta, ServicioEnviarCorreoElectronico servicioEnviarCorreoElectronico, RequisitoRepositorioConsulta requisitoRepositorioConsulta, ServicioActualizarFase servicioActualizarFase, ServicioConstruirNuevaFase servicioConstruirNuevaFase) {
-        return new ServicioAprobarEtapa(faseRepositorioComando, faseRepositorioConsulta, seleccionRepositorioConsulta, proyectoRepositorioConsulta, personaRepositorioConsulta, servicioEnviarCorreoElectronico, requisitoRepositorioConsulta, servicioActualizarFase, servicioConstruirNuevaFase);
+    public ServicioAprobarEtapa servicioAprobarEtapa(FaseRepositorioComando faseRepositorioComando, FaseRepositorioConsulta faseRepositorioConsulta, SeleccionRepositorioConsulta seleccionRepositorioConsulta, ProyectoRepositorioConsulta proyectoRepositorioConsulta, RequisitoRepositorioConsulta requisitoRepositorioConsulta, ServicioActualizarFase servicioActualizarFase, ServicioConstruirNuevaFase servicioConstruirNuevaFase, ServicioEnviarNotificacionFactoria servicioEnviarNotificacionFactoria) {
+        return new ServicioAprobarEtapa(faseRepositorioComando, faseRepositorioConsulta, seleccionRepositorioConsulta, proyectoRepositorioConsulta, requisitoRepositorioConsulta, servicioActualizarFase, servicioConstruirNuevaFase, servicioEnviarNotificacionFactoria);
     }
 
     @Bean
