@@ -34,13 +34,18 @@ public class BeanServicioRequisito {
     }
 
     @Bean
-    public ServicioGenerarVersionFinal servicioGenerarVersionFinal(RequisitoRepositorioComando requisitoRepositorioComando, RequisitoRepositorioConsulta requisitoRepositorioConsulta, FaseRepositorioConsulta faseRepositorioConsulta, SeleccionRepositorioConsulta seleccionRepositorioConsulta, ProyectoRepositorioConsulta proyectoRepositorioConsulta, PersonaRepositorioConsulta personaRepositorioConsulta, ServicioEnviarCorreoElectronico servicioEnviarCorreoElectronico) {
-        return new ServicioGenerarVersionFinal(requisitoRepositorioComando, requisitoRepositorioConsulta, faseRepositorioConsulta, seleccionRepositorioConsulta, proyectoRepositorioConsulta, personaRepositorioConsulta, servicioEnviarCorreoElectronico);
+    public ServicioGenerarVersionFinal servicioGenerarVersionFinal(RequisitoRepositorioComando requisitoRepositorioComando, RequisitoRepositorioConsulta requisitoRepositorioConsulta, FaseRepositorioConsulta faseRepositorioConsulta, SeleccionRepositorioConsulta seleccionRepositorioConsulta, ProyectoRepositorioConsulta proyectoRepositorioConsulta, PersonaRepositorioConsulta personaRepositorioConsulta, ServicioObtenerRequisitosEtapaAnterior servicioObtenerRequisitosEtapaAnterior, ServicioEnviarCorreoElectronico servicioEnviarCorreoElectronico) {
+        return new ServicioGenerarVersionFinal(requisitoRepositorioComando, requisitoRepositorioConsulta, faseRepositorioConsulta, seleccionRepositorioConsulta, proyectoRepositorioConsulta, personaRepositorioConsulta, servicioObtenerRequisitosEtapaAnterior, servicioEnviarCorreoElectronico);
     }
 
     @Bean
     public ServicioGuardarRequisito servicioGuardarRequisito(RequisitoRepositorioComando requisitoRepositorioComando, RequisitoRepositorioConsulta requisitoRepositorioConsulta) {
         return new ServicioGuardarRequisito(requisitoRepositorioComando, requisitoRepositorioConsulta);
+    }
+
+    @Bean
+    public ServicioGuardarRequisitos servicioGuardarRequisitos(RequisitoRepositorioComando requisitoRepositorioComando, RequisitoRepositorioConsulta requisitoRepositorioConsulta, FaseRepositorioConsulta faseRepositorioConsulta) {
+        return new ServicioGuardarRequisitos(requisitoRepositorioComando, requisitoRepositorioConsulta, faseRepositorioConsulta);
     }
 
     @Bean
@@ -54,7 +59,18 @@ public class BeanServicioRequisito {
     }
 
     @Bean
-    public ServicioRechazarVersionPorID servicioRechazarVersiónPorID(RequisitoRepositorioComando requisitoRepositorioComando, RequisitoRepositorioConsulta requisitoRepositorioConsulta, FaseRepositorioConsulta faseRepositorioConsulta, SeleccionRepositorioConsulta seleccionRepositorioConsulta, ProyectoRepositorioConsulta proyectoRepositorioConsulta, PersonaRepositorioConsulta personaRepositorioConsulta, ServicioEnviarCorreoElectronico servicioEnviarCorreoElectronico) {
-        return new ServicioRechazarVersionPorID(requisitoRepositorioComando, requisitoRepositorioConsulta, faseRepositorioConsulta, seleccionRepositorioConsulta, proyectoRepositorioConsulta, personaRepositorioConsulta, servicioEnviarCorreoElectronico);
+    public ServicioObtenerRequisitosEtapaAnterior servicioObtenerRequisitosEtapaAnterior(RequisitoRepositorioConsulta requisitoRepositorioConsulta, FaseRepositorioConsulta faseRepositorioConsulta, ServicioValidarSiRequisitosSonIguales servicioValidarSiRequisitosSonIguales) {
+        return new ServicioObtenerRequisitosEtapaAnterior(requisitoRepositorioConsulta, faseRepositorioConsulta, servicioValidarSiRequisitosSonIguales);
     }
+
+    @Bean
+    public ServicioRechazarVersionPorID servicioRechazarVersionPorID(RequisitoRepositorioComando requisitoRepositorioComando, RequisitoRepositorioConsulta requisitoRepositorioConsulta, FaseRepositorioConsulta faseRepositorioConsulta, SeleccionRepositorioConsulta seleccionRepositorioConsulta, ProyectoRepositorioConsulta proyectoRepositorioConsulta, PersonaRepositorioConsulta personaRepositorioConsulta, ServicioEnviarCorreoElectronico servicioEnviarCorreoElectronico, ServicioObtenerRequisitosEtapaAnterior servicioObtenerRequisitosEtapaAnterior, ServicioGuardarRequisitos servicioGuardarRequisitos) {
+        return new ServicioRechazarVersionPorID(requisitoRepositorioComando, requisitoRepositorioConsulta, faseRepositorioConsulta, seleccionRepositorioConsulta, proyectoRepositorioConsulta, personaRepositorioConsulta, servicioEnviarCorreoElectronico, servicioObtenerRequisitosEtapaAnterior, servicioGuardarRequisitos);
+    }
+
+    @Bean
+    public ServicioValidarSiRequisitosSonIguales servicioValidarSiRequisitosSonIguales(RequisitoRepositorioConsulta requisitoRepositorioConsulta) {
+        return new ServicioValidarSiRequisitosSonIguales(requisitoRepositorioConsulta);
+    }
+
 }
