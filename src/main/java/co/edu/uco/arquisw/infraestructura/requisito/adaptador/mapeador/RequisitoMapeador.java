@@ -4,6 +4,8 @@ import co.edu.uco.arquisw.dominio.requisito.dto.RequisitoDTO;
 import co.edu.uco.arquisw.dominio.requisito.modelo.Requisito;
 import co.edu.uco.arquisw.infraestructura.requisito.adaptador.entidad.RequisitoEntidad;
 import co.edu.uco.arquisw.infraestructura.requisito.adaptador.entidad.RequisitoTipoRequisitoEntidad;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -26,6 +28,11 @@ public class RequisitoMapeador {
 
     public List<RequisitoDTO> construirDTOs(List<RequisitoEntidad> requisitos) {
         return requisitos.stream().map(new RequisitoMapeador(tipoRequisitoMapeador)::consturirDTO).toList();
+    }
+
+    public Page<RequisitoDTO> construirPageDto(Page<RequisitoEntidad> requisitoEntidad){
+        List<RequisitoDTO> dtoList = requisitoEntidad.getContent().stream().map(new RequisitoMapeador(tipoRequisitoMapeador)::consturirDTO).toList();
+        return new PageImpl<>(dtoList, requisitoEntidad.getPageable(), requisitoEntidad.getTotalElements());
     }
 
     public void actualizarRequisito(RequisitoEntidad entidad, Requisito requisito) {

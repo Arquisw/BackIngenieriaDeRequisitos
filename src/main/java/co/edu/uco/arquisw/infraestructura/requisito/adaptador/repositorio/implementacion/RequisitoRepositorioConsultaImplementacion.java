@@ -11,6 +11,9 @@ import co.edu.uco.arquisw.infraestructura.requisito.adaptador.mapeador.VersionMa
 import co.edu.uco.arquisw.infraestructura.requisito.adaptador.repositorio.jpa.RequisitoDAO;
 import co.edu.uco.arquisw.infraestructura.requisito.adaptador.repositorio.jpa.VersionDAO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -51,6 +54,18 @@ public class RequisitoRepositorioConsultaImplementacion implements RequisitoRepo
         var entidadesOrdenadas = entidades.stream().sorted(Comparator.comparing(RequisitoEntidad::getId)).toList();
 
         return this.requisitoMapeador.construirDTOs(entidadesOrdenadas);
+    }
+
+    @Override
+    public Page<RequisitoDTO> consultarRequisitosPorVersionIDPaginado(Long versionId, int pagina, int tamano) {
+        PageRequest pageable = PageRequest.of(pagina, tamano);
+        var entidades = this.requisitoDAO.findByVersion(versionId, pageable);
+        if (entidades.getContent().isEmpty()) {
+            return Page.empty();
+        }
+        var entidadesOrdenadas = entidades.getContent().stream().sorted(Comparator.comparing(RequisitoEntidad::getId)).toList();
+        entidades = new PageImpl<>(entidadesOrdenadas, entidades.getPageable(), entidades.getTotalElements());
+        return this.requisitoMapeador.construirPageDto(entidades);
     }
 
     @Override

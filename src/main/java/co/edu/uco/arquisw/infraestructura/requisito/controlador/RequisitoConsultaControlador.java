@@ -7,11 +7,9 @@ import co.edu.uco.arquisw.dominio.requisito.dto.RequisitoDTO;
 import co.edu.uco.arquisw.dominio.requisito.dto.VersionDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -39,8 +37,11 @@ public class RequisitoConsultaControlador {
     @PreAuthorize("hasAuthority('USUARIO_LECTURA')")
     @GetMapping("/version/{id}")
     @Operation(summary = "Consultar Requisitos por Version ID", description = "Este es usado para consultar los requisitos de una version por medio de su ID")
-    public List<RequisitoDTO> consultarRequisitosPorVersionId(@PathVariable Long id) {
-        return this.consultarRequisitosPorVersionIDManejador.ejecutar(id);
+    public Page<RequisitoDTO> consultarRequisitosPorVersionId(
+            @RequestParam(defaultValue = "0") int pagina,
+            @RequestParam(defaultValue = "10") int tamano,
+            @PathVariable Long id) {
+        return this.consultarRequisitosPorVersionIDManejador.ejecutar(id,pagina,tamano);
     }
 
     @PreAuthorize("hasAuthority('USUARIO_LECTURA')")
