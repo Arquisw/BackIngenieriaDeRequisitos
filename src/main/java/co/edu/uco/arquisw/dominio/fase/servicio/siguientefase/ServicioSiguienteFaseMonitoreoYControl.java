@@ -7,6 +7,7 @@ import co.edu.uco.arquisw.dominio.fase.servicio.ServicioConstruirNuevaFase;
 import co.edu.uco.arquisw.dominio.requisito.dto.RequisitoDTO;
 import co.edu.uco.arquisw.dominio.requisito.puerto.comando.RequisitoRepositorioComando;
 import co.edu.uco.arquisw.dominio.requisito.servicio.ServicioGuardarRequisitos;
+import co.edu.uco.arquisw.dominio.seleccion.dto.SeleccionDTO;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.TextoConstante;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class ServicioSiguienteFaseMonitoreoYControl extends ServicioSiguienteFas
         return this.construirContenidoSiguienteFase(proyectoId, requisitosUltimaVersion, TextoConstante.FASE_MONITOREO_Y_CONTROL_NOMBRE, TextoConstante.FASE_MONITOREO_Y_CONTROL_DESCRIPCION, TextoConstante.ETAPA_VERIFICACION_NOMBRE, TextoConstante.ETAPA_VERIFICACION_DESCRIPCION);
     }
 
+    @Override
     public Long construirSiguienteEtapa(Etapa etapaAnterior, Long etapaID, List<RequisitoDTO> requisitosUltimaVersion) {
         var fase = this.getServicioConstruirNuevaFase().construirFaseActualizada(etapaAnterior);
         var faseID = this.getFaseRepositorioConsulta().consultarFasePorEtapaID(etapaID).getId();
@@ -34,5 +36,10 @@ public class ServicioSiguienteFaseMonitoreoYControl extends ServicioSiguienteFas
         this.getServicioGuardarRequisitos().ejecutar(requisitosUltimaVersion, id);
 
         return id;
+    }
+
+    @Override
+    public Long construirFaseCierre(Long proyectoId, List<RequisitoDTO> requisitosUltimaVersion, List<SeleccionDTO> seleccionesDelProyecto) {
+        return null;
     }
 }

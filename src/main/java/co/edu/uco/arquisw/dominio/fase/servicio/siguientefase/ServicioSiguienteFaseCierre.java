@@ -1,5 +1,6 @@
 package co.edu.uco.arquisw.dominio.fase.servicio.siguientefase;
 
+import co.edu.uco.arquisw.dominio.fase.modelo.Etapa;
 import co.edu.uco.arquisw.dominio.fase.puerto.comando.FaseRepositorioComando;
 import co.edu.uco.arquisw.dominio.fase.puerto.consulta.FaseRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.fase.servicio.ServicioCerrarProcesoDeIngenieriaDeRequisitos;
@@ -27,6 +28,12 @@ public class ServicioSiguienteFaseCierre extends ServicioSiguienteFase {
         return null;
     }
 
+    @Override
+    public Long construirSiguienteEtapa(Etapa etapaAnterior, Long etapaID, List<RequisitoDTO> requisitosUltimaVersion) {
+        return null;
+    }
+
+    @Override
     public Long construirFaseCierre(Long proyectoId, List<RequisitoDTO> requisitosUltimaVersion, List<SeleccionDTO> seleccionesDelProyecto) {
         var fase = this.getServicioConstruirNuevaFase().construirFaseFinal();
         var faseId = this.getFaseRepositorioComando().guardar(fase, proyectoId);

@@ -1,11 +1,13 @@
 package co.edu.uco.arquisw.dominio.fase.servicio.siguientefase;
 
+import co.edu.uco.arquisw.dominio.fase.modelo.Etapa;
 import co.edu.uco.arquisw.dominio.fase.puerto.comando.FaseRepositorioComando;
 import co.edu.uco.arquisw.dominio.fase.puerto.consulta.FaseRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.fase.servicio.ServicioConstruirNuevaFase;
 import co.edu.uco.arquisw.dominio.requisito.dto.RequisitoDTO;
 import co.edu.uco.arquisw.dominio.requisito.puerto.comando.RequisitoRepositorioComando;
 import co.edu.uco.arquisw.dominio.requisito.servicio.ServicioGuardarRequisitos;
+import co.edu.uco.arquisw.dominio.seleccion.dto.SeleccionDTO;
 import lombok.Getter;
 
 import java.util.List;
@@ -27,6 +29,10 @@ public abstract class ServicioSiguienteFase {
     }
 
     public abstract Long construirSiguienteFase(Long proyectoId, List<RequisitoDTO> requisitosUltimaVersion);
+
+    public abstract Long construirSiguienteEtapa(Etapa etapaAnterior, Long etapaID, List<RequisitoDTO> requisitosUltimaVersion);
+
+    public abstract Long construirFaseCierre(Long proyectoId, List<RequisitoDTO> requisitosUltimaVersion, List<SeleccionDTO> seleccionesDelProyecto);
 
     public Long construirContenidoSiguienteFase(Long proyectoId, List<RequisitoDTO> requisitosUltimaVersion, String nombreSiguienteFase, String descripcionSiguienteFase, String nombreSiguienteEtapa, String descripcionSiguienteEtapa) {
         var fase = this.servicioConstruirNuevaFase.ejecutar(nombreSiguienteFase, descripcionSiguienteFase, nombreSiguienteEtapa, descripcionSiguienteEtapa);
