@@ -7,7 +7,6 @@ import co.edu.uco.arquisw.dominio.requisito.puerto.consulta.RequisitoRepositorio
 import co.edu.uco.arquisw.dominio.requisito.servicio.*;
 import co.edu.uco.arquisw.dominio.seleccion.puerto.consulta.SeleccionRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.transversal.servicio.ServicioEnviarCorreoElectronico;
-import co.edu.uco.arquisw.dominio.transversal.servicio.notificacion.factoria.ServicioEnviarNotificacionFactoria;
 import co.edu.uco.arquisw.dominio.usuario.puerto.consulta.PersonaRepositorioConsulta;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,8 +34,8 @@ public class BeanServicioRequisito {
     }
 
     @Bean
-    public ServicioGenerarVersionFinal servicioGenerarVersionFinal(RequisitoRepositorioComando requisitoRepositorioComando, RequisitoRepositorioConsulta requisitoRepositorioConsulta, FaseRepositorioConsulta faseRepositorioConsulta, SeleccionRepositorioConsulta seleccionRepositorioConsulta, ProyectoRepositorioConsulta proyectoRepositorioConsulta, ServicioObtenerRequisitosEtapaAnterior servicioObtenerRequisitosEtapaAnterior, ServicioEnviarNotificacionFactoria servicioEnviarNotificacionFactoria) {
-        return new ServicioGenerarVersionFinal(requisitoRepositorioComando, requisitoRepositorioConsulta, faseRepositorioConsulta, seleccionRepositorioConsulta, proyectoRepositorioConsulta, servicioObtenerRequisitosEtapaAnterior, servicioEnviarNotificacionFactoria);
+    public ServicioGenerarVersionFinal servicioGenerarVersionFinal(RequisitoRepositorioComando requisitoRepositorioComando, RequisitoRepositorioConsulta requisitoRepositorioConsulta, FaseRepositorioConsulta faseRepositorioConsulta, SeleccionRepositorioConsulta seleccionRepositorioConsulta, ProyectoRepositorioConsulta proyectoRepositorioConsulta, PersonaRepositorioConsulta personaRepositorioConsulta, ServicioEnviarCorreoElectronico servicioEnviarCorreoElectronico) {
+        return new ServicioGenerarVersionFinal(requisitoRepositorioComando, requisitoRepositorioConsulta, faseRepositorioConsulta, seleccionRepositorioConsulta, proyectoRepositorioConsulta, personaRepositorioConsulta, servicioEnviarCorreoElectronico);
     }
 
     @Bean
@@ -45,32 +44,17 @@ public class BeanServicioRequisito {
     }
 
     @Bean
-    public ServicioGuardarRequisitos servicioGuardarRequisitos(RequisitoRepositorioComando requisitoRepositorioComando, RequisitoRepositorioConsulta requisitoRepositorioConsulta, FaseRepositorioConsulta faseRepositorioConsulta) {
-        return new ServicioGuardarRequisitos(requisitoRepositorioComando, requisitoRepositorioConsulta, faseRepositorioConsulta);
-    }
-
-    @Bean
     public ServicioConsultarRequisitosPorVersionID servicioConsultarRequisitosPorVersionID(RequisitoRepositorioConsulta requisitoRepositorioConsulta) {
         return new ServicioConsultarRequisitosPorVersionID(requisitoRepositorioConsulta);
     }
 
     @Bean
-    public ServicioGuardarVersionInicial servicioGuardarVersionInicial(RequisitoRepositorioComando requisitoRepositorioComando, FaseRepositorioConsulta faseRepositorioConsulta, SeleccionRepositorioConsulta seleccionRepositorioConsulta, ProyectoRepositorioConsulta proyectoRepositorioConsulta, ServicioEnviarNotificacionFactoria servicioEnviarNotificacionFactoria) {
-        return new ServicioGuardarVersionInicial(requisitoRepositorioComando, faseRepositorioConsulta, seleccionRepositorioConsulta, proyectoRepositorioConsulta, servicioEnviarNotificacionFactoria);
+    public ServicioGuardarVersionInicial servicioGuardarVersionInicial(RequisitoRepositorioComando requisitoRepositorioComando, FaseRepositorioConsulta faseRepositorioConsulta, SeleccionRepositorioConsulta seleccionRepositorioConsulta, ProyectoRepositorioConsulta proyectoRepositorioConsulta, PersonaRepositorioConsulta personaRepositorioConsulta, ServicioEnviarCorreoElectronico servicioEnviarCorreoElectronico) {
+        return new ServicioGuardarVersionInicial(requisitoRepositorioComando, faseRepositorioConsulta, seleccionRepositorioConsulta, proyectoRepositorioConsulta, personaRepositorioConsulta, servicioEnviarCorreoElectronico);
     }
 
     @Bean
-    public ServicioObtenerRequisitosEtapaAnterior servicioObtenerRequisitosEtapaAnterior(RequisitoRepositorioConsulta requisitoRepositorioConsulta, FaseRepositorioConsulta faseRepositorioConsulta, ServicioValidarSiRequisitosSonIguales servicioValidarSiRequisitosSonIguales) {
-        return new ServicioObtenerRequisitosEtapaAnterior(requisitoRepositorioConsulta, faseRepositorioConsulta, servicioValidarSiRequisitosSonIguales);
-    }
-
-    @Bean
-    public ServicioRechazarVersionPorID servicioRechazarVersionPorID(RequisitoRepositorioComando requisitoRepositorioComando, RequisitoRepositorioConsulta requisitoRepositorioConsulta, FaseRepositorioConsulta faseRepositorioConsulta, SeleccionRepositorioConsulta seleccionRepositorioConsulta, ProyectoRepositorioConsulta proyectoRepositorioConsulta, ServicioObtenerRequisitosEtapaAnterior servicioObtenerRequisitosEtapaAnterior, ServicioGuardarRequisitos servicioGuardarRequisitos, ServicioEnviarNotificacionFactoria servicioEnviarNotificacionFactoria) {
-        return new ServicioRechazarVersionPorID(requisitoRepositorioComando, requisitoRepositorioConsulta, faseRepositorioConsulta, seleccionRepositorioConsulta, proyectoRepositorioConsulta, servicioObtenerRequisitosEtapaAnterior, servicioGuardarRequisitos, servicioEnviarNotificacionFactoria);
-    }
-
-    @Bean
-    public ServicioValidarSiRequisitosSonIguales servicioValidarSiRequisitosSonIguales(RequisitoRepositorioConsulta requisitoRepositorioConsulta) {
-        return new ServicioValidarSiRequisitosSonIguales(requisitoRepositorioConsulta);
+    public ServicioRechazarVersionPorID servicioRechazarVersiónPorID(RequisitoRepositorioComando requisitoRepositorioComando, RequisitoRepositorioConsulta requisitoRepositorioConsulta, FaseRepositorioConsulta faseRepositorioConsulta, SeleccionRepositorioConsulta seleccionRepositorioConsulta, ProyectoRepositorioConsulta proyectoRepositorioConsulta, PersonaRepositorioConsulta personaRepositorioConsulta, ServicioEnviarCorreoElectronico servicioEnviarCorreoElectronico) {
+        return new ServicioRechazarVersionPorID(requisitoRepositorioComando, requisitoRepositorioConsulta, faseRepositorioConsulta, seleccionRepositorioConsulta, proyectoRepositorioConsulta, personaRepositorioConsulta, servicioEnviarCorreoElectronico);
     }
 }

@@ -50,20 +50,4 @@ public class Mensajes {
 
     private Mensajes() {
     }
-
-    public static String obtenerCuerpoNotificacionAprobacionEtapa(String nombreEtapa, String nombreFase, String nombreProyecto) {
-        return LA_ETAPA + nombreEtapa + DE_LA_FASE + nombreFase + EN_EL_PROYECTO + nombreProyecto + HA_SIDO_APROBADO_POR_EL_ROL_LIDER_DE_EQUIPO;
-    }
-
-    public static String obtenerCuerpoNotificacionVersionFinalGenerada(Long versionId, String nombreEtapa, String nombreFase, String nombreProyecto) {
-        return LA_VERSION + versionId + DE_LA_ETAPA + nombreEtapa + DE_LA_FASE + nombreFase + EN_EL_PROYECTO + nombreProyecto + HA_SIDO_ESTABLECIDA_COMO_VERSION_FINAL_POR_LO_TANTO_ESTA_LISTA_PARA_REVISION;
-    }
-
-    public static String obtenerCuerpoNotificacionVersionInicialGuardada(String nombreEtapa, String nombreFase, String nombreProyecto) {
-        return LA_ETAPA + nombreEtapa + DE_LA_FASE + nombreFase + EN_EL_PROYECTO + nombreProyecto + HA_INICIADO_LA_PRIMERA_VERSION_DE_LOS_REQUISITOS;
-    }
-
-    public static String obtenerCuerpoNotificacionVersionRechazada(Long versionId, String nombreEtapa, String nombreFase, String nombreProyecto, String motivoRechazo) {
-        return LA_VERSION + versionId + DE_LA_ETAPA + nombreEtapa + DE_LA_FASE + nombreFase + EN_EL_PROYECTO + nombreProyecto + HA_SIDO_RECHAZADA_POR_EL_LIDER_DE_EQUIPO_CUYO_MOTIVO_ES + motivoRechazo;
-    }
 }
