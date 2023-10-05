@@ -41,9 +41,7 @@ public class ServicioCerrarProcesoDeIngenieriaDeRequisitos {
         seleccionesDelProyecto.forEach(seleccion -> {
             this.personaRepositorioComando.eliminarRol(Rol.crear(TextoConstante.ROL_SELECCIONADO), seleccion.getUsuarioID());
 
-            seleccion.getRoles().forEach(rol -> {
-                this.personaRepositorioComando.eliminarRol(Rol.crear(rol), seleccion.getUsuarioID());
-            });
+            seleccion.getRoles().forEach(rol -> this.personaRepositorioComando.eliminarRol(Rol.crear(rol), seleccion.getUsuarioID()));
         });
 
         this.servicioActualizarToken.ejecutar();
