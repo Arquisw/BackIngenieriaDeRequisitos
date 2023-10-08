@@ -18,9 +18,9 @@ public class ServicioConsultarEtapaPorID {
         return this.faseRepositorioConsulta.consultarEtapaPorID(etapaId);
     }
 
-    private void validarSiExisteEtapaConID(Long faseID) {
-        if (ValidarObjeto.esNulo(this.faseRepositorioConsulta.consultarEtapaPorID(faseID))) {
-            throw new NullPointerException(Mensajes.NO_EXISTE_ETAPA_CON_EL_ID + faseID);
+    private void validarSiExisteEtapaConID(Long etapaId) {
+        if (ValidarObjeto.esNulo(this.faseRepositorioConsulta.consultarEtapaPorID(etapaId))) {
+            throw new NullPointerException(Mensajes.obtenerNoExiteEtapaConId(etapaId));
         }
     }
 }

@@ -62,7 +62,7 @@ public class ServicioActualizarTokenJWT implements ServicioActualizarToken {
 
     private void validarSiExisteUsuarioConCorreo(String correo) {
         if (this.personaRepositorioConsulta.existeConCorreo(correo)) {
-            throw new DuplicidadExcepcion(Mensajes.EXISTE_USUARIO_CON_CORREO + correo);
+            throw new DuplicidadExcepcion(Mensajes.obtenerNoExiteUsuarioConCorreo(correo));
         }
     }
 
@@ -96,7 +96,7 @@ public class ServicioActualizarTokenJWT implements ServicioActualizarToken {
         if (index != -1) {
             return input.substring(index + 1);
         } else {
-            return "No underscore found.";
+            return Mensajes.NO_SE_ENCONTRO_NINGUN_GUION_BAJO;
         }
     }
 }

@@ -3,6 +3,7 @@ package co.edu.uco.arquisw.infraestructura.requisito.adaptador.mapeador;
 import co.edu.uco.arquisw.dominio.requisito.dto.VersionDTO;
 import co.edu.uco.arquisw.dominio.requisito.modelo.Version;
 import co.edu.uco.arquisw.dominio.transversal.formateador.FechaFormateador;
+import co.edu.uco.arquisw.dominio.transversal.utilitario.NumeroConstante;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.TextoConstante;
 import co.edu.uco.arquisw.infraestructura.requisito.adaptador.entidad.VersionEntidad;
 import co.edu.uco.arquisw.infraestructura.requisito.adaptador.repositorio.jpa.MotivoRechazoVersionDAO;
@@ -20,7 +21,7 @@ public class VersionMapeador {
     }
 
     public VersionEntidad consturirEntidad(Version version, Long etapaID) {
-        return new VersionEntidad(0L, version.isEsFinal(), version.isEstaRechazada(), FechaFormateador.obtenerFechaTexto(version.getFecha()), etapaID);
+        return new VersionEntidad(NumeroConstante.CERO, version.isEsFinal(), version.isEstaRechazada(), FechaFormateador.obtenerFechaTexto(version.getFecha()), etapaID);
     }
 
     public VersionDTO construirDTO(VersionEntidad version) {
@@ -48,5 +49,4 @@ public class VersionMapeador {
         entidad.setEsFinal(estado);
         entidad.setEstaRechazado(rechazado);
     }
-
 }

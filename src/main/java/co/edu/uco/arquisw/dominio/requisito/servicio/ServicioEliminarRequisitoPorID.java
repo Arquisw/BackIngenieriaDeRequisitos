@@ -24,7 +24,7 @@ public class ServicioEliminarRequisitoPorID {
 
     private void validarSiExisteRequisitoConID(Long id) {
         if (ValidarObjeto.esNulo(this.requisitoRepositorioConsulta.consultarRequisitoPorID(id))) {
-            throw new NullPointerException(Mensajes.NO_EXISTE_REQUISITO_CON_EL_ID + id);
+            throw new NullPointerException(Mensajes.obtenerNoExiteRequisitoConId(id));
         }
     }
 }

@@ -3,6 +3,7 @@ package co.edu.uco.arquisw.infraestructura.fase.adaptador.mapeador;
 import co.edu.uco.arquisw.dominio.fase.dto.FaseDTO;
 import co.edu.uco.arquisw.dominio.fase.modelo.Etapa;
 import co.edu.uco.arquisw.dominio.fase.modelo.Fase;
+import co.edu.uco.arquisw.dominio.transversal.utilitario.NumeroConstante;
 import co.edu.uco.arquisw.dominio.transversal.validador.ValidarObjeto;
 import co.edu.uco.arquisw.infraestructura.fase.adaptador.entidad.EtapaEntidad;
 import co.edu.uco.arquisw.infraestructura.fase.adaptador.entidad.FaseEntidad;
@@ -19,7 +20,7 @@ public class FaseMapeador {
     }
 
     public FaseEntidad construirEntidad(Fase fase, Long proyectoID) {
-        return new FaseEntidad(0L, fase.getNombre(), fase.getDescripcion(), this.etapaMapeador.construirEntidades(fase.getEtapas()), proyectoID);
+        return new FaseEntidad(NumeroConstante.CERO, fase.getNombre(), fase.getDescripcion(), this.etapaMapeador.construirEntidades(fase.getEtapas()), proyectoID);
     }
 
     public FaseDTO construirDTO(FaseEntidad fase) {
@@ -53,7 +54,7 @@ public class FaseMapeador {
                 boolean existe = existeActualizacion(etapa, etapasEntidad);
 
                 if (!existe) {
-                    nuevaEtapa = new EtapaEntidad(0L, etapa.getNombre(), etapa.getDescripcion(), etapa.isCompletada());
+                    nuevaEtapa = new EtapaEntidad(NumeroConstante.CERO, etapa.getNombre(), etapa.getDescripcion(), etapa.isCompletada());
 
                     break;
                 }

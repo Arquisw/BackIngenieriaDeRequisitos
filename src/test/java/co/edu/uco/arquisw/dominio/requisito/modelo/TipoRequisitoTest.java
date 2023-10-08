@@ -25,7 +25,7 @@ class TipoRequisitoTest {
 
     @Test
     void validarPatronesIncorrecto() {
-        Assertions.assertEquals(Mensajes.PATRON_NOMBRE_TIPOREQUISITO_NO_ES_VALIDO, Assertions.assertThrows(PatronExcepcion.class, () ->
+        Assertions.assertEquals(Mensajes.PATRON_NOMBRE_TIPO_REQUISITO_NO_ES_VALIDO, Assertions.assertThrows(PatronExcepcion.class, () ->
                 TipoRequisito.crear("@-12+*_-°")).getMessage());
     }
 }

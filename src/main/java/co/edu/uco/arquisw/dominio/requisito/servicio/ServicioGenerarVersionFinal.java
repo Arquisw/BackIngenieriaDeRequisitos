@@ -13,7 +13,7 @@ import co.edu.uco.arquisw.dominio.transversal.utilitario.TextoConstante;
 import co.edu.uco.arquisw.dominio.transversal.validador.ValidarObjeto;
 import lombok.AllArgsConstructor;
 
-import static co.edu.uco.arquisw.dominio.transversal.TipoNotificacion.VERSION_FINAL_GENERADA;
+import static co.edu.uco.arquisw.dominio.transversal.servicio.notificacion.enumerador.TipoNotificacion.VERSION_FINAL_GENERADA;
 
 @AllArgsConstructor
 public class ServicioGenerarVersionFinal {
@@ -55,7 +55,7 @@ public class ServicioGenerarVersionFinal {
 
     private void validarSiExisteVersionConID(Long versionId) {
         if (ValidarObjeto.esNulo(this.requisitoRepositorioConsulta.consultarVersionPorID(versionId))) {
-            throw new NullPointerException(Mensajes.NO_EXISTE_VERSION_CON_EL_ID + versionId);
+            throw new NullPointerException(Mensajes.obtenerNoExiteVersionConId(versionId));
         }
     }
 }

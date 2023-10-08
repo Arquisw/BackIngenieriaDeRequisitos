@@ -1,30 +1,19 @@
 package co.edu.uco.arquisw.dominio.requisito.servicio;
 
-import co.edu.uco.arquisw.dominio.fase.dto.EtapaDTO;
-import co.edu.uco.arquisw.dominio.fase.dto.FaseDTO;
-import co.edu.uco.arquisw.dominio.fase.dto.proyecto.ProyectoDTO;
 import co.edu.uco.arquisw.dominio.fase.puerto.consulta.FaseRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.fase.puerto.consulta.ProyectoRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.requisito.modelo.MotivoRechazoVersion;
 import co.edu.uco.arquisw.dominio.requisito.modelo.Version;
 import co.edu.uco.arquisw.dominio.requisito.puerto.comando.RequisitoRepositorioComando;
 import co.edu.uco.arquisw.dominio.requisito.puerto.consulta.RequisitoRepositorioConsulta;
-import co.edu.uco.arquisw.dominio.seleccion.dto.SeleccionDTO;
 import co.edu.uco.arquisw.dominio.seleccion.puerto.consulta.SeleccionRepositorioConsulta;
-import co.edu.uco.arquisw.dominio.transversal.servicio.ServicioEnviarCorreoElectronico;
 import co.edu.uco.arquisw.dominio.transversal.servicio.notificacion.factoria.ServicioEnviarNotificacionFactoria;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.LogicoConstante;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.Mensajes;
-import co.edu.uco.arquisw.dominio.transversal.utilitario.TextoConstante;
 import co.edu.uco.arquisw.dominio.transversal.validador.ValidarObjeto;
-import co.edu.uco.arquisw.dominio.usuario.puerto.consulta.PersonaRepositorioConsulta;
 import lombok.AllArgsConstructor;
 
-import javax.mail.MessagingException;
-import java.util.List;
-
-import static co.edu.uco.arquisw.dominio.transversal.TipoNotificacion.VERSION_INICIAL_GUARDADA;
-import static co.edu.uco.arquisw.dominio.transversal.TipoNotificacion.VERSION_RECHAZADA;
+import static co.edu.uco.arquisw.dominio.transversal.servicio.notificacion.enumerador.TipoNotificacion.VERSION_RECHAZADA;
 
 @AllArgsConstructor
 public class ServicioRechazarVersionPorID {
@@ -73,7 +62,7 @@ public class ServicioRechazarVersionPorID {
 
     private void validarSiExisteVersionConID(Long versionId) {
         if (ValidarObjeto.esNulo(this.requisitoRepositorioConsulta.consultarVersionPorID(versionId))) {
-            throw new NullPointerException(Mensajes.NO_EXISTE_VERSION_CON_EL_ID + versionId);
+            throw new NullPointerException(Mensajes.obtenerNoExiteVersionConId(versionId));
         }
     }
 }

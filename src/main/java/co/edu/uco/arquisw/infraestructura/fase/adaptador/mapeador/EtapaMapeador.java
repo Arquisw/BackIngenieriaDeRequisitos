@@ -2,6 +2,7 @@ package co.edu.uco.arquisw.infraestructura.fase.adaptador.mapeador;
 
 import co.edu.uco.arquisw.dominio.fase.dto.EtapaDTO;
 import co.edu.uco.arquisw.dominio.fase.modelo.Etapa;
+import co.edu.uco.arquisw.dominio.transversal.utilitario.NumeroConstante;
 import co.edu.uco.arquisw.infraestructura.fase.adaptador.entidad.EtapaEntidad;
 import org.springframework.stereotype.Component;
 
@@ -10,7 +11,7 @@ import java.util.List;
 @Component
 public class EtapaMapeador {
     public EtapaEntidad construirEntidad(Etapa etapa) {
-        return new EtapaEntidad(0L, etapa.getNombre(), etapa.getDescripcion(), etapa.isCompletada());
+        return new EtapaEntidad(NumeroConstante.CERO, etapa.getNombre(), etapa.getDescripcion(), etapa.isCompletada());
     }
 
     public List<EtapaEntidad> construirEntidades(List<Etapa> etapas) {

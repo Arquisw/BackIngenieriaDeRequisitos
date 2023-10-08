@@ -3,18 +3,14 @@ package co.edu.uco.arquisw.dominio.requisito.servicio;
 import co.edu.uco.arquisw.dominio.fase.dto.EtapaDTO;
 import co.edu.uco.arquisw.dominio.fase.dto.FaseDTO;
 import co.edu.uco.arquisw.dominio.fase.puerto.consulta.FaseRepositorioConsulta;
-import co.edu.uco.arquisw.dominio.fase.puerto.consulta.ProyectoRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.requisito.dto.RequisitoDTO;
 import co.edu.uco.arquisw.dominio.requisito.modelo.Requisito;
 import co.edu.uco.arquisw.dominio.requisito.modelo.TipoRequisito;
 import co.edu.uco.arquisw.dominio.requisito.modelo.Version;
 import co.edu.uco.arquisw.dominio.requisito.puerto.comando.RequisitoRepositorioComando;
 import co.edu.uco.arquisw.dominio.requisito.puerto.consulta.RequisitoRepositorioConsulta;
-import co.edu.uco.arquisw.dominio.seleccion.puerto.consulta.SeleccionRepositorioConsulta;
-import co.edu.uco.arquisw.dominio.transversal.servicio.ServicioEnviarCorreoElectronico;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.LogicoConstante;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.TextoConstante;
-import co.edu.uco.arquisw.dominio.usuario.puerto.consulta.PersonaRepositorioConsulta;
 import lombok.AllArgsConstructor;
 
 import java.util.List;

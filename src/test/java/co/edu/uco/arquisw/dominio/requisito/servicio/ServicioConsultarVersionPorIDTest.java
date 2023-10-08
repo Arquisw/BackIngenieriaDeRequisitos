@@ -4,6 +4,7 @@ package co.edu.uco.arquisw.dominio.requisito.servicio;
 import co.edu.uco.arquisw.dominio.requisito.dto.VersionDTO;
 import co.edu.uco.arquisw.dominio.requisito.puerto.consulta.RequisitoRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.Mensajes;
+import co.edu.uco.arquisw.dominio.transversal.utilitario.NumeroConstante;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -17,9 +18,9 @@ class ServicioConsultarVersionPorIDTest {
 
         Mockito.when(requisitoRepositorioConsulta.consultarVersionPorID(Mockito.anyLong())).thenReturn(versionDto);
 
-        var requisitoConsultada = servicio.ejecutar(1L);
+        var requisitoConsultada = servicio.ejecutar(NumeroConstante.UNO);
 
-        Mockito.verify(requisitoRepositorioConsulta, Mockito.times(2)).consultarVersionPorID(1L);
+        Mockito.verify(requisitoRepositorioConsulta, Mockito.times(2)).consultarVersionPorID(NumeroConstante.UNO);
 
         Assertions.assertEquals(versionDto, requisitoConsultada);
     }
@@ -29,9 +30,9 @@ class ServicioConsultarVersionPorIDTest {
         var requisitoRepositorioConsulta = Mockito.mock(RequisitoRepositorioConsulta.class);
 
         var servicio = new ServicioConsultarVersionPorID(requisitoRepositorioConsulta);
-        Assertions.assertEquals(Mensajes.NO_EXISTE_VERSION_CON_EL_ID + 1L,
+        Assertions.assertEquals(Mensajes.obtenerNoExiteVersionConId(NumeroConstante.UNO),
                 Assertions.assertThrows(NullPointerException.class, () ->
-                        servicio.ejecutar(1L)
+                        servicio.ejecutar(NumeroConstante.UNO)
                 ).getMessage());
     }
 }

@@ -4,6 +4,7 @@ import co.edu.uco.arquisw.dominio.requisito.dto.RequisitoDTO;
 import co.edu.uco.arquisw.dominio.requisito.puerto.comando.RequisitoRepositorioComando;
 import co.edu.uco.arquisw.dominio.requisito.puerto.consulta.RequisitoRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.Mensajes;
+import co.edu.uco.arquisw.dominio.transversal.utilitario.NumeroConstante;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -20,11 +21,11 @@ class ServicioEliminarRequisitosTestPorId {
 
         Mockito.when(requisitoRepositorioConsulta.consultarRequisitoPorID(Mockito.anyLong())).thenReturn(requisitoDTO);
 
-        var id = servicio.ejecutar(1L);
+        var id = servicio.ejecutar(NumeroConstante.UNO);
 
-        Mockito.verify(requisitoRepositorioComando, Mockito.times(1)).eliminar(1L);
+        Mockito.verify(requisitoRepositorioComando, Mockito.times(1)).eliminar(NumeroConstante.UNO);
 
-        Assertions.assertEquals(1L, id);
+        Assertions.assertEquals(NumeroConstante.UNO, id);
     }
 
     @Test
@@ -36,6 +37,6 @@ class ServicioEliminarRequisitosTestPorId {
 
         Mockito.when(requisitoRepositorioConsulta.consultarRequisitoPorID(Mockito.anyLong())).thenReturn(null);
 
-        Assertions.assertEquals(Mensajes.NO_EXISTE_REQUISITO_CON_EL_ID + 1L, Assertions.assertThrows(NullPointerException.class, () -> servicio.ejecutar(1L)).getMessage());
+        Assertions.assertEquals(Mensajes.obtenerNoExiteRequisitoConId(NumeroConstante.UNO), Assertions.assertThrows(NullPointerException.class, () -> servicio.ejecutar(NumeroConstante.UNO)).getMessage());
     }
 }

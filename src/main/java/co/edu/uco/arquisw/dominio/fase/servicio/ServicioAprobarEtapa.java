@@ -10,11 +10,12 @@ import co.edu.uco.arquisw.dominio.transversal.excepciones.AccionExcepcion;
 import co.edu.uco.arquisw.dominio.transversal.excepciones.AutorizacionExcepcion;
 import co.edu.uco.arquisw.dominio.transversal.servicio.notificacion.factoria.ServicioEnviarNotificacionFactoria;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.Mensajes;
+import co.edu.uco.arquisw.dominio.transversal.utilitario.NumeroConstante;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.TextoConstante;
 import co.edu.uco.arquisw.dominio.transversal.validador.ValidarObjeto;
 import lombok.AllArgsConstructor;
 
-import static co.edu.uco.arquisw.dominio.transversal.TipoNotificacion.APROBACION_ETAPA;
+import static co.edu.uco.arquisw.dominio.transversal.servicio.notificacion.enumerador.TipoNotificacion.APROBACION_ETAPA;
 
 @AllArgsConstructor
 public class ServicioAprobarEtapa {
@@ -45,20 +46,20 @@ public class ServicioAprobarEtapa {
 
         var id = this.servicioActualizarFase.ejecutar(etapaActualizada, etapaID, seleccionesDelProyecto);
 
-        this.servicioEnviarNotificacionFactoria.orquestarNotificacion(seleccionesDelProyecto, etapa, fase, proyecto, 0L, TextoConstante.VACIO, APROBACION_ETAPA);
+        this.servicioEnviarNotificacionFactoria.orquestarNotificacion(seleccionesDelProyecto, etapa, fase, proyecto, NumeroConstante.CERO, TextoConstante.VACIO, APROBACION_ETAPA);
 
         return id;
     }
 
-    private void validarSiExisteEtapaConID(Long etapaID) {
-        if (ValidarObjeto.esNulo(this.faseRepositorioConsulta.consultarEtapaPorID(etapaID))) {
-            throw new NullPointerException(Mensajes.NO_EXISTE_ETAPA_CON_EL_ID + etapaID);
+    private void validarSiExisteEtapaConID(Long etapaId) {
+        if (ValidarObjeto.esNulo(this.faseRepositorioConsulta.consultarEtapaPorID(etapaId))) {
+            throw new NullPointerException(Mensajes.obtenerNoExiteEtapaConId(etapaId));
         }
     }
 
     private void validarSiEtapaNoEstaCompletada(EtapaDTO etapa) {
         if (etapa.isCompletada()) {
-            throw new AccionExcepcion(Mensajes.ETAPA_CON_ID + etapa.getId() + Mensajes.ETAPA_YA_ESTA_COMPLETADA);
+            throw new AccionExcepcion(Mensajes.obtenerEtapaConIdYaEstaCompletada(etapa.getId()));
         }
     }
 

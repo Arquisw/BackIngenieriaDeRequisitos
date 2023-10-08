@@ -23,7 +23,7 @@ public class ServicioActualizarRequisito {
 
     private void validarSiExisteRequisitoConID(Long requisitoID) {
         if (ValidarObjeto.esNulo(this.requisitoRepositorioConsulta.consultarRequisitoPorID(requisitoID))) {
-            throw new NullPointerException(Mensajes.NO_EXISTE_REQUISITO_CON_EL_ID + requisitoID);
+            throw new NullPointerException(Mensajes.obtenerNoExiteRequisitoConId(requisitoID));
         }
     }
 }

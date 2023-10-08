@@ -10,6 +10,7 @@ public interface RequisitoRepositorioConsulta {
     RequisitoDTO consultarRequisitoPorID(Long id);
 
     List<RequisitoDTO> consultarRequisitosPorVersionID(Long versionId);
+
     Page<RequisitoDTO> consultarRequisitosPorVersionIDPaginado(Long versionId, int pagina, int tamano);
 
     VersionDTO consultarVersionPorID(Long versionId);

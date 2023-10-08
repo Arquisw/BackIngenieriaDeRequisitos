@@ -6,9 +6,7 @@ import co.edu.uco.arquisw.dominio.requisito.puerto.comando.RequisitoRepositorioC
 import co.edu.uco.arquisw.dominio.requisito.puerto.consulta.RequisitoRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.requisito.servicio.*;
 import co.edu.uco.arquisw.dominio.seleccion.puerto.consulta.SeleccionRepositorioConsulta;
-import co.edu.uco.arquisw.dominio.transversal.servicio.ServicioEnviarCorreoElectronico;
 import co.edu.uco.arquisw.dominio.transversal.servicio.notificacion.factoria.ServicioEnviarNotificacionFactoria;
-import co.edu.uco.arquisw.dominio.usuario.puerto.consulta.PersonaRepositorioConsulta;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

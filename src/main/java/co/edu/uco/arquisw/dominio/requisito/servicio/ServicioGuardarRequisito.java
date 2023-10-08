@@ -23,7 +23,7 @@ public class ServicioGuardarRequisito {
 
     private void validarSiExisteVersionConID(Long versionId) {
         if (ValidarObjeto.esNulo(this.requisitoRepositorioConsulta.consultarVersionPorID(versionId))) {
-            throw new NullPointerException(Mensajes.NO_EXISTE_VERSION_CON_EL_ID + versionId);
+            throw new NullPointerException(Mensajes.obtenerNoExiteVersionConId(versionId));
         }
     }
 }

@@ -4,6 +4,7 @@ import co.edu.uco.arquisw.dominio.fase.dto.FaseDTO;
 import co.edu.uco.arquisw.dominio.fase.puerto.consulta.FaseRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.fase.servicio.ServicioConsultarFasesPorProyectoID;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.Mensajes;
+import co.edu.uco.arquisw.dominio.transversal.utilitario.NumeroConstante;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -22,9 +23,9 @@ class ServicioConsultarFasesPorProyectoIDTest {
 
         Mockito.when(faseRepositorioConsulta.consultarFasesPorProyectoID(Mockito.anyLong())).thenReturn(faseDTOS);
 
-        var faseConsultada = servicio.ejecutar(1L);
+        var faseConsultada = servicio.ejecutar(NumeroConstante.UNO);
 
-        Mockito.verify(faseRepositorioConsulta, Mockito.times(2)).consultarFasesPorProyectoID(1L);
+        Mockito.verify(faseRepositorioConsulta, Mockito.times(2)).consultarFasesPorProyectoID(NumeroConstante.UNO);
 
         Assertions.assertEquals(faseDTOS, faseConsultada);
     }
@@ -37,9 +38,9 @@ class ServicioConsultarFasesPorProyectoIDTest {
 
         Mockito.when(faseRepositorioConsulta.consultarFasesPorProyectoID(Mockito.anyLong())).thenReturn(null);
 
-        Assertions.assertEquals(Mensajes.NO_EXISTE_PROYECTO_CON_EL_ID + 1L,
+        Assertions.assertEquals(Mensajes.obtenerNoExiteProyectoConId(NumeroConstante.UNO),
                 Assertions.assertThrows(NullPointerException.class, () ->
-                        servicio.ejecutar(1L)
+                        servicio.ejecutar(NumeroConstante.UNO)
                 ).getMessage());
     }
 }

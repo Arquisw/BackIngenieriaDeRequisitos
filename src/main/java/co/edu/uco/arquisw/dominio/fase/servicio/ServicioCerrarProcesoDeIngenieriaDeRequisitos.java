@@ -28,11 +28,11 @@ public class ServicioCerrarProcesoDeIngenieriaDeRequisitos {
     public void ejecutar(List<RequisitoDTO> requisitosUltimaVersion, Long proyectoID, List<SeleccionDTO> seleccionesDelProyecto) {
         var proyecto = this.proyectoRepositorioConsulta.consultarProyectoPorID(proyectoID);
 
-        if(proyecto.getTiposConsultoria().size() == 1 && proyecto.getTiposConsultoria().stream().anyMatch(tipoConsultoria -> tipoConsultoria.getNombre().equals(TextoConstante.INGENIERIA_DE_REQUISITOS))) {
+        if (proyecto.getTiposConsultoria().size() == 1 && proyecto.getTiposConsultoria().stream().anyMatch(tipoConsultoria -> tipoConsultoria.getNombre().equals(TextoConstante.INGENIERIA_DE_REQUISITOS))) {
             this.proyectoRepositorioComando.actualizarEstadoProyecto(EstadoProyecto.crear(TextoConstante.ESTADO_FINALIZADO), proyectoID);
 
             eliminarRolesDelProyectoALosUsuariosSeleccionados(seleccionesDelProyecto);
-        } else if(proyecto.getTiposConsultoria().stream().anyMatch(tipoConsultoria -> tipoConsultoria.getNombre().equals(TextoConstante.SQA) || tipoConsultoria.getNombre().equals(TextoConstante.SQC))) {
+        } else if (proyecto.getTiposConsultoria().stream().anyMatch(tipoConsultoria -> tipoConsultoria.getNombre().equals(TextoConstante.SQA) || tipoConsultoria.getNombre().equals(TextoConstante.SQC))) {
             enviarRequisitosFinalesAlSistemaDeSQAYSQC(requisitosUltimaVersion, proyectoID);
         }
     }

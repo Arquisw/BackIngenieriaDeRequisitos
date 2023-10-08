@@ -7,6 +7,7 @@ import co.edu.uco.arquisw.dominio.fase.servicio.siguientefase.ServicioSiguienteF
 import co.edu.uco.arquisw.dominio.fase.servicio.siguientefase.ServicioSiguienteFasePlanificacion;
 import co.edu.uco.arquisw.dominio.requisito.dto.RequisitoDTO;
 import co.edu.uco.arquisw.dominio.seleccion.dto.SeleccionDTO;
+import co.edu.uco.arquisw.dominio.transversal.utilitario.NumeroConstante;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.TextoConstante;
 import lombok.AllArgsConstructor;
 
@@ -37,7 +38,7 @@ public class ServicioSiguienteFaseFactoria {
                 return this.servicioSiguienteFaseCierre.construirFaseCierre(proyectoId, requisitosUltimaVersion, seleccionesDelProyecto);
             }
             default -> {
-                return null;
+                return NumeroConstante.CERO;
             }
         }
     }

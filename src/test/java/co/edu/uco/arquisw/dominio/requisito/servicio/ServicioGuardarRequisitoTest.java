@@ -6,6 +6,7 @@ import co.edu.uco.arquisw.dominio.requisito.modelo.Requisito;
 import co.edu.uco.arquisw.dominio.requisito.puerto.comando.RequisitoRepositorioComando;
 import co.edu.uco.arquisw.dominio.requisito.puerto.consulta.RequisitoRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.requisito.testdatabuilder.RequisitoTestDataBuilder;
+import co.edu.uco.arquisw.dominio.transversal.utilitario.NumeroConstante;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -28,10 +29,10 @@ public class ServicioGuardarRequisitoTest {
         Mockito.when(requisitoRepositorioConsulta.consultarVersionesPorEtapaID(Mockito.anyLong())).thenReturn(versionDTOS);
         Mockito.when(requisitoRepositorioConsulta.consultarVersionPorID(Mockito.anyLong())).thenReturn(versionDto);
 
-        Mockito.when(requisitoRepositorioComando.guardar(Mockito.any(Requisito.class), Mockito.anyLong())).thenReturn(1L);
+        Mockito.when(requisitoRepositorioComando.guardar(Mockito.any(Requisito.class), Mockito.anyLong())).thenReturn(NumeroConstante.UNO);
 
-        var id = servicio.ejecutar(requisito, 1L);
+        var id = servicio.ejecutar(requisito, NumeroConstante.UNO);
 
-        Assertions.assertEquals(1L, id);
+        Assertions.assertEquals(NumeroConstante.UNO, id);
     }
 }

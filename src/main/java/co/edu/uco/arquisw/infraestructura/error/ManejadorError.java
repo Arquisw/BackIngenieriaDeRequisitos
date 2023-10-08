@@ -24,6 +24,7 @@ public class ManejadorError extends ResponseEntityExceptionHandler {
         CODIGOS_ESTADO.put(AccionExcepcion.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());
         CODIGOS_ESTADO.put(LongitudExcepcion.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());
         CODIGOS_ESTADO.put(PatronExcepcion.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());
+        CODIGOS_ESTADO.put(DuplicidadExcepcion.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());
         CODIGOS_ESTADO.put(ValorInvalidoExcepcion.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());
         CODIGOS_ESTADO.put(AutorizacionExcepcion.class.getSimpleName(), HttpStatus.UNAUTHORIZED.value());
         CODIGOS_ESTADO.put(NullPointerException.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());
@@ -43,7 +44,7 @@ public class ManejadorError extends ResponseEntityExceptionHandler {
             resultado = new ResponseEntity<>(error, HttpStatus.valueOf(codigo));
         } else {
             LOGGER_ERROR.error(excepcionNombre, exception);
-            Error error = new Error(excepcionNombre, Mensajes.OCURRIO_UN_ERROR_FAVOR_CONTACTAR_AL_ADMINISTRADOR);
+            Error error = new Error(excepcionNombre, Mensajes.OCURRIO_UN_ERROR_POR_FAVOR_CONTACTAR_AL_ADMINISTRADOR);
             resultado = new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 

@@ -41,7 +41,7 @@ public class RequisitoConsultaControlador {
             @RequestParam(defaultValue = "0") int pagina,
             @RequestParam(defaultValue = "10") int tamano,
             @PathVariable Long id) {
-        return this.consultarRequisitosPorVersionIDManejador.ejecutar(id,pagina,tamano);
+        return this.consultarRequisitosPorVersionIDManejador.ejecutar(id, pagina, tamano);
     }
 
     @PreAuthorize("hasAuthority('USUARIO_LECTURA')")

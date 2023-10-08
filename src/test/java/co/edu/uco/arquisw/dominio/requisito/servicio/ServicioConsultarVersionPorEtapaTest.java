@@ -5,6 +5,7 @@ import co.edu.uco.arquisw.dominio.fase.puerto.consulta.FaseRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.requisito.dto.VersionDTO;
 import co.edu.uco.arquisw.dominio.requisito.puerto.consulta.RequisitoRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.Mensajes;
+import co.edu.uco.arquisw.dominio.transversal.utilitario.NumeroConstante;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -26,9 +27,9 @@ class ServicioConsultarVersionPorEtapaTest {
         Mockito.when(faseRepositorioConsulta.consultarEtapaPorID(Mockito.anyLong())).thenReturn(etapaDto);
         Mockito.when(requisitoRepositorioConsulta.consultarVersionesPorEtapaID(Mockito.anyLong())).thenReturn(versionDTOS);
 
-        var versionConsultada = servicio.ejecutar(1L);
+        var versionConsultada = servicio.ejecutar(NumeroConstante.UNO);
 
-        Mockito.verify(requisitoRepositorioConsulta, Mockito.times(1)).consultarVersionesPorEtapaID(1L);
+        Mockito.verify(requisitoRepositorioConsulta, Mockito.times(1)).consultarVersionesPorEtapaID(NumeroConstante.UNO);
         Assertions.assertEquals(versionDTOS, versionConsultada);
     }
 
@@ -40,9 +41,9 @@ class ServicioConsultarVersionPorEtapaTest {
 
         var servicio = new ServicioConsultarVersionesPorEtapaID(requisitoRepositorioConsulta, faseRepositorioConsulta);
 
-        Assertions.assertEquals(Mensajes.NO_EXISTE_PROYECTO_CON_EL_ID + 1L,
+        Assertions.assertEquals(Mensajes.obtenerNoExiteEtapaConId(NumeroConstante.UNO),
                 Assertions.assertThrows(NullPointerException.class, () ->
-                        servicio.ejecutar(1L)
+                        servicio.ejecutar(NumeroConstante.UNO)
                 ).getMessage());
     }
 }

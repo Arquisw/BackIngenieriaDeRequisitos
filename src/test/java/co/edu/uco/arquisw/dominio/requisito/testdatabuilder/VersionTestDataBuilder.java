@@ -14,5 +14,4 @@ public class VersionTestDataBuilder {
     public Version build() {
         return Version.crear(esFinal, estaRechazada);
     }
-
 }

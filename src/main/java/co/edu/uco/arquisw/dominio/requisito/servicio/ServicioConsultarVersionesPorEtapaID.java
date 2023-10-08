@@ -25,7 +25,7 @@ public class ServicioConsultarVersionesPorEtapaID {
 
     private void validarSiExisteEtapaConID(Long etapaID) {
         if (ValidarObjeto.esNulo(this.faseRepositorioConsulta.consultarEtapaPorID(etapaID))) {
-            throw new NullPointerException(Mensajes.NO_EXISTE_PROYECTO_CON_EL_ID + etapaID);
+            throw new NullPointerException(Mensajes.obtenerNoExiteEtapaConId(etapaID));
         }
     }
 }

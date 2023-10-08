@@ -8,11 +8,12 @@ import co.edu.uco.arquisw.dominio.seleccion.puerto.consulta.SeleccionRepositorio
 import co.edu.uco.arquisw.dominio.transversal.servicio.notificacion.factoria.ServicioEnviarNotificacionFactoria;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.LogicoConstante;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.Mensajes;
+import co.edu.uco.arquisw.dominio.transversal.utilitario.NumeroConstante;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.TextoConstante;
 import co.edu.uco.arquisw.dominio.transversal.validador.ValidarObjeto;
 import lombok.AllArgsConstructor;
 
-import static co.edu.uco.arquisw.dominio.transversal.TipoNotificacion.VERSION_INICIAL_GUARDADA;
+import static co.edu.uco.arquisw.dominio.transversal.servicio.notificacion.enumerador.TipoNotificacion.VERSION_INICIAL_GUARDADA;
 
 @AllArgsConstructor
 public class ServicioGuardarVersionInicial {
@@ -36,14 +37,14 @@ public class ServicioGuardarVersionInicial {
 
         var versionId = this.requisitoRepositorioComando.guardarVersion(version, etapaId);
 
-        this.servicioEnviarNotificacionFactoria.orquestarNotificacion(seleccionesDelProyecto, etapa, fase, proyecto, 0L, TextoConstante.VACIO, VERSION_INICIAL_GUARDADA);
+        this.servicioEnviarNotificacionFactoria.orquestarNotificacion(seleccionesDelProyecto, etapa, fase, proyecto, NumeroConstante.CERO, TextoConstante.VACIO, VERSION_INICIAL_GUARDADA);
 
         return versionId;
     }
 
     private void validarSiExisteEtapaConID(Long etapaId) {
         if (ValidarObjeto.esNulo(this.faseRepositorioConsulta.consultarEtapaPorID(etapaId))) {
-            throw new NullPointerException(Mensajes.NO_EXISTE_ETAPA_CON_EL_ID + etapaId);
+            throw new NullPointerException(Mensajes.obtenerNoExiteEtapaConId(etapaId));
         }
     }
 }

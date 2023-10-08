@@ -5,17 +5,18 @@ import co.edu.uco.arquisw.dominio.fase.puerto.comando.ProyectoRepositorioComando
 import co.edu.uco.arquisw.dominio.fase.puerto.consulta.FaseRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.fase.puerto.consulta.ProyectoRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.fase.servicio.*;
-import co.edu.uco.arquisw.dominio.fase.servicio.siguientefase.*;
+import co.edu.uco.arquisw.dominio.fase.servicio.siguientefase.ServicioSiguienteFaseCierre;
+import co.edu.uco.arquisw.dominio.fase.servicio.siguientefase.ServicioSiguienteFaseEjecucion;
+import co.edu.uco.arquisw.dominio.fase.servicio.siguientefase.ServicioSiguienteFaseMonitoreoYControl;
+import co.edu.uco.arquisw.dominio.fase.servicio.siguientefase.ServicioSiguienteFasePlanificacion;
 import co.edu.uco.arquisw.dominio.fase.servicio.siguientefase.factoria.ServicioSiguienteFaseFactoria;
 import co.edu.uco.arquisw.dominio.requisito.puerto.comando.RequisitoRepositorioComando;
 import co.edu.uco.arquisw.dominio.requisito.puerto.consulta.RequisitoRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.requisito.servicio.ServicioGuardarRequisitos;
 import co.edu.uco.arquisw.dominio.seleccion.puerto.consulta.SeleccionRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.transversal.servicio.ServicioActualizarToken;
-import co.edu.uco.arquisw.dominio.transversal.servicio.ServicioEnviarCorreoElectronico;
 import co.edu.uco.arquisw.dominio.transversal.servicio.notificacion.factoria.ServicioEnviarNotificacionFactoria;
 import co.edu.uco.arquisw.dominio.usuario.puerto.consulta.PersonaRepositorioComando;
-import co.edu.uco.arquisw.dominio.usuario.puerto.consulta.PersonaRepositorioConsulta;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

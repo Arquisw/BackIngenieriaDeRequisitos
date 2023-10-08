@@ -8,6 +8,7 @@ import co.edu.uco.arquisw.dominio.requisito.dto.RequisitoDTO;
 import co.edu.uco.arquisw.dominio.requisito.puerto.comando.RequisitoRepositorioComando;
 import co.edu.uco.arquisw.dominio.requisito.servicio.ServicioGuardarRequisitos;
 import co.edu.uco.arquisw.dominio.seleccion.dto.SeleccionDTO;
+import co.edu.uco.arquisw.dominio.transversal.utilitario.NumeroConstante;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.TextoConstante;
 
 import java.util.List;
@@ -40,6 +41,6 @@ public class ServicioSiguienteFaseMonitoreoYControl extends ServicioSiguienteFas
 
     @Override
     public Long construirFaseCierre(Long proyectoId, List<RequisitoDTO> requisitosUltimaVersion, List<SeleccionDTO> seleccionesDelProyecto) {
-        return null;
+        return NumeroConstante.CERO;
     }
 }
