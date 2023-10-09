@@ -31,7 +31,7 @@ public class Mensajes {
     public static final String LA_VERSION_NO_HA_SUFRIDO_NINGUN_CAMBIO_CON_RESPECTO_A_LA_ETAPA_ANTERIOR_NO_PUEDE_RECHAZAR = "La versión no ha sufrido ningún cambio con respecto a la versión definitiva de la etapa anterior, por lo tanto, no se puede rechazar.";
     public static final String NOMBRE_ROL_VACIO = "El nombre no puede estar vacío.";
     public static final String PATRON_NOMBRE_ROL_INVALIDO = "El nombre solo puede contener letras y números.";
-    public static final String TOKEN_INVALIDO = "El token recibido es invalido.";
+    public static final String TOKEN_INVALIDO = "El token recibido es inválido.";
     public static final String NO_SE_ENCONTRO_NINGUN_GUION_BAJO = "No se encontró ningún guión bajo.";
     private static final String LA_ETAPA = "La etapa ";
     private static final String DE_LA_FASE = " de la fase ";
