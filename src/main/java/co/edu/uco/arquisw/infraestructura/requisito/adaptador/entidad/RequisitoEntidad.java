@@ -20,7 +20,7 @@ public class RequisitoEntidad {
     private Long id;
     @Column(length = 50)
     private String nombre;
-    @Column(length = 500)
+    @Column(length = 3000)
     private String descripcion;
     @OneToOne
     @JoinColumn(name = "tipo_requisito")
