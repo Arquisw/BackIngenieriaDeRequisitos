@@ -78,7 +78,7 @@ public class BeanServicioFase {
     }
 
     @Bean
-    public ServicioGuardarFase servicioGuardarFase(FaseRepositorioComando faseRepositorioComando, FaseRepositorioConsulta faseRepositorioConsulta, ProyectoRepositorioConsulta proyectoRepositorioConsulta) {
-        return new ServicioGuardarFase(faseRepositorioComando, faseRepositorioConsulta, proyectoRepositorioConsulta);
+    public ServicioGuardarFase servicioGuardarFase(FaseRepositorioComando faseRepositorioComando, ProyectoRepositorioConsulta proyectoRepositorioConsulta) {
+        return new ServicioGuardarFase(faseRepositorioComando, proyectoRepositorioConsulta);
     }
 }

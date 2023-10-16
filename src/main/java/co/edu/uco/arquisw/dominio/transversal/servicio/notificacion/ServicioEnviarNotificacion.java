@@ -4,6 +4,7 @@ import co.edu.uco.arquisw.dominio.fase.dto.EtapaDTO;
 import co.edu.uco.arquisw.dominio.fase.dto.FaseDTO;
 import co.edu.uco.arquisw.dominio.fase.dto.proyecto.ProyectoDTO;
 import co.edu.uco.arquisw.dominio.seleccion.dto.SeleccionDTO;
+import co.edu.uco.arquisw.dominio.transversal.excepciones.EnvioNotificacionesExcepcion;
 import co.edu.uco.arquisw.dominio.transversal.servicio.ServicioEnviarCorreoElectronico;
 import co.edu.uco.arquisw.dominio.usuario.puerto.consulta.PersonaRepositorioConsulta;
 import lombok.Getter;
@@ -27,7 +28,7 @@ public abstract class ServicioEnviarNotificacion {
         try {
             this.servicioEnviarCorreoElectronico.enviarCorreo(correo, asunto, cuerpo);
         } catch (MessagingException e) {
-            throw new RuntimeException(e.getMessage());
+            throw new EnvioNotificacionesExcepcion(e.getMessage());
         }
     }
 }

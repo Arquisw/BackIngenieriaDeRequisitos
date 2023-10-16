@@ -33,6 +33,7 @@ public class Mensajes {
     public static final String PATRON_NOMBRE_ROL_INVALIDO = "El nombre solo puede contener letras y números.";
     public static final String TOKEN_INVALIDO = "El token recibido es inválido.";
     public static final String NO_SE_ENCONTRO_NINGUN_GUION_BAJO = "No se encontró ningún guión bajo.";
+    public static final String NOMBRE_DE_LA_ETAPA_INVALIDO = "El nombre de la etapa es incorrecto.";
     private static final String LA_ETAPA = "La etapa ";
     private static final String DE_LA_FASE = " de la fase ";
     private static final String EN_EL_PROYECTO = " en el proyecto ";

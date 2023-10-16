@@ -14,12 +14,10 @@ import java.util.List;
 
 public class ServicioGuardarFase {
     private final FaseRepositorioComando faseRepositorioComando;
-    private final FaseRepositorioConsulta faseRepositorioConsulta;
     private final ProyectoRepositorioConsulta proyectoRepositorioConsulta;
 
-    public ServicioGuardarFase(FaseRepositorioComando faseRepositorioComando, FaseRepositorioConsulta faseRepositorioConsulta, ProyectoRepositorioConsulta proyectoRepositorioConsulta) {
+    public ServicioGuardarFase(FaseRepositorioComando faseRepositorioComando, ProyectoRepositorioConsulta proyectoRepositorioConsulta) {
         this.faseRepositorioComando = faseRepositorioComando;
-        this.faseRepositorioConsulta = faseRepositorioConsulta;
         this.proyectoRepositorioConsulta = proyectoRepositorioConsulta;
     }
 

@@ -4,6 +4,7 @@ import co.edu.uco.arquisw.dominio.transversal.excepciones.DuplicidadExcepcion;
 import co.edu.uco.arquisw.dominio.transversal.servicio.ServicioActualizarToken;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.Mensajes;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.TextoConstante;
+import co.edu.uco.arquisw.dominio.transversal.validador.ValidarObjeto;
 import co.edu.uco.arquisw.dominio.usuario.dto.RolDTO;
 import co.edu.uco.arquisw.dominio.usuario.puerto.consulta.PersonaRepositorioConsulta;
 import co.edu.uco.arquisw.infraestructura.seguridad.constante.SecurityConstants;
@@ -36,28 +37,36 @@ public class ServicioActualizarTokenJWT implements ServicioActualizarToken {
 
     @Override
     public void ejecutar() {
-        HttpServletResponse response = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getResponse();
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        validarSiExisteUsuarioConCorreo(username);
-        SecretKey key1 = Keys.hmacShaKeyFor(SecurityConstants.JWT_KEY.getBytes(StandardCharsets.UTF_8));
-        var persona = this.personaRepositorioConsulta.consultarUsuarioPorCorreo(username);
-        String jwt1 = Jwts.builder().setIssuer("UCO").setSubject("JWT Token")
-                .claim("username", persona.getCorreo())
-                .claim("id", persona.getId())
-                .claim("authorities", populateAuthorities(persona.getRoles()))
-                .setIssuedAt(new Date())
-                .setExpiration(new Date((new Date()).getTime() + 30000000))
-                .signWith(key1).compact();
-        Claims claims2 = Jwts.parserBuilder()
-                .setSigningKey(key1)
-                .build()
-                .parseClaimsJws(jwt1)
-                .getBody();
-        response.setHeader(SecurityConstants.JWT_HEADER, jwt1);
-        String authorities = (String) claims2.get("authorities");
-        Authentication auth = new UsernamePasswordAuthenticationToken(username, null,
-                AuthorityUtils.commaSeparatedStringToAuthorityList(authorities));
-        SecurityContextHolder.getContext().setAuthentication(auth);
+        var requestAttributes = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes());
+
+        if (requestAttributes != null) {
+            HttpServletResponse response = requestAttributes.getResponse();
+
+            String username = SecurityContextHolder.getContext().getAuthentication().getName();
+            validarSiExisteUsuarioConCorreo(username);
+            SecretKey key1 = Keys.hmacShaKeyFor(SecurityConstants.JWT_KEY.getBytes(StandardCharsets.UTF_8));
+            var persona = this.personaRepositorioConsulta.consultarUsuarioPorCorreo(username);
+            String jwt1 = Jwts.builder().setIssuer("UCO").setSubject("JWT Token")
+                    .claim("username", persona.getCorreo())
+                    .claim("id", persona.getId())
+                    .claim("authorities", populateAuthorities(persona.getRoles()))
+                    .setIssuedAt(new Date())
+                    .setExpiration(new Date((new Date()).getTime() + 30000000))
+                    .signWith(key1).compact();
+            Claims claims2 = Jwts.parserBuilder()
+                    .setSigningKey(key1)
+                    .build()
+                    .parseClaimsJws(jwt1)
+                    .getBody();
+
+            if(response != null) {
+                response.setHeader(SecurityConstants.JWT_HEADER, jwt1);
+                String authorities = (String) claims2.get("authorities");
+                Authentication auth = new UsernamePasswordAuthenticationToken(username, null,
+                        AuthorityUtils.commaSeparatedStringToAuthorityList(authorities));
+                SecurityContextHolder.getContext().setAuthentication(auth);
+            }
+        }
     }
 
     private void validarSiExisteUsuarioConCorreo(String correo) {

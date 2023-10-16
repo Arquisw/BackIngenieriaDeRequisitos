@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-class ServicioEliminarRequisitosTestPorId {
+class ServicioEliminarRequisitosPorIdTest {
     @Test
     void validarServicioEliminacion() {
         var requisitoDTO = new RequisitoDTO();

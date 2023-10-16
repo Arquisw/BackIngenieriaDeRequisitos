@@ -9,7 +9,9 @@ import co.edu.uco.arquisw.dominio.requisito.modelo.TipoRequisito;
 import co.edu.uco.arquisw.dominio.requisito.modelo.Version;
 import co.edu.uco.arquisw.dominio.requisito.puerto.comando.RequisitoRepositorioComando;
 import co.edu.uco.arquisw.dominio.requisito.puerto.consulta.RequisitoRepositorioConsulta;
+import co.edu.uco.arquisw.dominio.transversal.excepciones.ConstanteInvalidaExcepcion;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.LogicoConstante;
+import co.edu.uco.arquisw.dominio.transversal.utilitario.Mensajes;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.TextoConstante;
 import lombok.AllArgsConstructor;
 
@@ -45,6 +47,7 @@ public class ServicioGuardarRequisitos {
                     obtenerRequisitosEtapaAnterior(fases, TextoConstante.ETAPA_NEGOCIACION_NOMBRE, versionId);
             case TextoConstante.ETAPA_VALIDACION_NOMBRE ->
                     obtenerRequisitosEtapaAnterior(fases, TextoConstante.ETAPA_VERIFICACION_NOMBRE, versionId);
+            default -> throw new ConstanteInvalidaExcepcion(Mensajes.NOMBRE_DE_LA_ETAPA_INVALIDO);
         }
     }
 

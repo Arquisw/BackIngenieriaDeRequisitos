@@ -13,7 +13,7 @@ import org.mockito.Mockito;
 
 import java.util.List;
 
-public class ServicioGuardarRequisitoTest {
+class ServicioGuardarRequisitoTest {
     @Test
     void validarGuardarExitoso() {
         var requisito = new RequisitoTestDataBuilder().build();
