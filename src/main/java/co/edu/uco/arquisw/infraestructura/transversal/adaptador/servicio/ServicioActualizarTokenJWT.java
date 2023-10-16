@@ -45,10 +45,10 @@ public class ServicioActualizarTokenJWT implements ServicioActualizarToken {
             validarSiExisteUsuarioConCorreo(username);
             SecretKey key1 = Keys.hmacShaKeyFor(SecurityConstants.JWT_KEY.getBytes(StandardCharsets.UTF_8));
             var persona = this.personaRepositorioConsulta.consultarUsuarioPorCorreo(username);
-            String jwt1 = Jwts.builder().setIssuer("UCO").setSubject("JWT Token")
-                    .claim("username", persona.getCorreo())
-                    .claim("id", persona.getId())
-                    .claim("authorities", populateAuthorities(persona.getRoles()))
+            String jwt1 = Jwts.builder().setIssuer(TextoConstante.UCO).setSubject(TextoConstante.JWT_TOKEN)
+                    .claim(TextoConstante.USERNAME, persona.getCorreo())
+                    .claim(TextoConstante.ID, persona.getId())
+                    .claim(TextoConstante.AUTHORITIES, populateAuthorities(persona.getRoles()))
                     .setIssuedAt(new Date())
                     .setExpiration(new Date((new Date()).getTime() + 30000000))
                     .signWith(key1).compact();
@@ -60,7 +60,7 @@ public class ServicioActualizarTokenJWT implements ServicioActualizarToken {
 
             if(response != null) {
                 response.setHeader(SecurityConstants.JWT_HEADER, jwt1);
-                String authorities = (String) claims2.get("authorities");
+                String authorities = (String) claims2.get(TextoConstante.AUTHORITIES);
                 Authentication auth = new UsernamePasswordAuthenticationToken(username, null,
                         AuthorityUtils.commaSeparatedStringToAuthorityList(authorities));
                 SecurityContextHolder.getContext().setAuthentication(auth);
@@ -80,21 +80,21 @@ public class ServicioActualizarTokenJWT implements ServicioActualizarToken {
             addCrudPrivilage(authoritiesSet, authority);
             authoritiesSet.add(authority.getNombre());
         }
-        return String.join(",", authoritiesSet);
+        return String.join(TextoConstante.GUION_COMA, authoritiesSet);
     }
 
     private void addCrudPrivilage(Set<String> grantedAuthorities, RolDTO authority) {
         if (authority.isLeer()) {
-            grantedAuthorities.add(extractStringAfterUnderscore(authority.getNombre()) + "_" + TextoConstante.LECTURA);
+            grantedAuthorities.add(extractStringAfterUnderscore(authority.getNombre()) + TextoConstante.GUION_BAJO + TextoConstante.LECTURA);
         }
         if (authority.isEscribir()) {
-            grantedAuthorities.add(extractStringAfterUnderscore(authority.getNombre()) + "_" + TextoConstante.ESCRITURA);
+            grantedAuthorities.add(extractStringAfterUnderscore(authority.getNombre()) + TextoConstante.GUION_BAJO + TextoConstante.ESCRITURA);
         }
         if (authority.isActualizar()) {
-            grantedAuthorities.add(extractStringAfterUnderscore(authority.getNombre()) + "_" + TextoConstante.ACTUALIZACION);
+            grantedAuthorities.add(extractStringAfterUnderscore(authority.getNombre()) + TextoConstante.GUION_BAJO + TextoConstante.ACTUALIZACION);
         }
         if (authority.isActualizar()) {
-            grantedAuthorities.add(extractStringAfterUnderscore(authority.getNombre()) + "_" + TextoConstante.ELIMINACION);
+            grantedAuthorities.add(extractStringAfterUnderscore(authority.getNombre()) + TextoConstante.GUION_BAJO + TextoConstante.ELIMINACION);
         }
     }
 

@@ -3,6 +3,8 @@ package co.edu.uco.arquisw.dominio.transversal.utilitario;
 public class TextoConstante {
     public static final String VACIO = "";
     public static final String ESPACIO = " ";
+    public static final String GUION_BAJO = "_";
+    public static final String GUION_COMA = ",";
     public static final String ROL_USUARIO = "ROLE_USUARIO"; // ID = 1
     public static final String ROL_ASOCIACION = "ROLE_ASOCIACION"; // ID = 2
     public static final String ROL_ADMINISTRADOR = "ROLE_ADMINISTRADOR"; // ID = 3
@@ -49,6 +51,11 @@ public class TextoConstante {
     public static final String ACTUALIZACION = "ACTUALIZACION";
     public static final String ELIMINACION = "ELIMINACION";
     public static final String CORREO_PARA_NOTIFICAR = "arquisoftwareuco@outlook.com";
+    public static final String JWT_TOKEN = "JWT Token";
+    public static final String UCO = "UCO";
+    public static final String USERNAME = "username";
+    public static final String ID = "id";
+    public static final String AUTHORITIES = "authorities";
 
     private TextoConstante() {
     }
