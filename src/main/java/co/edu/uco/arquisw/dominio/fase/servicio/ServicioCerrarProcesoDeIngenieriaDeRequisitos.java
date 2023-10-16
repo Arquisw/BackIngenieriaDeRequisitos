@@ -6,6 +6,7 @@ import co.edu.uco.arquisw.dominio.fase.puerto.consulta.ProyectoRepositorioConsul
 import co.edu.uco.arquisw.dominio.requisito.dto.RequisitoDTO;
 import co.edu.uco.arquisw.dominio.seleccion.dto.SeleccionDTO;
 import co.edu.uco.arquisw.dominio.transversal.servicio.ServicioActualizarToken;
+import co.edu.uco.arquisw.dominio.transversal.utilitario.NumeroConstante;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.TextoConstante;
 import co.edu.uco.arquisw.dominio.usuario.modelo.Rol;
 import co.edu.uco.arquisw.dominio.usuario.puerto.consulta.PersonaRepositorioComando;
@@ -48,6 +49,8 @@ public class ServicioCerrarProcesoDeIngenieriaDeRequisitos {
     }
 
     private void enviarRequisitosFinalesAlSistemaDeSQAYSQC(List<RequisitoDTO> requisitosUltimaVersion, Long proyectoID) {
-        // Crear aquí el flujo
+        if(proyectoID.equals(NumeroConstante.CERO)) {
+          requisitosUltimaVersion.add(new RequisitoDTO());
+        }
     }
 }
