@@ -4,7 +4,6 @@ import co.edu.uco.arquisw.dominio.transversal.excepciones.DuplicidadExcepcion;
 import co.edu.uco.arquisw.dominio.transversal.servicio.ServicioActualizarToken;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.Mensajes;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.TextoConstante;
-import co.edu.uco.arquisw.dominio.transversal.validador.ValidarObjeto;
 import co.edu.uco.arquisw.dominio.usuario.dto.RolDTO;
 import co.edu.uco.arquisw.dominio.usuario.puerto.consulta.PersonaRepositorioConsulta;
 import co.edu.uco.arquisw.infraestructura.seguridad.constante.SecurityConstants;
