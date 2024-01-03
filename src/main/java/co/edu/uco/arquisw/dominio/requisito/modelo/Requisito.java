@@ -1,6 +1,7 @@
 package co.edu.uco.arquisw.dominio.requisito.modelo;
 
 import co.edu.uco.arquisw.dominio.transversal.utilitario.Mensajes;
+import co.edu.uco.arquisw.dominio.transversal.utilitario.NumeroConstante;
 import co.edu.uco.arquisw.dominio.transversal.validador.ValidarTexto;
 import lombok.Getter;
 
@@ -23,6 +24,7 @@ public class Requisito {
     private void setNombre(String nombre) {
         ValidarTexto.validarObligatorio(nombre, Mensajes.NOMBRE_REQUISITO_VACIO);
         ValidarTexto.validarPatronAlfanumericoEsValido(nombre, Mensajes.PATRON_NOMBRE_REQUISITO_NO_ES_VALIDO);
+        ValidarTexto.validarLongitudValida(nombre, NumeroConstante.CINCUENTA_ENTERO, Mensajes.obtenerNombreRequisitoNoPuedeExcederLongitud(NumeroConstante.CINCUENTA_ENTERO));
 
         this.nombre = nombre;
     }
@@ -30,6 +32,7 @@ public class Requisito {
     private void setDescripcion(String descripcion) {
         ValidarTexto.validarObligatorio(descripcion, Mensajes.DESCRIPCION_REQUISITO_VACIO);
         ValidarTexto.validarPatronAlfanumericoEsValido(descripcion, Mensajes.PATRON_DESCRIPCION_REQUISITO_NO_ES_VALIDO);
+        ValidarTexto.validarLongitudValida(descripcion, NumeroConstante.TRES_MIL_ENTERO, Mensajes.obtenerNombreRequisitoNoPuedeExcederLongitud(NumeroConstante.TRES_MIL_ENTERO));
 
         this.descripcion = descripcion;
     }

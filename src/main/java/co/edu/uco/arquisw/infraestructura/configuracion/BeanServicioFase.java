@@ -33,8 +33,8 @@ public class BeanServicioFase {
     }
 
     @Bean
-    public ServicioCerrarProcesoDeIngenieriaDeRequisitos servicioCerrarProcesoDeIngenieriaDeRequisitos(ProyectoRepositorioConsulta proyectoRepositorioConsulta, ProyectoRepositorioComando proyectoRepositorioComando, PersonaRepositorioComando personaRepositorioComando, ServicioActualizarToken servicioActualizarToken) {
-        return new ServicioCerrarProcesoDeIngenieriaDeRequisitos(proyectoRepositorioConsulta, proyectoRepositorioComando, personaRepositorioComando, servicioActualizarToken);
+    public ServicioCerrarProcesoDeIngenieriaDeRequisitos servicioCerrarProcesoDeIngenieriaDeRequisitos(ProyectoRepositorioConsulta proyectoRepositorioConsulta, ProyectoRepositorioComando proyectoRepositorioComando, PersonaRepositorioComando personaRepositorioComando, ServicioActualizarToken servicioActualizarToken, RequisitoRepositorioComando requisitoRepositorioComando) {
+        return new ServicioCerrarProcesoDeIngenieriaDeRequisitos(proyectoRepositorioConsulta, proyectoRepositorioComando, personaRepositorioComando, servicioActualizarToken, requisitoRepositorioComando);
     }
 
     @Bean
