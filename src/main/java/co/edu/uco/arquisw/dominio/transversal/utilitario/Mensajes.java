@@ -50,6 +50,9 @@ public class Mensajes {
     private static final String NO_EXISTE_REQUISITO_CON_EL_ID = "No existe un requisito con el ID ";
     private static final String NO_EXISTE_VERSION_CON_EL_ID = "No existe una versión con el ID ";
     private static final String EXISTE_USUARIO_CON_CORREO = "Ya existe un usuario con el correo ";
+    private static final String EL_NOMBRE_TIPO_REQUISITO_NO_PUEDE_EXCEDER_LA_LONGITUD_DE = "El nombre del tipo de requisito no puede exceder la longitud de ";
+    private static final String EL_NOMBRE_REQUISITO_NO_PUEDE_EXCEDER_LA_LONGITUD_DE = "El nombre del requisito no puede exceder la longitud de ";
+    private static final String CARACTERES = " caracteres.";
 
     private Mensajes() {
     }
@@ -92,5 +95,13 @@ public class Mensajes {
 
     public static String obtenerNoExiteUsuarioConCorreo(String correo) {
         return EXISTE_USUARIO_CON_CORREO + correo;
+    }
+
+    public static String obtenerNombreTipoRequisitoNoPuedeExcederLongitud(int longitudLimite) {
+        return EL_NOMBRE_TIPO_REQUISITO_NO_PUEDE_EXCEDER_LA_LONGITUD_DE + longitudLimite + CARACTERES;
+    }
+
+    public static String obtenerNombreRequisitoNoPuedeExcederLongitud(int longitudLimite) {
+        return EL_NOMBRE_REQUISITO_NO_PUEDE_EXCEDER_LA_LONGITUD_DE + longitudLimite + CARACTERES;
     }
 }

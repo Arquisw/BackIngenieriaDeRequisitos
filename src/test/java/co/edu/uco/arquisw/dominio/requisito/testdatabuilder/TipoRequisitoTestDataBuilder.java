@@ -7,7 +7,7 @@ public class TipoRequisitoTestDataBuilder {
     private String nombre;
 
     public TipoRequisitoTestDataBuilder() {
-        this.nombre = "Ingenieria de requisitos";
+        this.nombre = "NO Funcional";
     }
 
     public TipoRequisito build() {

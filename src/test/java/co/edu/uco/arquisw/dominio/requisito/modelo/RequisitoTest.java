@@ -12,7 +12,7 @@ class RequisitoTest {
     void validarCreacionEtapaExitosa() {
         String nombre = "requisito ";
         String descripcion = "requisito ";
-        TipoRequisito tipoRequisito = TipoRequisito.crear("ingenieria de requisitos");
+        TipoRequisito tipoRequisito = TipoRequisito.crear("NO Funcional");
 
         Requisito requisito = Requisito.crear(nombre, descripcion, tipoRequisito);
 
@@ -23,7 +23,7 @@ class RequisitoTest {
 
     @Test
     void validarCamposFaltantes() {
-        TipoRequisito tipoRequisito = TipoRequisito.crear("ingenieria de requisitos");
+        TipoRequisito tipoRequisito = TipoRequisito.crear("NO Funcional");
 
         Assertions.assertEquals(Mensajes.NOMBRE_REQUISITO_VACIO, Assertions.assertThrows(ValorObligatorioExcepcion.class, () ->
                 Requisito.crear("", "descripcion", tipoRequisito)).getMessage());
@@ -34,7 +34,7 @@ class RequisitoTest {
 
     @Test
     void validarPatronesIncorrecto() {
-        TipoRequisito tipoRequisito = TipoRequisito.crear("ingenieria de requisitos");
+        TipoRequisito tipoRequisito = TipoRequisito.crear("NO Funcional");
 
         Assertions.assertEquals(Mensajes.PATRON_NOMBRE_REQUISITO_NO_ES_VALIDO, Assertions.assertThrows(PatronExcepcion.class, () ->
                 Requisito.crear("@-12+*_-°", "descripcion", tipoRequisito)).getMessage());
