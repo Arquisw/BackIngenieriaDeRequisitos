@@ -4,6 +4,7 @@ import co.edu.uco.arquisw.dominio.fase.modelo.proyecto.EstadoProyecto;
 import co.edu.uco.arquisw.dominio.fase.puerto.comando.ProyectoRepositorioComando;
 import co.edu.uco.arquisw.dominio.fase.puerto.consulta.ProyectoRepositorioConsulta;
 import co.edu.uco.arquisw.dominio.requisito.dto.RequisitoDTO;
+import co.edu.uco.arquisw.dominio.requisito.puerto.comando.RequisitoRepositorioComando;
 import co.edu.uco.arquisw.dominio.seleccion.dto.SeleccionDTO;
 import co.edu.uco.arquisw.dominio.transversal.servicio.ServicioActualizarToken;
 import co.edu.uco.arquisw.dominio.transversal.utilitario.NumeroConstante;
@@ -18,12 +19,14 @@ public class ServicioCerrarProcesoDeIngenieriaDeRequisitos {
     private final ProyectoRepositorioComando proyectoRepositorioComando;
     private final PersonaRepositorioComando personaRepositorioComando;
     private final ServicioActualizarToken servicioActualizarToken;
+    private final RequisitoRepositorioComando requisitoRepositorioComando;
 
-    public ServicioCerrarProcesoDeIngenieriaDeRequisitos(ProyectoRepositorioConsulta proyectoRepositorioConsulta, ProyectoRepositorioComando proyectoRepositorioComando, PersonaRepositorioComando personaRepositorioComando, ServicioActualizarToken servicioActualizarToken) {
+    public ServicioCerrarProcesoDeIngenieriaDeRequisitos(ProyectoRepositorioConsulta proyectoRepositorioConsulta, ProyectoRepositorioComando proyectoRepositorioComando, PersonaRepositorioComando personaRepositorioComando, ServicioActualizarToken servicioActualizarToken, RequisitoRepositorioComando requisitoRepositorioComando) {
         this.proyectoRepositorioConsulta = proyectoRepositorioConsulta;
         this.proyectoRepositorioComando = proyectoRepositorioComando;
         this.personaRepositorioComando = personaRepositorioComando;
         this.servicioActualizarToken = servicioActualizarToken;
+        this.requisitoRepositorioComando = requisitoRepositorioComando;
     }
 
     public void ejecutar(List<RequisitoDTO> requisitosUltimaVersion, Long proyectoID, List<SeleccionDTO> seleccionesDelProyecto) {
@@ -49,8 +52,8 @@ public class ServicioCerrarProcesoDeIngenieriaDeRequisitos {
     }
 
     private void enviarRequisitosFinalesAlSistemaDeSQAYSQC(List<RequisitoDTO> requisitosUltimaVersion, Long proyectoID) {
-        if(proyectoID.equals(NumeroConstante.CERO)) {
-          requisitosUltimaVersion.add(new RequisitoDTO());
+        if(proyectoID > NumeroConstante.CERO) {
+          this.requisitoRepositorioComando.guardarRequisitosFinales(requisitosUltimaVersion, proyectoID);
         }
     }
 }

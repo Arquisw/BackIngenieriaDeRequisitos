@@ -15,6 +15,9 @@ public class NumeroConstante {
     public static final Long ONCE = 11L;
     public static final Long DOCE = 12L;
     public static final Long TRECE = 13L;
+    public static final int CINCUENTA_ENTERO = 50;
+    public static final int DOCE_ENTERO = 12;
+    public static final int TRES_MIL_ENTERO = 3000;
 
     private NumeroConstante() {
     }

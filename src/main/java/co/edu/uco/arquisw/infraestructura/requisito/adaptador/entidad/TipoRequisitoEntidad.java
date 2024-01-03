@@ -18,6 +18,6 @@ public class TipoRequisitoEntidad {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "tipo_requisito_code_seq")
     @SequenceGenerator(name = "tipo_requisito_code_seq", sequenceName = "tipo_requisito_code_seq", allocationSize = 1)
     private Long id;
-    @Column(length = 50)
+    @Column(length = 12)
     private String nombre;
 }

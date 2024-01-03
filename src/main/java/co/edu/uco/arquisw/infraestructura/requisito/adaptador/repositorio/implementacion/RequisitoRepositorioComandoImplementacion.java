@@ -1,18 +1,19 @@
 package co.edu.uco.arquisw.infraestructura.requisito.adaptador.repositorio.implementacion;
 
+import co.edu.uco.arquisw.dominio.requisito.dto.RequisitoDTO;
 import co.edu.uco.arquisw.dominio.requisito.modelo.MotivoRechazoVersion;
 import co.edu.uco.arquisw.dominio.requisito.modelo.Requisito;
 import co.edu.uco.arquisw.dominio.requisito.modelo.Version;
 import co.edu.uco.arquisw.dominio.requisito.puerto.comando.RequisitoRepositorioComando;
 import co.edu.uco.arquisw.infraestructura.requisito.adaptador.mapeador.MotivoRechazoVersionMapeador;
+import co.edu.uco.arquisw.infraestructura.requisito.adaptador.mapeador.RequisitoFinalMapeador;
 import co.edu.uco.arquisw.infraestructura.requisito.adaptador.mapeador.RequisitoMapeador;
 import co.edu.uco.arquisw.infraestructura.requisito.adaptador.mapeador.VersionMapeador;
-import co.edu.uco.arquisw.infraestructura.requisito.adaptador.repositorio.jpa.MotivoRechazoVersionDAO;
-import co.edu.uco.arquisw.infraestructura.requisito.adaptador.repositorio.jpa.RequisitoDAO;
-import co.edu.uco.arquisw.infraestructura.requisito.adaptador.repositorio.jpa.RequisitoTipoRequisitoDAO;
-import co.edu.uco.arquisw.infraestructura.requisito.adaptador.repositorio.jpa.VersionDAO;
+import co.edu.uco.arquisw.infraestructura.requisito.adaptador.repositorio.jpa.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public class RequisitoRepositorioComandoImplementacion implements RequisitoRepositorioComando {
@@ -30,6 +31,10 @@ public class RequisitoRepositorioComandoImplementacion implements RequisitoRepos
     MotivoRechazoVersionDAO motivoRechazoVersionDAO;
     @Autowired
     MotivoRechazoVersionMapeador motivoRechazoVersionMapeador;
+    @Autowired
+    RequisitoFinalDAO requisitoFinalDAO;
+    @Autowired
+    RequisitoFinalMapeador requisitoFinalMapeador;
 
     @Override
     public Long guardar(Requisito requisito, Long versionId) {
@@ -91,5 +96,12 @@ public class RequisitoRepositorioComandoImplementacion implements RequisitoRepos
         var entidad = this.motivoRechazoVersionMapeador.construirEntidad(motivoRechazoVersion, versionId);
 
         this.motivoRechazoVersionDAO.save(entidad);
+    }
+
+    @Override
+    public void guardarRequisitosFinales(List<RequisitoDTO> requisitosUltimaVersion, Long proyectoID) {
+        var entidades = this.requisitoFinalMapeador.consturirEntidades(requisitosUltimaVersion, proyectoID);
+
+        entidades.forEach(requisitoFinalEntidad -> this.requisitoFinalDAO.save(requisitoFinalEntidad));
     }
 }
