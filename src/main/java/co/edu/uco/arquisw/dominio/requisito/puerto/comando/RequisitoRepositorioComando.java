@@ -1,8 +1,11 @@
 package co.edu.uco.arquisw.dominio.requisito.puerto.comando;
 
+import co.edu.uco.arquisw.dominio.requisito.dto.RequisitoDTO;
 import co.edu.uco.arquisw.dominio.requisito.modelo.MotivoRechazoVersion;
 import co.edu.uco.arquisw.dominio.requisito.modelo.Requisito;
 import co.edu.uco.arquisw.dominio.requisito.modelo.Version;
+
+import java.util.List;
 
 public interface RequisitoRepositorioComando {
     Long guardar(Requisito requisito, Long versionId);
@@ -18,4 +21,5 @@ public interface RequisitoRepositorioComando {
     void actualizarVersion(boolean estado, boolean rechazado, Long versionID);
 
     void guardarMotivoRechazoVersion(MotivoRechazoVersion motivoRechazoVersion, Long versionId);
+    void guardarRequisitosFinales(List<RequisitoDTO> requisitosUltimaVersion, Long proyectoID);
 }

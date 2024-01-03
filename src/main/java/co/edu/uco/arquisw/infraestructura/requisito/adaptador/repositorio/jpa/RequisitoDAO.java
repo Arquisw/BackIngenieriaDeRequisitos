@@ -7,6 +7,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RequisitoDAO extends JpaRepository<RequisitoEntidad, Long> {
     Page<RequisitoEntidad> findByVersion(Long versionId, Pageable pageable);
-
-    long countByVersion(Long versionId);
 }
