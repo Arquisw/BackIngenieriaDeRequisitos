@@ -1,4 +1,15 @@
 package co.edu.uco.arquisw.aplicacion.transversal;
 
-public record ComandoRespuesta<T>(T valor) {
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@Getter
+@NoArgsConstructor
+public class ComandoRespuesta<T> {
+    private T valor;
+
+    public ComandoRespuesta(T valor) {
+        this.valor = valor;
+    }
+
 }
