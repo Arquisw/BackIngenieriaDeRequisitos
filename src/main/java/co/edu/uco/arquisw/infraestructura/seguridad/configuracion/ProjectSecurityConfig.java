@@ -38,7 +38,7 @@ public class ProjectSecurityConfig {
                     config.setMaxAge(3600L);
                     return config;
                 }).and()
-                .csrf().and()
+                .csrf().disable()
                 .addFilterBefore(new RequestValidationBeforeFilter(), BasicAuthenticationFilter.class)
                 .addFilterBefore(new JWTTokenValidatorFilter(), BasicAuthenticationFilter.class)
                 .authorizeRequests()
