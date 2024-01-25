@@ -18,4 +18,6 @@ public interface RequisitoRepositorioConsulta {
     List<VersionDTO> consultarVersionesPorEtapaID(Long etapaId);
 
     VersionDTO consultarUltimaVersionPorEtapaID(Long etapaId);
+
+    Boolean terminoProcesoDeIngenieriaDeRequisitosPorProyectoID(Long proyectoId);
 }

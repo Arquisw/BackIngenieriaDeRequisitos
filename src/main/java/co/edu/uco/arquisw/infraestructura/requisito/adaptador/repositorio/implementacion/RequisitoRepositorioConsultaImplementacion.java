@@ -9,6 +9,7 @@ import co.edu.uco.arquisw.infraestructura.requisito.adaptador.entidad.VersionEnt
 import co.edu.uco.arquisw.infraestructura.requisito.adaptador.mapeador.RequisitoMapeador;
 import co.edu.uco.arquisw.infraestructura.requisito.adaptador.mapeador.VersionMapeador;
 import co.edu.uco.arquisw.infraestructura.requisito.adaptador.repositorio.jpa.RequisitoDAO;
+import co.edu.uco.arquisw.infraestructura.requisito.adaptador.repositorio.jpa.RequisitoFinalDAO;
 import co.edu.uco.arquisw.infraestructura.requisito.adaptador.repositorio.jpa.VersionDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -31,6 +32,8 @@ public class RequisitoRepositorioConsultaImplementacion implements RequisitoRepo
     RequisitoMapeador requisitoMapeador;
     @Autowired
     VersionMapeador versionMapeador;
+    @Autowired
+    RequisitoFinalDAO requisitoFinalDAO;
 
     @Override
     public RequisitoDTO consultarRequisitoPorID(Long id) {
@@ -103,5 +106,12 @@ public class RequisitoRepositorioConsultaImplementacion implements RequisitoRepo
         }
 
         return this.versionMapeador.construirDTO(versionFinal);
+    }
+
+    @Override
+    public Boolean terminoProcesoDeIngenieriaDeRequisitosPorProyectoID(Long proyectoId) {
+        var entidades = requisitoFinalDAO.findAll().stream().filter(requisito -> requisito.getProyectoId().equals(proyectoId)).toList();
+
+        return !entidades.isEmpty();
     }
 }
