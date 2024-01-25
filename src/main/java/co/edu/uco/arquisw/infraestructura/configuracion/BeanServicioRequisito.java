@@ -71,4 +71,9 @@ public class BeanServicioRequisito {
     public ServicioValidarSiRequisitosSonIguales servicioValidarSiRequisitosSonIguales(RequisitoRepositorioConsulta requisitoRepositorioConsulta) {
         return new ServicioValidarSiRequisitosSonIguales(requisitoRepositorioConsulta);
     }
+
+    @Bean
+    public ServicioTerminoProcesoIngenieriaRequisitosPorProyectoID servicioTerminoProcesoIngenieriaRequisitosPorProyectoID(RequisitoRepositorioConsulta requisitoRepositorioConsulta) {
+        return new ServicioTerminoProcesoIngenieriaRequisitosPorProyectoID(requisitoRepositorioConsulta);
+    }
 }
