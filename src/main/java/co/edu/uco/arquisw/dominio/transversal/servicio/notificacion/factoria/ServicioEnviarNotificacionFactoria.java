@@ -10,6 +10,8 @@ import co.edu.uco.arquisw.dominio.transversal.servicio.notificacion.ServicioEnvi
 import co.edu.uco.arquisw.dominio.transversal.servicio.notificacion.ServicioEnviarNotificacionVersionRechazada;
 import co.edu.uco.arquisw.dominio.transversal.servicio.notificacion.enumerador.TipoNotificacion;
 import lombok.AllArgsConstructor;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -20,6 +22,8 @@ public class ServicioEnviarNotificacionFactoria {
     private final ServicioEnviarNotificacionVersionInicialGuardada servicioEnviarNotificacionVersionInicialGuardada;
     private final ServicioEnviarNotificacionVersionRechazada servicioEnviarNotificacionVersionRechazada;
 
+    @Async
+    @Transactional
     public void orquestarNotificacion(List<SeleccionDTO> seleccionesDelProyecto, EtapaDTO etapa, FaseDTO fase, ProyectoDTO proyecto, Long versionId, String motivoRechazo, TipoNotificacion tipoNotificacion) {
         switch (tipoNotificacion) {
             case APROBACION_ETAPA ->
