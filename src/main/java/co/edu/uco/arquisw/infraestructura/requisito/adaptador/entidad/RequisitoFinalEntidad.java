@@ -25,4 +25,5 @@ public class RequisitoFinalEntidad {
     private String descripcion;
     @Column(length = 12)
     private String tipoRequisito;
+    private boolean calificado;
 }
